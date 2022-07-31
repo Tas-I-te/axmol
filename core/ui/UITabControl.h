@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
  * @addtogroup ui
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Label;
 
@@ -45,7 +45,7 @@ class TabControl;
 /**
  * the header button in TabControl
  */
-class CC_GUI_DLL TabHeader : public AbstractCheckButton
+class AX_GUI_DLL TabHeader : public AbstractCheckButton
 {
     friend class TabControl;
 
@@ -188,7 +188,7 @@ private:
 /**
  * TabControl, use header button switch container
  */
-class CC_GUI_DLL TabControl : public Widget
+class AX_GUI_DLL TabControl : public Widget
 {
 public:
     enum class Dock
@@ -382,6 +382,6 @@ private:
 }  // namespace ui
 // end group
 /// @}
-NS_CC_END
+NS_AX_END
 
 #endif  // __UITABVIEW_H__

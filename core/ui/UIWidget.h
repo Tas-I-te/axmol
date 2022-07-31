@@ -4,7 +4,7 @@ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2020 C4games Ltd.
 Copyright (c) 2021 Bytedance Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ THE SOFTWARE.
  * @addtogroup ui
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class EventListenerTouchOneByOne;
 class Camera;
@@ -52,7 +52,7 @@ class LayoutComponent;
  * This class inherent from `ProtectedNode` and `LayoutParameterProtocol`.
  * If you want to implements your own ui widget, you should subclass it.
  */
-class CC_GUI_DLL Widget : public ProtectedNode, public LayoutParameterProtocol
+class AX_GUI_DLL Widget : public ProtectedNode, public LayoutParameterProtocol
 {
 public:
     /**
@@ -252,7 +252,7 @@ public:
     /**
      * @js NA
      */
-    virtual void visit(cocos2d::Renderer* renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
+    virtual void visit(axis::Renderer* renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
 
     /**
      * Set a callback to touch vent listener.
@@ -847,7 +847,7 @@ private:
 };
 }  // namespace ui
 
-NS_CC_END
+NS_AX_END
 // end of ui group
 /// @}
 

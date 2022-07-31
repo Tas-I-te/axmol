@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2013-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __CC_EXTENTIONS_CCCOMCONTROLLER_H__
-#define __CC_EXTENTIONS_CCCOMCONTROLLER_H__
+#ifndef __AX_EXTENTIONS_CCCOMCONTROLLER_H__
+#define __AX_EXTENTIONS_CCCOMCONTROLLER_H__
 
 #include "CCComBase.h"
 #include "CCInputDelegate.h"
@@ -33,7 +33,7 @@ THE SOFTWARE.
 namespace cocostudio
 {
 
-class CCS_DLL ComController : public cocos2d::Component, public InputDelegate
+class CCS_DLL ComController : public axis::Component, public InputDelegate
 {
     DECLARE_CLASS_COMPONENT_INFO
 public:
@@ -83,4 +83,4 @@ public:
 
 }  // namespace cocostudio
 
-#endif  // __CC_EXTENTIONS_CCCOMCONTROLLER_H__
+#endif  // __AX_EXTENTIONS_CCCOMCONTROLLER_H__

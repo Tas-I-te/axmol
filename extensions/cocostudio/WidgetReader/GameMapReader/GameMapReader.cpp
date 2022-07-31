@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@
 
 #include "flatbuffers/flatbuffers.h"
 
-USING_NS_CC;
+USING_NS_AX;
 using namespace flatbuffers;
 
 namespace cocostudio
@@ -60,7 +60,7 @@ GameMapReader* GameMapReader::getInstance()
 
 void GameMapReader::destroyInstance()
 {
-    CC_SAFE_DELETE(_instanceTMXTiledMapReader);
+    AX_SAFE_DELETE(_instanceTMXTiledMapReader);
 }
 
 Offset<Table> GameMapReader::createOptionsWithFlatBuffers(pugi::xml_node objectData,
@@ -115,7 +115,7 @@ Offset<Table> GameMapReader::createOptionsWithFlatBuffers(pugi::xml_node objectD
     return *(Offset<Table>*)(&options);
 }
 
-void GameMapReader::setPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* gameMapOptions)
+void GameMapReader::setPropsWithFlatBuffers(axis::Node* node, const flatbuffers::Table* gameMapOptions)
 {
     auto options    = (GameMapOptions*)gameMapOptions;
     auto nodeReader = NodeReader::getInstance();

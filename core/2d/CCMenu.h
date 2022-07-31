@@ -4,7 +4,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "2d/CCLayer.h"
 #include "base/CCValue.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 class Touch;
 
 /**
@@ -45,7 +45,7 @@ class Touch;
  *  - You can add MenuItem objects in runtime using addChild.
  *  - But the only accepted children are MenuItem objects.
  */
-class CC_DLL Menu : public Node
+class AX_DLL Menu : public Node
 {
 public:
     /**
@@ -63,7 +63,7 @@ public:
     static Menu* create();
 
     /** Creates a Menu with MenuItem objects. */
-    static Menu* create(MenuItem* item, ...) CC_REQUIRES_NULL_TERMINATION;
+    static Menu* create(MenuItem* item, ...) AX_REQUIRES_NULL_TERMINATION;
 
     /**
      * Creates a Menu with a Array of MenuItem objects.
@@ -101,7 +101,7 @@ public:
     void alignItemsHorizontallyWithPadding(float padding);
 
     /** Align items in rows of columns. */
-    void alignItemsInColumns(int columns, ...) CC_REQUIRES_NULL_TERMINATION;
+    void alignItemsInColumns(int columns, ...) AX_REQUIRES_NULL_TERMINATION;
 
     /** Align items in rows of columns. */
     void alignItemsInColumns(int columns, va_list args);
@@ -112,7 +112,7 @@ public:
     void alignItemsInColumnsWithArray(const ValueVector& rows);
 
     /** Align items in columns of rows. */
-    void alignItemsInRows(int rows, ...) CC_REQUIRES_NULL_TERMINATION;
+    void alignItemsInRows(int rows, ...) AX_REQUIRES_NULL_TERMINATION;
 
     /** Align items in columns of rows. */
     void alignItemsInRows(int rows, va_list args);
@@ -179,12 +179,12 @@ protected:
     const Camera* _selectedWithCamera;
 
 private:
-    CC_DISALLOW_COPY_AND_ASSIGN(Menu);
+    AX_DISALLOW_COPY_AND_ASSIGN(Menu);
 };
 
 // end of _2d group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif  //__CCMENU_H_

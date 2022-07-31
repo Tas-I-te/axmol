@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2019 Xiamen Yaji Software Co., Ltd.
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 
 #include "base/ccMacros.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 namespace GLBlendConst
 {
@@ -63,4 +63,4 @@ const int CLAMP_TO_EDGE          = 0x812F;  // GL_CLAMP_TO_EDGE
 const int MIRROR_REPEAT          = 0x8370;  // GL_MIRRORED_REPEAT
 }  // namespace GLTexParamConst
 
-NS_CC_END
+NS_AX_END

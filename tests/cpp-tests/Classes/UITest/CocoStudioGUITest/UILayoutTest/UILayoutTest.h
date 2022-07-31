@@ -2,7 +2,7 @@
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -69,10 +69,10 @@ public:
 
     CREATE_FUNC(UILayoutTest_BackGroundImage);
 
-    void printWidgetResources(cocos2d::Ref* sender);
+    void printWidgetResources(axis::Ref* sender);
 
 protected:
-    cocos2d::ui::Layout* _layout;
+    axis::ui::Layout* _layout;
 };
 
 class UILayoutTest_BackGroundImage_Scale9 : public UIScene
@@ -141,10 +141,10 @@ public:
     CREATE_FUNC(UILayoutComponentTest);
 
     virtual bool init() override;
-    void touchEvent(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+    void touchEvent(axis::Ref* sender, axis::ui::Widget::TouchEventType type);
 
 protected:
-    cocos2d::LayerColor* _baseLayer;
+    axis::LayerColor* _baseLayer;
 };
 
 class UILayoutComponent_Berth_Test : public UILayoutComponentTest

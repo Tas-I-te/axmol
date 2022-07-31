@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,13 +27,13 @@
 #include "platform/CCPlatformConfig.h"
 #include "platform/CCDevice.h"
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+#if AX_TARGET_PLATFORM == AX_PLATFORM_MAC
 
 #    include <Foundation/Foundation.h>
 #    include <Cocoa/Cocoa.h>
 #    include <string>
 
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#elif AX_TARGET_PLATFORM == AX_PLATFORM_IOS
 
 #    import <UIKit/UIKit.h>
 
@@ -51,7 +51,7 @@ NSMutableParagraphStyle* _calculateParagraphStyle(bool enableWrap, int overflow)
     return paragraphStyle;
 }
 
-NSTextAlignment _calculateTextAlignment(cocos2d::Device::TextAlign align)
+NSTextAlignment _calculateTextAlignment(axis::Device::TextAlign align)
 {
     unsigned uHoriFlag      = (int)align & 0x0f;
     NSTextAlignment nsAlign = (2 == uHoriFlag)   ? NSTextAlignmentRight
@@ -61,7 +61,7 @@ NSTextAlignment _calculateTextAlignment(cocos2d::Device::TextAlign align)
     return nsAlign;
 }
 
-CGFloat _calculateTextDrawStartWidth(cocos2d::Device::TextAlign align, CGSize realDimensions, CGSize dimensions)
+CGFloat _calculateTextDrawStartWidth(axis::Device::TextAlign align, CGSize realDimensions, CGSize dimensions)
 {
     CGFloat xPadding   = 0;
     unsigned uHoriFlag = (int)align & 0x0f;

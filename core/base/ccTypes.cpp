@@ -5,7 +5,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,10 +29,10 @@ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 #include "base/ccTypes.h"
 #include "renderer/backend/Types.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 const std::string STD_STRING_EMPTY("");
-const ssize_t CC_INVALID_INDEX = -1;
+const ssize_t AX_INVALID_INDEX = -1;
 
 /**
  * Color3B
@@ -731,5 +731,5 @@ const BlendFunc BlendFunc::ALPHA_NON_PREMULTIPLIED = {backend::BlendFactor::SRC_
                                                       backend::BlendFactor::ONE_MINUS_SRC_ALPHA};
 const BlendFunc BlendFunc::ADDITIVE                = {backend::BlendFactor::SRC_ALPHA, backend::BlendFactor::ONE};
 
-NS_CC_END
+NS_AX_END
 

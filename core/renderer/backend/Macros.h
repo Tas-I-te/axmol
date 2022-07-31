@@ -2,7 +2,7 @@
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +25,12 @@
 
 #pragma once
 
-#define CC_BACKEND_BEGIN \
-    namespace cocos2d    \
+#define NS_AX_BACKEND_BEGIN \
+    namespace axis    \
     {                    \
     namespace backend    \
     {
-#define CC_BACKEND_END \
+#define NS_AX_BACKEND_END \
     }                  \
     }
 
@@ -38,4 +38,4 @@
 
 #define MAX_INFLIGHT_BUFFER 3
 
-#define CC_ARRAYSIZE(A) (sizeof(A) / sizeof((A)[0]))
+#define AX_ARRAYSIZE(A) (sizeof(A) / sizeof((A)[0]))

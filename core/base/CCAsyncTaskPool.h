@@ -2,7 +2,7 @@
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -43,14 +43,14 @@ THE SOFTWARE.
  * @addtogroup base
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @class AsyncTaskPool
  * @brief This class allows to perform background operations without having to manipulate threads.
  * @js NA
  */
-class CC_DLL AsyncTaskPool
+class AX_DLL AsyncTaskPool
 {
 public:
     typedef std::function<void(void*)> TaskCallBack;
@@ -174,7 +174,7 @@ protected:
                 // don't allow enqueueing after stopping the pool
                 if (_stop)
                 {
-                    CC_ASSERT(0 && "already stop");
+                    AX_ASSERT(0 && "already stop");
                     return;
                 }
 
@@ -225,7 +225,7 @@ inline void AsyncTaskPool::enqueue(AsyncTaskPool::TaskType type, std::function<v
         type, [](void*) {}, nullptr, std::move(task));
 }
 
-NS_CC_END
+NS_AX_END
 // end group
 /// @}
 #endif  //__CCSYNC_TASK_POOL_H_

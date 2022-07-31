@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "base/ccUTF8.h"
 #include "2d/CCSprite.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 #define CURSOR_TIME_SHOW_HIDE 0.5f
 #define CURSOR_DEFAULT_CHAR '|'
@@ -42,7 +42,7 @@ static std::size_t _calcCharCount(const char* text)
     char ch = 0;
     while ((ch = *text))
     {
-        CC_BREAK_IF(!ch);
+        AX_BREAK_IF(!ch);
 
         if (0x80 != (0xC0 & ch))
         {
@@ -125,7 +125,7 @@ TextFieldTTF* TextFieldTTF::textFieldWithPlaceHolder(std::string_view placeholde
         }
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -143,7 +143,7 @@ TextFieldTTF* TextFieldTTF::textFieldWithPlaceHolder(std::string_view placeholde
         }
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -186,8 +186,8 @@ bool TextFieldTTF::initWithPlaceHolder(std::string_view placeholder, std::string
     setTextColorInternally(_colorSpaceHolder);
     Label::setString(_placeHolder);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || \
-     CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_MAC || AX_TARGET_PLATFORM == AX_PLATFORM_WIN32 || \
+     AX_TARGET_PLATFORM == AX_PLATFORM_LINUX)
     // On desktop default enable cursor
     if (_currentLabelType == LabelType::TTF)
     {
@@ -757,4 +757,4 @@ bool TextFieldTTF::isSecureTextEntry() const
     return _secureTextEntry;
 }
 
-NS_CC_END
+NS_AX_END

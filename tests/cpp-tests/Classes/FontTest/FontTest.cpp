@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "2d/CCFontAtlasCache.h"
 #include "2d/CCFontFreeType.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 enum
 {
@@ -56,7 +56,7 @@ static TextVAlignment verticalAlignment[] = {
 
 FontTests::FontTests()
 {
-    for (auto& fontFile : fontList)
+    for (auto&& fontFile : fontList)
     {
         addTestCase("FontTests", [&]() {
             vAlignIdx = 0;
@@ -64,7 +64,7 @@ FontTests::FontTests()
         });
     }
 
-    for (auto& fontFile : fontList)
+    for (auto&& fontFile : fontList)
     {
         addTestCase("FontTests", [&]() {
             vAlignIdx = 1;
@@ -72,7 +72,7 @@ FontTests::FontTests()
         });
     }
 
-    for (auto& fontFile : fontList)
+    for (auto&& fontFile : fontList)
     {
         addTestCase("FontTests", [&]() {
             vAlignIdx = 2;

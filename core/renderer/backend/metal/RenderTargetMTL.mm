@@ -1,7 +1,7 @@
 #include "RenderTargetMTL.h"
 #include "UtilsMTL.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 static MTLLoadAction getLoadAction(const RenderPassDescriptor& params, TargetBufferFlags buffer)
 {
@@ -162,7 +162,7 @@ PixelFormat RenderTargetMTL::getColorAttachmentPixelFormat(int index) const
 }
 
 PixelFormat RenderTargetMTL::getDepthAttachmentPixelFormat() const
-{  // FIXME: adxe only support D24S8
+{  // FIXME: axis only support D24S8
     if (bitmask::any(_flags, TargetBufferFlags::DEPTH_AND_STENCIL))
     {
         if (isDefaultRenderTarget() || !_depth)
@@ -173,7 +173,7 @@ PixelFormat RenderTargetMTL::getDepthAttachmentPixelFormat() const
 }
 
 PixelFormat RenderTargetMTL::getStencilAttachmentPixelFormat() const
-{  // FIXME: adxe only support D24S8
+{  // FIXME: axis only support D24S8
     if (bitmask::any(_flags, TargetBufferFlags::DEPTH_AND_STENCIL))
     {
         if (isDefaultRenderTarget() || !_stencil)
@@ -183,4 +183,4 @@ PixelFormat RenderTargetMTL::getStencilAttachmentPixelFormat() const
     return PixelFormat::NONE;
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

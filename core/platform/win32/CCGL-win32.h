@@ -4,7 +4,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2020 C4games Ltd
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,11 +27,11 @@ THE SOFTWARE.
 #pragma once
 
 #include "platform/CCPlatformConfig.h"
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+#if AX_TARGET_PLATFORM == AX_PLATFORM_WIN32
 
 #    include "glad/glad.h"
 
-#    if defined(CC_USE_GLES)
+#    if defined(AX_USE_GLES)
 #        undef GL_DEPTH_STENCIL
 #        undef GL_DEPTH24_STENCIL8
 #        undef GL_UNSIGNED_INT_24_8
@@ -90,4 +90,4 @@ THE SOFTWARE.
 
 #    endif
 
-#endif  // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+#endif  // AX_TARGET_PLATFORM == AX_PLATFORM_WIN32

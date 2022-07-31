@@ -3,7 +3,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 
 #include "base/CCController.h"
 #include "platform/CCPlatformConfig.h"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_IOS || AX_TARGET_PLATFORM == AX_PLATFORM_MAC)
 
 #    include "base/ccMacros.h"
 #    include "base/CCEventDispatcher.h"
@@ -116,7 +116,7 @@ static GCControllerConnectionEventHandler* __instance = nil;
 
 @end
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class ControllerImpl
 {
@@ -325,7 +325,7 @@ void Controller::registerListeners()
           }
         };
     }
-#    if defined(CC_TARGET_OS_TVOS)
+#    if defined(AX_TARGET_OS_TVOS)
     else if (_impl->_gcController.microGamepad != nil)
     {
         _impl->_gcController.microGamepad.dpad.up.valueChangedHandler =
@@ -384,6 +384,6 @@ bool Controller::isConnected() const
 
 void Controller::receiveExternalKeyEvent(int externalKeyCode, bool receive) {}
 
-NS_CC_END
+NS_AX_END
 
-#endif  // #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#endif  // #if (AX_TARGET_PLATFORM == AX_PLATFORM_IOS)

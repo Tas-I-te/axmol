@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,8 @@
 #ifndef __WINDOWTEST_H__
 #define __WINDOWTEST_H__
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || \
-     CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_MAC || AX_TARGET_PLATFORM == AX_PLATFORM_WIN32 || \
+     AX_TARGET_PLATFORM == AX_PLATFORM_LINUX)
 #    include "../BaseTest.h"
 
 DEFINE_TEST_SUITE(WindowTests);

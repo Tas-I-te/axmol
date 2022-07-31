@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,14 +33,14 @@
 #include "base/CCDirector.h"
 #include "base/CCConsole.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // ios no MessageBox, use log instead
 void ccMessageBox(const char* msg, const char* title)
 {
     // only enable it on iOS.
     // FIXME: Implement it for tvOS
-#if !defined(CC_TARGET_OS_TVOS)
+#if !defined(AX_TARGET_OS_TVOS)
     NSString* tmpTitle = (title) ? [NSString stringWithUTF8String:title] : nil;
     NSString* tmpMsg   = (msg) ? [NSString stringWithUTF8String:msg] : nil;
 
@@ -64,4 +64,4 @@ void LuaLog(const char* format)
     puts(format);
 }
 
-NS_CC_END
+NS_AX_END

@@ -2,7 +2,7 @@
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -41,22 +41,22 @@ public:
 
     virtual void update(float delta) override;
 
-    void SwitchLight(cocos2d::Ref* sender, cocos2d::LightType lightType);
+    void SwitchLight(axis::Ref* sender, axis::LightType lightType);
 
 private:
     void addSprite();
     void addLights();
 
 private:
-    cocos2d::AmbientLight* _ambientLight;
-    cocos2d::DirectionLight* _directionalLight;
-    cocos2d::PointLight* _pointLight;
-    cocos2d::SpotLight* _spotLight;
+    axis::AmbientLight* _ambientLight;
+    axis::DirectionLight* _directionalLight;
+    axis::PointLight* _pointLight;
+    axis::SpotLight* _spotLight;
 
-    cocos2d::Label* _ambientLightLabel;
-    cocos2d::Label* _directionalLightLabel;
-    cocos2d::Label* _pointLightLabel;
-    cocos2d::Label* _spotLightLabel;
+    axis::Label* _ambientLightLabel;
+    axis::Label* _directionalLightLabel;
+    axis::Label* _pointLightLabel;
+    axis::Label* _spotLightLabel;
 };
 
 #endif

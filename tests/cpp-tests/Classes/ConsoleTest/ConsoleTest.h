@@ -2,7 +2,7 @@
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -52,10 +52,10 @@ protected:
     ConsoleCustomCommand();
     virtual ~ConsoleCustomCommand();
 
-    cocos2d::Console* _console;
+    axis::Console* _console;
 
 private:
-    CC_DISALLOW_COPY_AND_ASSIGN(ConsoleCustomCommand);
+    AX_DISALLOW_COPY_AND_ASSIGN(ConsoleCustomCommand);
 };
 
 class ConsoleUploadFile : public BaseTestConsole
@@ -74,7 +74,7 @@ protected:
     void uploadFile();
 
 private:
-    CC_DISALLOW_COPY_AND_ASSIGN(ConsoleUploadFile);
+    AX_DISALLOW_COPY_AND_ASSIGN(ConsoleUploadFile);
 
     std::string _targetFileName;
 };

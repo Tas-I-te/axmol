@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2013-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -50,7 +50,7 @@ struct stExpCocoNode;
  *  @js NA
  *  @lua NA
  */
-class CCS_DLL DataReaderHelper : cocos2d::Ref
+class CCS_DLL DataReaderHelper : axis::Ref
 {
 protected:
     enum ConfigType
@@ -66,8 +66,8 @@ protected:
         std::string fileContent;
         ConfigType configType;
         std::string baseFilePath;
-        cocos2d::Ref* target;
-        cocos2d::SEL_SCHEDULE selector;
+        axis::Ref* target;
+        axis::SEL_SCHEDULE selector;
         bool autoLoadSpriteFile;
 
         std::string imagePath;
@@ -87,7 +87,7 @@ protected:
 
 public:
     /** @deprecated Use getInstance() instead */
-    CC_DEPRECATED_ATTRIBUTE static DataReaderHelper* sharedDataReaderHelper()
+    AX_DEPRECATED_ATTRIBUTE static DataReaderHelper* sharedDataReaderHelper()
     {
         return DataReaderHelper::getInstance();
     }
@@ -118,8 +118,8 @@ public:
     void addDataFromFileAsync(std::string_view imagePath,
                               std::string_view plistPath,
                               std::string_view filePath,
-                              cocos2d::Ref* target,
-                              cocos2d::SEL_SCHEDULE selector);
+                              axis::Ref* target,
+                              axis::SEL_SCHEDULE selector);
 
     void addDataAsyncCallBack(float dt);
 

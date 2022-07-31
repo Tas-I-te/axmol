@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,14 +37,14 @@ public:
     virtual bool init() override;
 };
 
-class SpriteLayer : public cocos2d::Layer
+class SpriteLayer : public axis::Layer
 {
 public:
     virtual void onEnter() override;
     CREATE_FUNC(SpriteLayer)
 };
 
-class TestLayer : public cocos2d::Layer
+class TestLayer : public axis::Layer
 {
 public:
     virtual void onEnter() override;
@@ -52,7 +52,7 @@ public:
     CREATE_FUNC(TestLayer)
 };
 
-class RotateWorldMainLayer : public cocos2d::Layer
+class RotateWorldMainLayer : public axis::Layer
 {
 public:
     virtual void onEnter() override;

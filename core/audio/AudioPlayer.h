@@ -4,7 +4,7 @@
  Copyright (c) 2018 HALX99.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,12 +38,12 @@
 #include "platform/CCPlatformMacros.h"
 #include "audio/alconfig.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class AudioCache;
 class AudioEngineImpl;
 
-class CC_DLL AudioPlayer
+class AX_DLL AudioPlayer
 {
     friend class AudioEngineImpl;
 
@@ -98,4 +98,4 @@ protected:
     friend class AudioEngineImpl;
 };
 
-NS_CC_END
+NS_AX_END

@@ -4,7 +4,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@
 #include <set>
 #include <unordered_map>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
 @struct BMFontDef
@@ -73,7 +73,7 @@ typedef struct _BMFontPadding
 /** @brief BMFontConfiguration has parsed configuration of the .fnt file
 @since v0.8
 */
-class CC_DLL BMFontConfiguration : public Ref
+class AX_DLL BMFontConfiguration : public Ref
 {
     // FIXME: Creating a public interface so that the bitmapFontArray[] is accessible
 public:  //@public
@@ -141,7 +141,7 @@ private:
     void purgeFontDefDictionary();
 };
 
-class CC_DLL FontFNT : public Font
+class AX_DLL FontFNT : public Font
 {
 
 public:
@@ -149,7 +149,7 @@ public:
     static FontFNT* create(std::string_view fntFilePath, std::string_view subTextureKey);
     static FontFNT* create(std::string_view fntFilePath);
 
-    CC_DEPRECATED_ATTRIBUTE static FontFNT* create(std::string_view fntFilePath, const Vec2& imageOffset = Vec2::ZERO);
+    AX_DEPRECATED_ATTRIBUTE static FontFNT* create(std::string_view fntFilePath, const Vec2& imageOffset = Vec2::ZERO);
 
     /** Purges the cached data.
     Removes from memory the cached configurations and the atlas name dictionary.
@@ -188,6 +188,6 @@ protected:
 
 /// @endcond
 
-NS_CC_END
+NS_AX_END
 
 #endif /* defined(__cocos2d_libs__CCFontFNT__) */

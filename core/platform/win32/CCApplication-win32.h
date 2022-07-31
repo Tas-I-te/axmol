@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,9 +30,9 @@ THE SOFTWARE.
 #include "platform/CCApplicationProtocol.h"
 #include <string>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
-class CC_DLL Application : public ApplicationProtocol
+class AX_DLL Application : public ApplicationProtocol
 {
 public:
     /**
@@ -84,13 +84,13 @@ public:
      *  Sets the Resource root path.
      *  @deprecated Please use FileUtils::getInstance()->setSearchPaths() instead.
      */
-    CC_DEPRECATED_ATTRIBUTE void setResourceRootPath(std::string_view rootResDir);
+    AX_DEPRECATED_ATTRIBUTE void setResourceRootPath(std::string_view rootResDir);
 
     /**
      *  Gets the Resource root path.
      *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead.
      */
-    CC_DEPRECATED_ATTRIBUTE std::string_view getResourceRootPath();
+    AX_DEPRECATED_ATTRIBUTE std::string_view getResourceRootPath();
 
     void setStartupScriptFilename(std::string_view startupScriptFile);
 
@@ -106,4 +106,4 @@ protected:
     static Application* sm_pSharedApplication;
 };
 
-NS_CC_END
+NS_AX_END

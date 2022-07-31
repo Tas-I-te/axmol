@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,9 @@
  * @js NA
  * @lua NA
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
-class CC_DLL Data
+class AX_DLL Data
 {
     friend class Properties;
 
@@ -160,7 +160,7 @@ private:
     ssize_t _size;
 };
 
-NS_CC_END
+NS_AX_END
 
 /** @} */
 #endif  // __CCDATA_H__

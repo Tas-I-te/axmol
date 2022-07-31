@@ -4,7 +4,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@
 #include "2d/CCLabel.h"
 #include "platform/CCFileUtils.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 hlookup::string_map<FontAtlas*> FontAtlasCache::_atlasMap;
 #define ATLAS_MAP_KEY_PREFIX_BUFFER_SIZE 255
@@ -244,7 +244,7 @@ bool FontAtlasCache::releaseFontAtlas(FontAtlas* atlas)
     {
         if (atlas->getReferenceCount() == 1)
         {
-            for (auto& item : _atlasMap)
+            for (auto&& item : _atlasMap)
             {
                 if (item.second == atlas)
                 {
@@ -270,7 +270,7 @@ void FontAtlasCache::reloadFontAtlasFNT(std::string_view fontFileName, const Rec
     auto it = _atlasMap.find(atlasName);
     if (it != _atlasMap.end())
     {
-        CC_SAFE_RELEASE_NULL(it->second);
+        AX_SAFE_RELEASE_NULL(it->second);
         _atlasMap.erase(it);
     }
     FontFNT::reloadBMFontResource(fontFileName);
@@ -297,7 +297,7 @@ void FontAtlasCache::unloadFontAtlasTTF(std::string_view fontFileName)
     {
         if (item->first.find(fontFileName) != std::string::npos)
         {
-            CC_SAFE_RELEASE_NULL(item->second);
+            AX_SAFE_RELEASE_NULL(item->second);
             item = _atlasMap.erase(item);
         }
         else
@@ -305,4 +305,4 @@ void FontAtlasCache::unloadFontAtlasTTF(std::string_view fontFileName)
     }
 }
 
-NS_CC_END
+NS_AX_END

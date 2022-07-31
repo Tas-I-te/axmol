@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@
 #include "3d/CCBundle3DData.h"
 #include "renderer/backend/Types.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup _3d
@@ -48,7 +48,7 @@ class ProgramState;
 /**
  * @brief MeshMaterial: a mesh material for MeshRenderers.
  */
-class CC_DLL MeshMaterial : public Material
+class AX_DLL MeshMaterial : public Material
 {
 public:
     /**
@@ -187,4 +187,4 @@ protected:
 // end of 3d group
 /// @}
 
-NS_CC_END
+NS_AX_END

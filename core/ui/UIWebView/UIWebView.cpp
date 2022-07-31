@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +24,12 @@
  ****************************************************************************/
 #include "platform/CCPlatformConfig.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID)
 
 #    include "ui/UIWebView/UIWebViewImpl-android.h"
 #    include "ui/UIWebView/UIWebView-inl.h"
 
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#elif (AX_TARGET_PLATFORM == AX_PLATFORM_WIN32)
 
 #    include "ui/UIWebView/UIWebViewImpl-win32.h"
 #    include "ui/UIWebView/UIWebView-inl.h"

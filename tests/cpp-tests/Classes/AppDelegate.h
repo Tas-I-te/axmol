@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ class TestController;
 
 Private inheritance here hides part of interface from Director.
 */
-class AppDelegate : private cocos2d::Application
+class AppDelegate : private axis::Application
 {
 public:
     AppDelegate();
@@ -44,7 +44,7 @@ public:
     virtual void initGLContextAttrs();
 
     /**
-    @brief    Implement Director and cocos2d::Scene* init code here.
+    @brief    Implement Director and axis::Scene* init code here.
     @return true    Initialize success, app continue.
     @return false   Initialize failed, app terminate.
     */

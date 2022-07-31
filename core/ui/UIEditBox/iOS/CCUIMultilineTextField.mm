@@ -4,7 +4,7 @@
  Copyright (c) 2015 Mazyad Alabduljaleel
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -84,8 +84,8 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 {
     if (_placeHolderLabel == nil)
     {
-        auto glview   = cocos2d::Director::getInstance()->getOpenGLView();
-        float padding = CC_EDIT_BOX_PADDING * glview->getScaleX() / glview->getContentScaleFactor();
+        auto glview   = axis::Director::getInstance()->getOpenGLView();
+        float padding = AX_EDIT_BOX_PADDING * glview->getScaleX() / glview->getContentScaleFactor();
 
         _placeHolderLabel =
             [[UILabel alloc] initWithFrame:CGRectMake(padding, padding, self.bounds.size.width - padding * 2, 0)];
@@ -106,9 +106,9 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
-    auto glview = cocos2d::Director::getInstance()->getOpenGLView();
+    auto glview = axis::Director::getInstance()->getOpenGLView();
 
-    float padding = CC_EDIT_BOX_PADDING * glview->getScaleX() / glview->getContentScaleFactor();
+    float padding = AX_EDIT_BOX_PADDING * glview->getScaleX() / glview->getContentScaleFactor();
     return CGRectInset(bounds, padding, padding);
 }
 

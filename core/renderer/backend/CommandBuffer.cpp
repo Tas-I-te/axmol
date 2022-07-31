@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 #include "CommandBuffer.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 void CommandBuffer::setStencilReferenceValue(uint32_t value)
 {
@@ -37,4 +37,4 @@ void CommandBuffer::setStencilReferenceValue(unsigned int frontRef, unsigned int
     _stencilReferenceValueBack  = backRef;
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

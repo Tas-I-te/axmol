@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "TransitionsTest.h"
 #include "../testResource.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 #define TRANSITION_DURATION (1.2f)
 
@@ -225,7 +225,7 @@ TransitionsTests::TransitionsTests()
 {
     int sceneIndex = 0;
 
-    for (auto& test : transitions)
+    for (auto&& test : transitions)
     {
         addTestCase(test.name, [sceneIndex]() {
             auto scene = TransitionsTest::create();
@@ -286,7 +286,7 @@ TestLayer1::TestLayer1(std::string_view transitionName)
     label->setPosition(Vec2(x / 2, y / 2));
     addChild(label);
 
-    schedule(CC_SCHEDULE_SELECTOR(TestLayer1::step), 1.0f);
+    schedule(AX_SCHEDULE_SELECTOR(TestLayer1::step), 1.0f);
 }
 
 TestLayer1::~TestLayer1() {}
@@ -356,7 +356,7 @@ TestLayer2::TestLayer2(std::string_view transitionName)
     label->setPosition(Vec2(x / 2, y / 2));
     addChild(label);
 
-    schedule(CC_SCHEDULE_SELECTOR(TestLayer2::step), 1.0f);
+    schedule(AX_SCHEDULE_SELECTOR(TestLayer2::step), 1.0f);
 }
 
 TestLayer2::~TestLayer2() {}

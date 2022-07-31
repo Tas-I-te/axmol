@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,8 +35,8 @@ public:
     CREATE_FUNC(ClickAndMoveTestCase);
 
     ClickAndMoveTestCase();
-    bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-    void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+    bool onTouchBegan(axis::Touch* touch, axis::Event* event);
+    void onTouchEnded(axis::Touch* touch, axis::Event* event);
 };
 
 #endif

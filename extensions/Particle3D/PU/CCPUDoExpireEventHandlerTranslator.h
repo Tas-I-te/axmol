@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,14 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CC_PU_PARTICLE_3D_DO_EXPIRE_EVENT_HANDLER_TRANSLATOR_H__
-#define __CC_PU_PARTICLE_3D_DO_EXPIRE_EVENT_HANDLER_TRANSLATOR_H__
+#ifndef __AX_PU_PARTICLE_3D_DO_EXPIRE_EVENT_HANDLER_TRANSLATOR_H__
+#define __AX_PU_PARTICLE_3D_DO_EXPIRE_EVENT_HANDLER_TRANSLATOR_H__
 
 #include "extensions/Particle3D/PU/CCPUScriptTranslator.h"
 #include "extensions/Particle3D/PU/CCPUScriptCompiler.h"
 #include "extensions/Particle3D/PU/CCPUDoExpireEventHandler.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class PUDoExpireEventHandlerTranslator : public PUScriptTranslator
 {
@@ -43,6 +43,6 @@ public:
     virtual bool translateChildObject(PUScriptCompiler* compiler, PUAbstractNode* node);
 };
 
-NS_CC_END
+NS_AX_END
 
 #endif

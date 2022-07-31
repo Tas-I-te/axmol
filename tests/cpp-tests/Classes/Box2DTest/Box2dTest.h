@@ -2,7 +2,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 @aismann; Peter Eismann, Germany; dreifrankensoft
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -47,18 +47,18 @@ public:
     void initPhysics();
     void createResetButton();
 
-    void addNewSpriteAtPosition(cocos2d::Vec2 p);
+    void addNewSpriteAtPosition(axis::Vec2 p);
     void update(float dt) override;
-    void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+    void onTouchesEnded(const std::vector<axis::Touch*>& touches, axis::Event* event);
 
-    void toggleDebugCallback(cocos2d::Ref* sender);
+    void toggleDebugCallback(axis::Ref* sender);
 
 private:
     b2World* world;
 
-    cocos2d::Texture2D* _spriteTexture;
-    cocos2d::DrawNode* drawBox2D;
-    cocos2d::extension::PhysicsDebugNodeBox2D g_debugDraw;
+    axis::Texture2D* _spriteTexture;
+    axis::DrawNode* drawBox2D;
+    axis::extension::PhysicsDebugNodeBox2D g_debugDraw;
     bool showDebugDraw = true;
 };
 

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@
 
 #include <string>
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 class CommandBuffer;
 class Buffer;
@@ -54,7 +54,7 @@ class RenderTarget;
 /**
  * New or create resources from Device.
  */
-class CC_DLL Device : public cocos2d::Ref
+class AX_DLL Device : public axis::Ref
 {
 public:
     friend class ProgramCache;
@@ -150,4 +150,4 @@ private:
 
 // end of _backend group
 /// @}
-CC_BACKEND_END
+NS_AX_BACKEND_END

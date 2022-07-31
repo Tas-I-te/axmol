@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2013-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 #include "CCProcessBase.h"
 
-using namespace cocos2d;
+USING_NS_AX;
 
 namespace cocostudio
 {
@@ -37,7 +37,7 @@ ProcessBase::ProcessBase(void)
     , _currentPercent(0.0f)
     , _rawDuration(0)
     , _loopType(ANIMATION_LOOP_BACK)
-    , _tweenEasing(cocos2d::tweenfunc::Linear)
+    , _tweenEasing(axis::tweenfunc::Linear)
     , _animationInternal(1 / 60.0f)
     , _durationTween(0)
     , _currentFrame(0)
@@ -77,7 +77,7 @@ void ProcessBase::play(int durationTo, int /*durationTween*/, int /*loop*/, int 
      *  When changing end, m_iTotalFrames will be set to _durationTween
      */
     _nextFrameIndex = durationTo;
-    _tweenEasing    = (cocos2d::tweenfunc::TweenType)tweenEasing;
+    _tweenEasing    = (axis::tweenfunc::TweenType)tweenEasing;
 }
 
 void ProcessBase::update(float dt)

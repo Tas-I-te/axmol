@@ -3,7 +3,7 @@ Copyright (c) 2013      Edward Zhou
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,12 +26,12 @@ THE SOFTWARE.
 
 #include "scripting/lua-bindings/manual/spine/LuaSkeletonAnimation.h"
 
-#include "scripting/lua-bindings/manual/cocos2d/LuaScriptHandlerMgr.h"
+#include "scripting/lua-bindings/manual/base/LuaScriptHandlerMgr.h"
 #include "scripting/lua-bindings/manual/CCLuaStack.h"
 #include "scripting/lua-bindings/manual/CCLuaEngine.h"
 
 using namespace spine;
-USING_NS_CC;
+USING_NS_AX;
 
 LuaSkeletonAnimation::LuaSkeletonAnimation() : spine::SkeletonAnimation() {}
 

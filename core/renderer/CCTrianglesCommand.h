@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
  * @{
  */
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 /**
  Command used to render one or more Triangles, which is similar to QuadCommand.
  Every TrianglesCommand will have generate material ID by give textureID, glProgramState, Blend function
@@ -46,7 +46,7 @@ class Program;
 
 class Texture2D;
 
-class CC_DLL TrianglesCommand : public RenderCommand
+class AX_DLL TrianglesCommand : public RenderCommand
 {
 public:
     /**The structure of Triangles. */
@@ -82,7 +82,7 @@ public:
      @param flags to indicate that the command is using 3D rendering or not.
      */
     void init(float globalOrder,
-              cocos2d::Texture2D* texture,
+              axis::Texture2D* texture,
               const BlendFunc& blendType,
               const Triangles& triangles,
               const Mat4& mv,
@@ -122,7 +122,7 @@ protected:
     backend::TextureBackend* _texture = nullptr;
 };
 
-NS_CC_END
+NS_AX_END
 /**
  end of support group
  @}

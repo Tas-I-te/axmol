@@ -4,7 +4,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "2d/CCTransition.h"
 #include "renderer/CCCustomCommand.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class NodeGrid;
 
@@ -51,7 +51,7 @@ is turned on in Director using:
 
  @since v0.8.2
 */
-class CC_DLL TransitionPageTurn : public TransitionScene
+class AX_DLL TransitionPageTurn : public TransitionScene
 {
 public:
     /**
@@ -121,6 +121,6 @@ protected:
 // end of _2d group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif  // __CCPAGE_TURN_TRANSITION_H__

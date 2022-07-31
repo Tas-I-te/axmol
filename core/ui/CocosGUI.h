@@ -3,7 +3,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2022 Bytedance Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -59,7 +59,7 @@ THE SOFTWARE.
  * @addtogroup ui
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 namespace ui
 {
 
@@ -67,11 +67,11 @@ namespace ui
  * Get current cocos GUI module version string.
  *@return A string representation of GUI module version number
  */
-CC_GUI_DLL const char* CocosGUIVersion();
+AX_GUI_DLL const char* CocosGUIVersion();
 
 }  // namespace ui
 
-NS_CC_END
+NS_AX_END
 // end of ui group
 /// @}
 

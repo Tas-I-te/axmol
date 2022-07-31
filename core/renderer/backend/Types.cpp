@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 #include "Types.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 bool UniformLocation::operator==(const UniformLocation& other) const
 {
@@ -36,4 +36,4 @@ std::size_t UniformLocation::operator()(const UniformLocation& uniform) const
     return (((size_t)shaderStage) & 0xF) | ((size_t)(location[0] << 4)) | ((size_t)(location[1] << 8));
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

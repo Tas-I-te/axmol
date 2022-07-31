@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,12 +35,12 @@
 #include "renderer/backend/Types.h"
 #include "renderer/backend/Buffer.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // particle render for quad
 struct PUParticle3D;
 
-class CC_EX_DLL PURender : public Particle3DRender
+class AX_EX_DLL PURender : public Particle3DRender
 {
 public:
     virtual void prepare(){};
@@ -61,7 +61,7 @@ protected:
     std::string _renderType;
 };
 
-class CC_EX_DLL PUParticle3DEntityRender : public PURender
+class AX_EX_DLL PUParticle3DEntityRender : public PURender
 {
 public:
     void copyAttributesTo(PUParticle3DEntityRender* render);
@@ -109,7 +109,7 @@ protected:
     bool _rendererDepthWrite                       = false;
 };
 
-class CC_EX_DLL PUParticle3DQuadRender : public PUParticle3DEntityRender
+class AX_EX_DLL PUParticle3DQuadRender : public PUParticle3DEntityRender
 {
 public:
     enum Type
@@ -188,7 +188,7 @@ protected:
 };
 
 // particle render for MeshRenderer
-class CC_EX_DLL PUParticle3DModelRender : public PURender
+class AX_EX_DLL PUParticle3DModelRender : public PURender
 {
 public:
     static PUParticle3DModelRender* create(std::string_view modelFile, std::string_view texFile = "");
@@ -209,7 +209,7 @@ protected:
     Vec3 _meshSize;
 };
 
-class CC_EX_DLL PUParticle3DBoxRender : public PUParticle3DEntityRender
+class AX_EX_DLL PUParticle3DBoxRender : public PUParticle3DEntityRender
 {
 public:
     static PUParticle3DBoxRender* create(std::string_view texFile = "");
@@ -225,7 +225,7 @@ protected:
     void reBuildIndices(unsigned short count);
 };
 
-class CC_EX_DLL PUSphereRender : public PUParticle3DEntityRender
+class AX_EX_DLL PUSphereRender : public PUParticle3DEntityRender
 {
 public:
     static PUSphereRender* create(std::string_view texFile = "");
@@ -247,4 +247,4 @@ protected:
     std::vector<VertexInfo> _vertexTemplate;
 };
 
-NS_CC_END
+NS_AX_END

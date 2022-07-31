@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2015-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ THE SOFTWARE.
 
 NS_TIMELINE_BEGIN
 
-typedef cocos2d::Node SkinNode;
+typedef axis::Node SkinNode;
 
 NS_TIMELINE_END
 

@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef _CC_QUADCOMMAND_H_
-#define _CC_QUADCOMMAND_H_
+#ifndef _AX_QUADCOMMAND_H_
+#define _AX_QUADCOMMAND_H_
 
 #include <vector>
 
@@ -35,14 +35,14 @@
  * @{
  */
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  Command used to render one or more Quads, similar to TrianglesCommand.
  Every QuadCommand will have generate material ID by give textureID, glProgramState, Blend function
  if the material id is the same, these QuadCommands could be batched to save draw call.
  */
-class CC_DLL QuadCommand : public TrianglesCommand
+class AX_DLL QuadCommand : public TrianglesCommand
 {
 public:
     /**Constructor.*/
@@ -78,10 +78,10 @@ protected:
     static uint16_t* __indices;
 };
 
-NS_CC_END
+NS_AX_END
 
 /**
  end of support group
  @}
  */
-#endif  //_CC_QUADCOMMAND_H_
+#endif  //_AX_QUADCOMMAND_H_

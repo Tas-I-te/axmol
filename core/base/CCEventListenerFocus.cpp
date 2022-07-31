@@ -3,7 +3,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
 #include "base/CCEventFocus.h"
 #include "base/ccMacros.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 const std::string EventListenerFocus::LISTENER_ID = "__cc_focus_event";
 
@@ -36,7 +36,7 @@ EventListenerFocus::EventListenerFocus() : onFocusChanged(nullptr) {}
 
 EventListenerFocus::~EventListenerFocus()
 {
-    CCLOGINFO("In the destructor of EventListenerFocus, %p", this);
+    AXLOGINFO("In the destructor of EventListenerFocus, %p", this);
 }
 
 EventListenerFocus* EventListenerFocus::create()
@@ -47,7 +47,7 @@ EventListenerFocus* EventListenerFocus::create()
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -62,7 +62,7 @@ EventListenerFocus* EventListenerFocus::clone()
     }
     else
     {
-        CC_SAFE_DELETE(ret);
+        AX_SAFE_DELETE(ret);
     }
     return ret;
 }
@@ -84,11 +84,11 @@ bool EventListenerFocus::checkAvailable()
 {
     if (onFocusChanged == nullptr)
     {
-        CCASSERT(false, "Invalid EventListenerFocus!");
+        AXASSERT(false, "Invalid EventListenerFocus!");
         return false;
     }
 
     return true;
 }
 
-NS_CC_END
+NS_AX_END

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -58,15 +58,15 @@
 // M_1_PI                      0.31830988618379067154
 
 #ifdef __cplusplus
-#    define NS_CC_MATH_BEGIN \
-        namespace cocos2d    \
+#    define NS_AX_MATH_BEGIN \
+        namespace axis    \
         {
-#    define NS_CC_MATH_END }
-#    define USING_NS_CC_MATH using namespace cocos2d
+#    define NS_AX_MATH_END }
+#    define USING_NS_AX_MATH using namespace axis
 #else
-#    define NS_CC_MATH_BEGIN
-#    define NS_CC_MATH_END
-#    define USING_NS_CC_MATH
+#    define NS_AX_MATH_BEGIN
+#    define NS_AX_MATH_END
+#    define USING_NS_AX_MATH
 #endif
 
 /**

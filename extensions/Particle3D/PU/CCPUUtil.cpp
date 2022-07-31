@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +27,9 @@
 #include "CCPUUtil.h"
 #include "base/ccMacros.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
-cocos2d::Vec3 PUUtil::randomDeviant(const Vec3& src, float angle, const Vec3& up /*= Vec3::ZERO*/)
+axis::Vec3 PUUtil::randomDeviant(const Vec3& src, float angle, const Vec3& up /*= Vec3::ZERO*/)
 {
     Vec3 newUp;
 
@@ -54,7 +54,7 @@ cocos2d::Vec3 PUUtil::randomDeviant(const Vec3& src, float angle, const Vec3& up
 
     Quaternion q;
     Mat4 mat;
-    Quaternion::createFromAxisAngle(src, CCRANDOM_0_1() * M_PI * 2.0f, &q);
+    Quaternion::createFromAxisAngle(src, AXRANDOM_0_1() * M_PI * 2.0f, &q);
     Mat4::createRotation(q, &mat);
 
     //{
@@ -83,7 +83,7 @@ cocos2d::Vec3 PUUtil::randomDeviant(const Vec3& src, float angle, const Vec3& up
     //}
 }
 
-cocos2d::Vec3 PUUtil::perpendicular(const Vec3& src)
+axis::Vec3 PUUtil::perpendicular(const Vec3& src)
 {
     // static const float fSquareZero = (float)(1e-06 * 1e-06);
 
@@ -116,4 +116,4 @@ cocos2d::Vec3 PUUtil::perpendicular(const Vec3& src)
     return perp;
 }
 
-NS_CC_END
+NS_AX_END

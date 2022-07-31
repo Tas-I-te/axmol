@@ -2,7 +2,7 @@
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,13 +29,13 @@ THE SOFTWARE.
 #include "ui/UIWidget.h"
 #include "ui/GUIExport.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 /**
  * @addtogroup ui
  * @{
  */
 
-struct CC_DLL ResourceData;
+struct AX_DLL ResourceData;
 
 namespace ui
 {
@@ -46,7 +46,7 @@ class Scale9Sprite;
  * Displays a bar to the user representing how far the operation has progressed.
  *
  */
-class CC_GUI_DLL LoadingBar : public Widget
+class AX_GUI_DLL LoadingBar : public Widget
 {
 
     DECLARE_CLASS_GUI_INFO
@@ -207,5 +207,5 @@ protected:
 }  // namespace ui
 // end of ui group
 /// @}
-NS_CC_END
+NS_AX_END
 #endif /* defined(__CocoGUI__LoadingBar__) */

@@ -2,7 +2,7 @@
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -39,13 +39,13 @@ public:
     ~UICheckBoxTest();
 
     virtual bool init() override;
-    void selectedEvent(cocos2d::Ref* sender, cocos2d::ui::CheckBox::EventType type);
+    void selectedEvent(axis::Ref* sender, axis::ui::CheckBox::EventType type);
 
-    void printWidgetResources(cocos2d::Ref* sender);
+    void printWidgetResources(axis::Ref* sender);
 
 protected:
-    cocos2d::ui::Text* _displayValueLabel;
-    cocos2d::ui::CheckBox* _checkBox;
+    axis::ui::Text* _displayValueLabel;
+    axis::ui::CheckBox* _checkBox;
 };
 
 class UICheckBoxDefaultBehaviorTest : public UIScene
@@ -59,7 +59,7 @@ public:
     virtual bool init() override;
 
 protected:
-    cocos2d::ui::Text* _displayValueLabel;
+    axis::ui::Text* _displayValueLabel;
 };
 
 class UICheckBoxCopyTest : public UIScene
@@ -73,6 +73,6 @@ public:
     virtual bool init() override;
 
 protected:
-    cocos2d::ui::Text* _displayValueLabel;
+    axis::ui::Text* _displayValueLabel;
 };
 #endif /* defined(__TestCpp__UICheckBoxTest__) */

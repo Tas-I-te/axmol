@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 #include "MultiTouchTest.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 MultiTouchTests::MultiTouchTests()
 {
@@ -63,9 +63,9 @@ bool MultiTouchTest::init()
     if (TestCase::init())
     {
         auto listener            = EventListenerTouchAllAtOnce::create();
-        listener->onTouchesBegan = CC_CALLBACK_2(MultiTouchTest::onTouchesBegan, this);
-        listener->onTouchesMoved = CC_CALLBACK_2(MultiTouchTest::onTouchesMoved, this);
-        listener->onTouchesEnded = CC_CALLBACK_2(MultiTouchTest::onTouchesEnded, this);
+        listener->onTouchesBegan = AX_CALLBACK_2(MultiTouchTest::onTouchesBegan, this);
+        listener->onTouchesMoved = AX_CALLBACK_2(MultiTouchTest::onTouchesMoved, this);
+        listener->onTouchesEnded = AX_CALLBACK_2(MultiTouchTest::onTouchesEnded, this);
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
         auto title = Label::createWithSystemFont("Please touch the screen!", "", 24);

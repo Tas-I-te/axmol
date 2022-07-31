@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 #include "3d/CCBundleReader.h"
 #include "rapidjson/document-wrapper.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup _3d
@@ -49,7 +49,7 @@ class Animation3D;
  * @js NA
  * @lua NA
  */
-class CC_DLL Bundle3D
+class AX_DLL Bundle3D
 {
 public:
     /**
@@ -201,6 +201,6 @@ protected:
 // end of 3d group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif  // __CCBUNDLE3D_H__

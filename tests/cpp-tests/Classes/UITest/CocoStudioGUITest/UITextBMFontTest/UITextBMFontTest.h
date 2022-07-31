@@ -2,7 +2,7 @@
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -36,10 +36,10 @@ public:
     CREATE_FUNC(UITextBMFontTest)
 
     virtual bool init() override;
-    void printWidgetResources(cocos2d::Ref* sender);
+    void printWidgetResources(axis::Ref* sender);
 
 protected:
-    cocos2d::ui::TextBMFont* _textBMFont;
+    axis::ui::TextBMFont* _textBMFont;
 };
 
 #endif /* defined(__TestCpp__UITextBMFontTest__) */

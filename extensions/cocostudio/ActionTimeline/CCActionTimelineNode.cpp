@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 #include "ActionTimeline/CCActionTimelineNode.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 NS_TIMELINE_BEGIN
 
@@ -36,7 +36,7 @@ ActionTimelineNode* ActionTimelineNode::create(Node* root, ActionTimeline* actio
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -63,11 +63,11 @@ bool ActionTimelineNode::init(Node* root, ActionTimeline* action)
     return true;
 }
 
-void ActionTimelineNode::setRoot(cocos2d::Node* root)
+void ActionTimelineNode::setRoot(axis::Node* root)
 {
     _root = root;
 }
-cocos2d::Node* ActionTimelineNode::getRoot()
+axis::Node* ActionTimelineNode::getRoot()
 {
     return _root;
 }

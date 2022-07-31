@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -69,12 +69,12 @@ public:
 private:
     struct Locations
     {
-        Locations(cocos2d::backend::ProgramState* ps, cocos2d::backend::UniformLocation loc)
+        Locations(axis::backend::ProgramState* ps, axis::backend::UniformLocation loc)
             : programState(ps), location(loc)
         {}
 
-        cocos2d::backend::ProgramState* programState = nullptr;
-        cocos2d::backend::UniformLocation location;
+        axis::backend::ProgramState* programState = nullptr;
+        axis::backend::UniformLocation location;
     };
     std::vector<Locations> timeUniforms;
 };
@@ -94,9 +94,9 @@ public:
     void updateUniformTime(float);
 
 private:
-    cocos2d::backend::UniformLocation _locationTime;
+    axis::backend::UniformLocation _locationTime;
     EffectAutoBindingResolver* _resolver               = nullptr;
-    cocos2d::backend::ProgramState* _noiseProgramState = nullptr;
+    axis::backend::ProgramState* _noiseProgramState = nullptr;
 };
 
 class Material_setTechnique : public MaterialSystemBaseTest
@@ -110,7 +110,7 @@ public:
 private:
     void changeMaterial(float dt);
 
-    cocos2d::MeshRenderer* _mesh;
+    axis::MeshRenderer* _mesh;
     int _techniqueState;
 };
 

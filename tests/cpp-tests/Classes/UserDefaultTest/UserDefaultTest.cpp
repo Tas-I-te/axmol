@@ -2,7 +2,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2020 C4games Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 
 using namespace std;
 
-USING_NS_CC;
+USING_NS_AX;
 
 UserDefaultTests::UserDefaultTests()
 {
@@ -69,7 +69,7 @@ UserDefaultTest::UserDefaultTest()
 //         ss << buffer[i] << " ";
 //     }
 //
-//     CCLOG("%s is %s", key, ss.str().c_str());
+//     AXLOG("%s is %s", key, ss.str().c_str());
 // }
 
 // template<typename T>

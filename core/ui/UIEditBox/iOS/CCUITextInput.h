@@ -2,7 +2,7 @@
  Copyright (c) 2015 Mazyad Alabduljaleel
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 #ifndef cocos2d_libs_CCUITextInput_h
 #define cocos2d_libs_CCUITextInput_h
 
-static const int CC_EDIT_BOX_PADDING = 5;
+static const int AX_EDIT_BOX_PADDING = 5;
 
 /**
     This protocol provides a common interface for consolidating text input method calls

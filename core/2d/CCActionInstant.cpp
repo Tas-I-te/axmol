@@ -5,7 +5,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 #include "2d/CCNode.h"
 #include "2d/CCSprite.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 //
 // InstantAction
 //
@@ -150,7 +150,7 @@ RemoveSelf* RemoveSelf::create(bool isNeedCleanUp /*= true*/)
     if (ret->init(isNeedCleanUp))
         ret->autorelease();
     else
-        CC_SAFE_DELETE(ret);
+        AX_SAFE_DELETE(ret);
 
     return ret;
 }
@@ -192,7 +192,7 @@ FlipX* FlipX::create(bool x)
         return ret;
     }
 
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -232,7 +232,7 @@ FlipY* FlipY::create(bool y)
         return ret;
     }
 
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -315,7 +315,7 @@ CallFunc* CallFunc::create(const std::function<void()>& func)
         return ret;
     }
 
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -370,7 +370,7 @@ CallFuncN* CallFuncN::create(const std::function<void(Node*)>& func)
         return ret;
     }
 
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -399,4 +399,4 @@ CallFuncN* CallFuncN::clone() const
     return a;
 }
 
-NS_CC_END
+NS_AX_END

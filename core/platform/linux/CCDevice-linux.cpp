@@ -3,7 +3,7 @@ Copyright (c) 2011      Laschweinski
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -79,7 +79,7 @@ struct LineBreakLine
     }
 };
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 int Device::getDPI()
 {
@@ -389,8 +389,8 @@ public:
         std::transform(lowerCasePath.begin(), lowerCasePath.end(), lowerCasePath.begin(), ::tolower);
         if (lowerCasePath.find(".ttf") != std::string::npos)
         {
-            fontPath        = cocos2d::FileUtils::getInstance()->fullPathForFilename(fontPath);
-            auto fileStream = cocos2d::FileUtils::getInstance()->openFileStream(fontPath, FileStream::Mode::READ);
+            fontPath        = axis::FileUtils::getInstance()->fullPathForFilename(fontPath);
+            auto fileStream = axis::FileUtils::getInstance()->openFileStream(fontPath, FileStream::Mode::READ);
             if (fileStream)
             {
                 fontCache.insert(std::pair<std::string, std::string>(family_name, fontPath));
@@ -558,8 +558,8 @@ Data Device::getTextureDataForText(const char* text,
     {
         BitmapDC& dc = sharedBitmapDC();
 
-        CC_BREAK_IF(!dc.getBitmap(text, textDefinition, align));
-        CC_BREAK_IF(!dc._data);
+        AX_BREAK_IF(!dc.getBitmap(text, textDefinition, align));
+        AX_BREAK_IF(!dc._data);
         width  = dc.iMaxLineWidth;
         height = dc.iMaxLineHeight;
         dc.reset();
@@ -574,4 +574,4 @@ void Device::setKeepScreenOn(bool /*value*/) {}
 
 void Device::vibrate(float /*duration*/) {}
 
-NS_CC_END
+NS_AX_END

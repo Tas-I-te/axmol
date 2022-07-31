@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ public:
 
     void reset();
     void check(Node* target);
-    void menuCallback(cocos2d::Ref* sender);
+    void menuCallback(axis::Ref* sender);
 };
 
 #endif  // __BUG_422_H__

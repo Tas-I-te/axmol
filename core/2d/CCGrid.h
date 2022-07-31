@@ -5,7 +5,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "renderer/CCCustomCommand.h"
 #include "renderer/CCCallbackCommand.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Texture2D;
 // class Grabber;
@@ -53,7 +53,7 @@ class RenderTarget;
 
 /** Base class for Other grid.
  */
-class CC_DLL GridBase : public Ref
+class AX_DLL GridBase : public Ref
 {
 public:
     /**
@@ -174,7 +174,7 @@ protected:
 /**
  Grid3D is a 3D grid implementation. Each vertex has 3 dimensions: x,y,z
  */
-class CC_DLL Grid3D : public GridBase
+class AX_DLL Grid3D : public GridBase
 {
 public:
     /** create one Grid. */
@@ -248,7 +248,7 @@ protected:
  TiledGrid3D is a 3D grid implementation. It differs from Grid3D in that
  the tiles can be separated from the grid.
 */
-class CC_DLL TiledGrid3D : public GridBase
+class AX_DLL TiledGrid3D : public GridBase
 {
 public:
     /** Create one Grid. */
@@ -310,4 +310,4 @@ protected:
 // end of effects group
 /// @}
 
-NS_CC_END
+NS_AX_END

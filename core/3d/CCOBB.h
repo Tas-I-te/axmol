@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +23,12 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CC_OBB_H__
-#define __CC_OBB_H__
+#ifndef __AX_OBB_H__
+#define __AX_OBB_H__
 
 #include "3d/CCAABB.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup _3d
@@ -41,7 +41,7 @@ NS_CC_BEGIN
  * MeshRenderer. so collision detection is more precise than AABB.
  * @js NA
  */
-class CC_DLL OBB
+class AX_DLL OBB
 {
 public:
     OBB();
@@ -144,6 +144,6 @@ public:
 // end of 3d group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif

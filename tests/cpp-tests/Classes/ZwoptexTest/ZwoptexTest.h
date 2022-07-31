@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -49,8 +49,8 @@ public:
     virtual std::string subtitle() const override;
 
 protected:
-    cocos2d::Sprite* sprite1;
-    cocos2d::Sprite* sprite2;
+    axis::Sprite* sprite1;
+    axis::Sprite* sprite2;
     int counter;
 };
 

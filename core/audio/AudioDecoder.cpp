@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,7 @@
 
 #define LOG_TAG "AudioDecoder"
 
-namespace cocos2d
-{
+NS_AX_BEGIN
 
 AudioDecoder::AudioDecoder()
     : _isOpened(false)
@@ -102,4 +101,4 @@ AUDIO_SOURCE_FORMAT AudioDecoder::getSourceFormat() const
 {
     return _sourceFormat;
 }
-}  // namespace cocos2d
+NS_AX_END  // namespace axis

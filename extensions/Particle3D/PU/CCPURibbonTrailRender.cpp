@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@
 #include "2d/CCCamera.h"
 #include <sstream>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // Constants
 const bool PURibbonTrailRender::DEFAULT_USE_VERTEX_COLOURS    = true;
@@ -280,7 +280,7 @@ void PURibbonTrailRender::prepare()
             _visualData.push_back(visualData);     // Used to assign to a particle
             if (_randomInitialColor)
             {
-                _trail->setInitialColour(i, CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1());
+                _trail->setInitialColour(i, AXRANDOM_0_1(), AXRANDOM_0_1(), AXRANDOM_0_1());
             }
             else
             {
@@ -332,7 +332,7 @@ void PURibbonTrailRender::destroyAll()
     }
 
     // Delete the Ribbontrail
-    CC_SAFE_DELETE(_trail);
+    AX_SAFE_DELETE(_trail);
 
     // Delete the visual data
     std::vector<PURibbonTrailVisualData*>::const_iterator it;
@@ -393,7 +393,7 @@ void PURibbonTrailRender::copyAttributesTo(PURibbonTrailRender* trailRender)
 void PURibbonTrailRender::updateParticles(const ParticlePool& pool)
 {
     PURibbonTrailVisualData* visualData = nullptr;
-    for (auto iter : pool.getActiveDataList())
+    for (auto&& iter : pool.getActiveDataList())
     {
         auto particle = static_cast<PUParticle3D*>(iter);
         if (!particle->visualData && !_visualData.empty())
@@ -420,4 +420,4 @@ void PURibbonTrailRender::updateParticles(const ParticlePool& pool)
     }
 }
 
-NS_CC_END
+NS_AX_END

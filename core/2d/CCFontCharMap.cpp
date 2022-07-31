@@ -4,7 +4,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@
 #include "base/CCDirector.h"
 #include "renderer/CCTextureCache.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 FontCharMap* FontCharMap::create(std::string_view plistFile)
 {
@@ -40,7 +40,7 @@ FontCharMap* FontCharMap::create(std::string_view plistFile)
 
     ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(pathStr);
 
-    CCASSERT(dict["version"].asInt() == 1, "Unsupported version. Upgrade cocos2d version");
+    AXASSERT(dict["version"].asInt() == 1, "Unsupported version. Upgrade cocos2d version");
 
     std::string textureFilename = relPathStr + dict["textureFilename"].asString();
 
@@ -112,7 +112,7 @@ FontAtlas* FontCharMap::newFontAtlas()
 
     tempAtlas->setLineHeight((float)_itemHeight);
 
-    auto contentScaleFactor = CC_CONTENT_SCALE_FACTOR();
+    auto contentScaleFactor = AX_CONTENT_SCALE_FACTOR();
 
     FontLetterDefinition tempDefinition;
     tempDefinition.textureID       = 0;
@@ -142,4 +142,4 @@ FontAtlas* FontCharMap::newFontAtlas()
     return tempAtlas;
 }
 
-NS_CC_END
+NS_AX_END

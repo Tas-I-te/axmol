@@ -4,7 +4,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021-2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -40,9 +40,9 @@ typedef struct FT_FaceRec_* FT_Face;
 typedef struct FT_StrokerRec_* FT_Stroker;
 typedef struct FT_BBox_ FT_BBox;
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
-class CC_DLL FontFreeType : public Font
+class AX_DLL FontFreeType : public Font
 {
 public:
     static const int DistanceMapSpread;
@@ -146,6 +146,6 @@ private:
 
 /// @endcond
 
-NS_CC_END
+NS_AX_END
 
 #endif

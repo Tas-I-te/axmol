@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -34,9 +34,9 @@
  * @addtogroup base
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
-class CC_DLL StencilStateManager
+class AX_DLL StencilStateManager
 {
 public:
     StencilStateManager();
@@ -50,7 +50,7 @@ public:
     float getAlphaThreshold() const;
 
 private:
-    CC_DISALLOW_COPY_AND_ASSIGN(StencilStateManager);
+    AX_DISALLOW_COPY_AND_ASSIGN(StencilStateManager);
     static int s_layer;
     /**draw fullscreen quad to clear stencil bits
      */
@@ -85,6 +85,6 @@ private:
     backend::ProgramState* _programState = nullptr;
 };
 
-NS_CC_END
+NS_AX_END
 // end of base group
 /** @} */

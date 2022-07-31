@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 #include "3d/CCFrustum.h"
 #include "2d/CCCamera.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 bool Frustum::initFrustum(const Camera* camera)
 {
@@ -99,4 +99,4 @@ void Frustum::createPlane(const Camera* camera)
                         (mat.m[15] - mat.m[14]));  // far
 }
 
-NS_CC_END
+NS_AX_END

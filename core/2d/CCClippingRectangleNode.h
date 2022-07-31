@@ -1,6 +1,6 @@
 /*
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
- * cocos2d-x: https://adxeproject.github.io/
+ * cocos2d-x: https://axis-project.github.io/
  *
  * Copyright (c) 2012 Pierre-David Bélanger
  * Copyright (c) 2012 cocos2d-x.org
@@ -30,7 +30,7 @@
 #include "2d/CCNode.h"
 #include "renderer/CCCallbackCommand.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup _2d
@@ -43,7 +43,7 @@ NS_CC_BEGIN
  The region of ClippingRectangleNode doesn't support any transform except scale.
 @js NA
 */
-class CC_DLL ClippingRectangleNode : public Node
+class AX_DLL ClippingRectangleNode : public Node
 {
 public:
     /**
@@ -102,4 +102,4 @@ protected:
 // end of _2d group
 /// @}
 
-NS_CC_END
+NS_AX_END

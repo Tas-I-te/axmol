@@ -5,7 +5,7 @@
  Copyright (c) 2020 C4games Ltd.
  Copyright (c) 2021-2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -56,7 +56,7 @@ unsigned int __idIndex = 0;
 #define INVALID_AL_BUFFER_ID 0xFFFFFFFF
 #define PCMDATA_CACHEMAXSIZE 1048576
 
-using namespace cocos2d;
+USING_NS_AX;
 
 AudioCache::AudioCache()
     : _totalFrames(0)

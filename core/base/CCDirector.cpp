@@ -6,7 +6,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2021-2022 Bytedance Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -63,13 +63,13 @@ THE SOFTWARE.
 #include "renderer/backend/ProgramCache.h"
 #include "audio/AudioEngine.h"
 
-#if CC_ENABLE_SCRIPT_BINDING
+#if AX_ENABLE_SCRIPT_BINDING
 #    include "base/CCScriptSupport.h"
 #endif
 
 using namespace std;
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 // FIXME: it should be a Director ivar. Move it there once support for multiple directors is added
 
 // singleton stuff
@@ -92,7 +92,7 @@ Director* Director::getInstance()
     if (!s_SharedDirector)
     {
         s_SharedDirector = new Director;
-        CCASSERT(s_SharedDirector, "FATAL: Not enough memory");
+        AXASSERT(s_SharedDirector, "FATAL: Not enough memory");
         s_SharedDirector->init();
     }
 
@@ -148,42 +148,42 @@ bool Director::init()
 
 Director::~Director()
 {
-    CCLOGINFO("deallocing Director: %p", this);
+    AXLOGINFO("deallocing Director: %p", this);
 
-    CC_SAFE_RELEASE(_FPSLabel);
-    CC_SAFE_RELEASE(_drawnVerticesLabel);
-    CC_SAFE_RELEASE(_drawnBatchesLabel);
+    AX_SAFE_RELEASE(_FPSLabel);
+    AX_SAFE_RELEASE(_drawnVerticesLabel);
+    AX_SAFE_RELEASE(_drawnBatchesLabel);
 
-    CC_SAFE_RELEASE(_runningScene);
-    CC_SAFE_RELEASE(_notificationNode);
-    CC_SAFE_RELEASE(_scheduler);
-    CC_SAFE_RELEASE(_actionManager);
+    AX_SAFE_RELEASE(_runningScene);
+    AX_SAFE_RELEASE(_notificationNode);
+    AX_SAFE_RELEASE(_scheduler);
+    AX_SAFE_RELEASE(_actionManager);
 
-    CC_SAFE_RELEASE(_beforeSetNextScene);
-    CC_SAFE_RELEASE(_afterSetNextScene);
-    CC_SAFE_RELEASE(_eventBeforeUpdate);
-    CC_SAFE_RELEASE(_eventAfterUpdate);
-    CC_SAFE_RELEASE(_eventAfterDraw);
-    CC_SAFE_RELEASE(_eventBeforeDraw);
-    CC_SAFE_RELEASE(_eventAfterVisit);
-    CC_SAFE_RELEASE(_eventProjectionChanged);
-    CC_SAFE_RELEASE(_eventResetDirector);
+    AX_SAFE_RELEASE(_beforeSetNextScene);
+    AX_SAFE_RELEASE(_afterSetNextScene);
+    AX_SAFE_RELEASE(_eventBeforeUpdate);
+    AX_SAFE_RELEASE(_eventAfterUpdate);
+    AX_SAFE_RELEASE(_eventAfterDraw);
+    AX_SAFE_RELEASE(_eventBeforeDraw);
+    AX_SAFE_RELEASE(_eventAfterVisit);
+    AX_SAFE_RELEASE(_eventProjectionChanged);
+    AX_SAFE_RELEASE(_eventResetDirector);
 
     delete _renderer;
     delete _console;
 
-    CC_SAFE_RELEASE(_eventDispatcher);
+    AX_SAFE_RELEASE(_eventDispatcher);
 
     Configuration::destroyInstance();
     ObjectFactory::destroyInstance();
 
     s_SharedDirector = nullptr;
 
-#if CC_ENABLE_SCRIPT_BINDING
+#if AX_ENABLE_SCRIPT_BINDING
     ScriptEngineManager::destroyInstance();
 #endif
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_IOS)
     exit(0);
 #endif
 }
@@ -193,14 +193,14 @@ void Director::setDefaultValues()
     Configuration* conf = Configuration::getInstance();
 
     // default FPS
-    float fps             = conf->getValue("adxe.fps", Value(kDefaultFPS)).asFloat();
+    float fps             = conf->getValue("axis.fps", Value(kDefaultFPS)).asFloat();
     _oldAnimationInterval = _animationInterval = 1.0f / fps;
 
     // Display FPS
-    _statsDisplay = conf->getValue("adxe.display_fps", Value(false)).asBool();
+    _statsDisplay = conf->getValue("axis.display_fps", Value(false)).asBool();
 
     // GL projection
-    std::string projection = conf->getValue("adxe.gl.projection", Value("3d")).asString();
+    std::string projection = conf->getValue("axis.gl.projection", Value("3d")).asString();
     if (projection == "3d")
         _projection = Projection::_3D;
     else if (projection == "2d")
@@ -208,10 +208,10 @@ void Director::setDefaultValues()
     else if (projection == "custom")
         _projection = Projection::CUSTOM;
     else
-        CCASSERT(false, "Invalid projection value");
+        AXASSERT(false, "Invalid projection value");
 
     // Default pixel format for PNG images with alpha
-    std::string pixel_format = conf->getValue("adxe.texture.pixel_format_for_png", Value("rgba8888")).asString();
+    std::string pixel_format = conf->getValue("axis.texture.pixel_format_for_png", Value("rgba8888")).asString();
     if (pixel_format == "rgba8888")
         Texture2D::setDefaultAlphaPixelFormat(backend::PixelFormat::RGBA8);
     else if (pixel_format == "rgba4444")
@@ -225,23 +225,23 @@ void Director::setDefaultValues()
     */
 
     // PVR v2 has alpha premultiplied ?
-    bool pvr_alpha_premultiplied = conf->getValue("adxe.texture.pvrv2_has_alpha_premultiplied", Value(false)).asBool();
+    bool pvr_alpha_premultiplied = conf->getValue("axis.texture.pvrv2_has_alpha_premultiplied", Value(false)).asBool();
     Image::setCompressedImagesHavePMA(Image::CompressedImagePMAFlag::PVR, pvr_alpha_premultiplied);
 
     // ASTC has alpha premultiplied ?
-    bool astc_alpha_premultiplied = conf->getValue("adxe.texture.astc_has_pma", Value{true}).asBool();
+    bool astc_alpha_premultiplied = conf->getValue("axis.texture.astc_has_pma", Value{true}).asBool();
     Image::setCompressedImagesHavePMA(Image::CompressedImagePMAFlag::ASTC, astc_alpha_premultiplied);
 
     // ETC2 has alpha premultiplied ?
     // Note: no suitable tools(etc2comp, Mali Texture Compression Tool, PVRTexTool) support do PMA currently, so set etc2 PMA default to `false`
-    bool etc2_alpha_premultiplied = conf->getValue("adxe.texture.etc2_has_pma", Value{false}).asBool();
+    bool etc2_alpha_premultiplied = conf->getValue("axis.texture.etc2_has_pma", Value{false}).asBool();
     Image::setCompressedImagesHavePMA(Image::CompressedImagePMAFlag::ETC2, etc2_alpha_premultiplied);
 }
 
 void Director::setGLDefaultValues()
 {
     // This method SHOULD be called only after openGLView_ was initialized
-    CCASSERT(_openGLView, "opengl view should not be null");
+    AXASSERT(_openGLView, "opengl view should not be null");
 
     _renderer->setDepthTest(false);
     _renderer->setDepthCompareFunction(backend::CompareFunction::LESS_EQUAL);
@@ -285,7 +285,7 @@ void Director::drawScene()
 
     if (_runningScene)
     {
-#if (CC_USE_PHYSICS || (CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION) || CC_USE_NAVMESH)
+#if (AX_USE_PHYSICS || (AX_USE_3D_PHYSICS && AX_ENABLE_BULLET_INTEGRATION) || AX_USE_NAVMESH)
         _runningScene->stepPhysicsAndNavigation(_deltaTime);
 #endif
         // clear draw stats
@@ -308,7 +308,7 @@ void Director::drawScene()
 
     if (_statsDisplay)
     {
-#if !CC_STRIP_FPS
+#if !AX_STRIP_FPS
         showStats();
 #endif
     }
@@ -331,7 +331,7 @@ void Director::drawScene()
 
     if (_statsDisplay)
     {
-#if !CC_STRIP_FPS
+#if !AX_STRIP_FPS
         calculateMPF();
 #endif
     }
@@ -358,7 +358,7 @@ void Director::calculateDeltaTime()
         _deltaTime = MAX(0, _deltaTime);
     }
 
-#if COCOS2D_DEBUG
+#if AXIS_DEBUG
     // If we are debugging our code, prevent big delta time
     if (_deltaTime > 0.2f)
     {
@@ -373,14 +373,14 @@ float Director::getDeltaTime() const
 }
 void Director::setOpenGLView(GLView* openGLView)
 {
-    CCASSERT(openGLView, "opengl view should not be null");
+    AXASSERT(openGLView, "opengl view should not be null");
 
     if (_openGLView != openGLView)
     {
         // Configuration. Gather GPU info
         Configuration* conf = Configuration::getInstance();
         conf->gatherGPUInfo();
-        CCLOG("%s\n", conf->getInfo().c_str());
+        AXLOG("%s\n", conf->getInfo().c_str());
 
         if (_openGLView)
             _openGLView->release();
@@ -421,7 +421,7 @@ void Director::destroyTextureCache()
     if (_textureCache)
     {
         _textureCache->waitForQuit();
-        CC_SAFE_RELEASE_NULL(_textureCache);
+        AX_SAFE_RELEASE_NULL(_textureCache);
     }
 }
 
@@ -487,7 +487,7 @@ void Director::popMatrix(MATRIX_STACK_TYPE type)
     }
     else
     {
-        CCASSERT(false, "unknown matrix stack type");
+        AXASSERT(false, "unknown matrix stack type");
     }
 }
 
@@ -507,7 +507,7 @@ void Director::loadIdentityMatrix(MATRIX_STACK_TYPE type)
     }
     else
     {
-        CCASSERT(false, "unknown matrix stack type");
+        AXASSERT(false, "unknown matrix stack type");
     }
 }
 
@@ -527,7 +527,7 @@ void Director::loadMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
     else
     {
-        CCASSERT(false, "unknown matrix stack type");
+        AXASSERT(false, "unknown matrix stack type");
     }
 }
 
@@ -547,7 +547,7 @@ void Director::multiplyMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
     else
     {
-        CCASSERT(false, "unknown matrix stack type");
+        AXASSERT(false, "unknown matrix stack type");
     }
 }
 
@@ -567,7 +567,7 @@ void Director::pushMatrix(MATRIX_STACK_TYPE type)
     }
     else
     {
-        CCASSERT(false, "unknown matrix stack type");
+        AXASSERT(false, "unknown matrix stack type");
     }
 }
 
@@ -586,7 +586,7 @@ const Mat4& Director::getMatrix(MATRIX_STACK_TYPE type) const
         return _textureMatrixStack.top();
     }
 
-    CCASSERT(false, "unknown matrix stack type, will return modelview matrix instead");
+    AXASSERT(false, "unknown matrix stack type, will return modelview matrix instead");
     return _modelViewMatrixStack.top();
 }
 
@@ -596,7 +596,7 @@ void Director::setProjection(Projection projection)
 
     if (size.width == 0 || size.height == 0)
     {
-        CCLOGERROR("cocos2d: warning, Director::setProjection() failed because size is 0");
+        AXLOGERROR("cocos2d: warning, Director::setProjection() failed because size is 0");
         return;
     }
 
@@ -638,7 +638,7 @@ void Director::setProjection(Projection projection)
         break;
 
     default:
-        CCLOG("cocos2d: Director: unrecognized projection");
+        AXLOG("cocos2d: Director: unrecognized projection");
         break;
     }
 
@@ -680,7 +680,7 @@ static void GLToClipTransform(Mat4* transformOut)
         return;
 
     Director* director = Director::getInstance();
-    CCASSERT(nullptr != director, "Director is null when setting matrix stack");
+    AXASSERT(nullptr != director, "Director is null when setting matrix stack");
 
     auto& projection = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
     auto& modelview  = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
@@ -785,9 +785,9 @@ Rect Director::getSafeAreaRect() const
 
 void Director::runWithScene(Scene* scene)
 {
-    CCASSERT(scene != nullptr,
+    AXASSERT(scene != nullptr,
              "This command can only be used to start the Director. There is already a scene present.");
-    CCASSERT(_runningScene == nullptr, "_runningScene should be null");
+    AXASSERT(_runningScene == nullptr, "_runningScene should be null");
 
     pushScene(scene);
     startAnimation();
@@ -795,8 +795,8 @@ void Director::runWithScene(Scene* scene)
 
 void Director::replaceScene(Scene* scene)
 {
-    // CCASSERT(_runningScene, "Use runWithScene: instead to start the director");
-    CCASSERT(scene != nullptr, "the scene should not be null");
+    // AXASSERT(_runningScene, "Use runWithScene: instead to start the director");
+    AXASSERT(scene != nullptr, "the scene should not be null");
 
     if (_runningScene == nullptr)
     {
@@ -820,14 +820,14 @@ void Director::replaceScene(Scene* scene)
     ssize_t index = _scenesStack.size() - 1;
 
     _sendCleanupToScene = true;
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (sEngine)
     {
         sEngine->retainScriptObject(this, scene);
         sEngine->releaseScriptObject(this, _scenesStack.at(index));
     }
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     _scenesStack.replace(index, scene);
 
     _nextScene = scene;
@@ -835,32 +835,32 @@ void Director::replaceScene(Scene* scene)
 
 void Director::pushScene(Scene* scene)
 {
-    CCASSERT(scene, "the scene should not null");
+    AXASSERT(scene, "the scene should not null");
 
     _sendCleanupToScene = false;
 
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (sEngine)
     {
         sEngine->retainScriptObject(this, scene);
     }
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     _scenesStack.pushBack(scene);
     _nextScene    = scene;
 }
 
 void Director::popScene()
 {
-    CCASSERT(_runningScene != nullptr, "running scene should not null");
+    AXASSERT(_runningScene != nullptr, "running scene should not null");
 
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (sEngine)
     {
         sEngine->releaseScriptObject(this, _scenesStack.back());
     }
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     _scenesStack.popBack();
     ssize_t c = _scenesStack.size();
 
@@ -882,7 +882,7 @@ void Director::popToRootScene()
 
 void Director::popToSceneStackLevel(int level)
 {
-    CCASSERT(_runningScene != nullptr, "A running Scene is needed");
+    AXASSERT(_runningScene != nullptr, "A running Scene is needed");
     ssize_t c = _scenesStack.size();
 
     // level 0? -> end
@@ -899,13 +899,13 @@ void Director::popToSceneStackLevel(int level)
     auto firstOnStackScene = _scenesStack.back();
     if (firstOnStackScene == _runningScene)
     {
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
         auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
         if (sEngine)
         {
             sEngine->releaseScriptObject(this, _scenesStack.back());
         }
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
         _scenesStack.popBack();
         --c;
     }
@@ -921,13 +921,13 @@ void Director::popToSceneStackLevel(int level)
         }
 
         current->cleanup();
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
         auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
         if (sEngine)
         {
             sEngine->releaseScriptObject(this, _scenesStack.back());
         }
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
         _scenesStack.popBack();
         --c;
     }
@@ -950,18 +950,18 @@ void Director::restart()
 
 void Director::reset()
 {
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
 
     if (_runningScene)
     {
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
         if (sEngine)
         {
             sEngine->releaseScriptObject(this, _runningScene);
         }
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
         _runningScene->onExit();
         _runningScene->cleanup();
         _runningScene->release();
@@ -973,7 +973,7 @@ void Director::reset()
     if (_eventDispatcher)
         _eventDispatcher->dispatchEvent(_eventResetDirector);
 
-    // Fix github issue: https://github.com/adxeproject/adxe/issues/550
+    // Fix github issue: https://github.com/axis-project/axis/issues/550
     // !!!The AudioEngine hold scheduler must end before Director destroyed, otherwise, just lead app crash
     AudioEngine::end();
 
@@ -997,7 +997,7 @@ void Director::reset()
 
     // remove all objects, but don't release it.
     // runWithScene might be executed after 'end'.
-#if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#if AX_ENABLE_GC_FOR_NATIVE_OBJECTS
     if (sEngine)
     {
         for (const auto& scene : _scenesStack)
@@ -1006,7 +1006,7 @@ void Director::reset()
                 sEngine->releaseScriptObject(this, scene);
         }
     }
-#endif  // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
+#endif  // AX_ENABLE_GC_FOR_NATIVE_OBJECTS
 
     while (!_scenesStack.empty())
     {
@@ -1015,10 +1015,10 @@ void Director::reset()
 
     stopAnimation();
 
-    CC_SAFE_RELEASE_NULL(_notificationNode);
-    CC_SAFE_RELEASE_NULL(_FPSLabel);
-    CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
-    CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
+    AX_SAFE_RELEASE_NULL(_notificationNode);
+    AX_SAFE_RELEASE_NULL(_FPSLabel);
+    AX_SAFE_RELEASE_NULL(_drawnBatchesLabel);
+    AX_SAFE_RELEASE_NULL(_drawnVerticesLabel);
 
     // purge bitmap cache
     FontFNT::purgeCachedData();
@@ -1074,7 +1074,7 @@ void Director::restartDirector()
     startAnimation();
 
     // Real restart in script level
-#if CC_ENABLE_SCRIPT_BINDING
+#if AX_ENABLE_SCRIPT_BINDING
     ScriptEvent scriptEvent(kRestartGame, nullptr);
     ScriptEngineManager::sendEventToLua(scriptEvent);
 #endif
@@ -1132,7 +1132,7 @@ void Director::pause()
 
     _oldAnimationInterval = _animationInterval;
 
-#if CC_REDUCE_PAUSED_CPU_USAGE
+#if AX_REDUCE_PAUSED_CPU_USAGE
     // when paused, don't consume CPU
     setAnimationInterval(1 / 4.0, SetIntervalReason::BY_DIRECTOR_PAUSE);
 #endif
@@ -1146,7 +1146,7 @@ void Director::resume()
         return;
     }
 
-#if CC_REDUCE_PAUSED_CPU_USAGE
+#if AX_REDUCE_PAUSED_CPU_USAGE
     setAnimationInterval(_oldAnimationInterval, SetIntervalReason::BY_ENGINE);
 #endif
 
@@ -1169,7 +1169,7 @@ void Director::updateFrameRate()
     _frameRate = 1.0f / _deltaTime;
 }
 
-#if !CC_STRIP_FPS
+#if !AX_STRIP_FPS
 
 // display the FPS using a LabelAtlas
 // updates the FPS every frame
@@ -1194,7 +1194,7 @@ void Director::showStats()
         // Probably we don't need this anymore since
         // the framerate is using a low-pass filter
         // to make the FPS stable
-        if (_accumDt > CC_DIRECTOR_STATS_INTERVAL)
+        if (_accumDt > AX_DIRECTOR_STATS_INTERVAL)
         {
             sprintf(buffer, "%.1f / %.3f", _frames / _accumDt, _secondsPerFrame);
             _FPSLabel->setString(buffer);
@@ -1254,9 +1254,9 @@ void Director::createStatsLabel()
         drawBatchString    = _drawnBatchesLabel->getString();
         drawVerticesString = _drawnVerticesLabel->getString();
 
-        CC_SAFE_RELEASE_NULL(_FPSLabel);
-        CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
-        CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
+        AX_SAFE_RELEASE_NULL(_FPSLabel);
+        AX_SAFE_RELEASE_NULL(_drawnBatchesLabel);
+        AX_SAFE_RELEASE_NULL(_drawnVerticesLabel);
         _textureCache->removeTextureForKey("/cc_fps_images");
         FileUtils::getInstance()->purgeCachedEntries();
     }
@@ -1271,12 +1271,12 @@ void Director::createStatsLabel()
     {
         if (image)
             delete image;
-        CCLOGERROR("%s", "Fails: init fps_images");
+        AXLOGERROR("%s", "Fails: init fps_images");
         return;
     }
 
     texture = _textureCache->addImage(image, "/cc_fps_images", PixelFormat::RGBA4);
-    CC_SAFE_RELEASE(image);
+    AX_SAFE_RELEASE(image);
 
     /*
      We want to use an image which is stored in the file named ccFPSImage.c
@@ -1286,7 +1286,7 @@ void Director::createStatsLabel()
      So I added a new method called 'setIgnoreContentScaleFactor' for 'AtlasNode',
      this is not exposed to game developers, it's only used for displaying FPS now.
      */
-    float scaleFactor = 1 / CC_CONTENT_SCALE_FACTOR();
+    float scaleFactor = 1 / AX_CONTENT_SCALE_FACTOR();
 
     _FPSLabel = LabelAtlas::create(fpsString, texture, 12, 32, '.');
     _FPSLabel->retain();
@@ -1319,7 +1319,7 @@ void Director::setStatsAnchor(AnchorPreset anchor)
         static Vec2 _fpsPosition          = {0, 0};
         auto safeOrigin        = getSafeAreaRect().origin;
         auto safeSize          = getSafeAreaRect().size;
-        const int height_spacing = (int)(22 / CC_CONTENT_SCALE_FACTOR());
+        const int height_spacing = (int)(22 / AX_CONTENT_SCALE_FACTOR());
 
         switch (anchor)
         {
@@ -1391,7 +1391,7 @@ void Director::setStatsAnchor(AnchorPreset anchor)
     }
 }
 
-#endif  // #if !CC_STRIP_FPS
+#endif  // #if !AX_STRIP_FPS
 
 void Director::setContentScaleFactor(float scaleFactor)
 {
@@ -1410,22 +1410,22 @@ void Director::setNotificationNode(Node* node)
         _notificationNode->onExit();
         _notificationNode->cleanup();
     }
-    CC_SAFE_RELEASE(_notificationNode);
+    AX_SAFE_RELEASE(_notificationNode);
 
     _notificationNode = node;
     if (node == nullptr)
         return;
     _notificationNode->onEnter();
     _notificationNode->onEnterTransitionDidFinish();
-    CC_SAFE_RETAIN(_notificationNode);
+    AX_SAFE_RETAIN(_notificationNode);
 }
 
 void Director::setScheduler(Scheduler* scheduler)
 {
     if (_scheduler != scheduler)
     {
-        CC_SAFE_RETAIN(scheduler);
-        CC_SAFE_RELEASE(_scheduler);
+        AX_SAFE_RETAIN(scheduler);
+        AX_SAFE_RELEASE(_scheduler);
         _scheduler = scheduler;
     }
 }
@@ -1434,8 +1434,8 @@ void Director::setActionManager(ActionManager* actionManager)
 {
     if (_actionManager != actionManager)
     {
-        CC_SAFE_RETAIN(actionManager);
-        CC_SAFE_RELEASE(_actionManager);
+        AX_SAFE_RETAIN(actionManager);
+        AX_SAFE_RELEASE(_actionManager);
         _actionManager = actionManager;
     }
 }
@@ -1444,8 +1444,8 @@ void Director::setEventDispatcher(EventDispatcher* dispatcher)
 {
     if (_eventDispatcher != dispatcher)
     {
-        CC_SAFE_RETAIN(dispatcher);
-        CC_SAFE_RELEASE(_eventDispatcher);
+        AX_SAFE_RETAIN(dispatcher);
+        AX_SAFE_RELEASE(_eventDispatcher);
         _eventDispatcher = dispatcher;
     }
 }
@@ -1517,4 +1517,4 @@ void Director::setAnimationInterval(float interval, SetIntervalReason reason)
     }
 }
 
-NS_CC_END
+NS_AX_END

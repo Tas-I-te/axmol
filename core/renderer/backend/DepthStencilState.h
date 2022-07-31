@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
 
 #include "base/CCRef.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 class RenderTarget;
 /**
@@ -69,7 +69,7 @@ struct DepthStencilDescriptor
 /**
  * Store Depth and stencil status.
  */
-class DepthStencilState : public cocos2d::Ref
+class DepthStencilState : public axis::Ref
 {
 public:
     virtual void update(const DepthStencilDescriptor& desc);
@@ -89,4 +89,4 @@ protected:
 
 // end of _backend group
 /// @}
-CC_BACKEND_END
+NS_AX_BACKEND_END

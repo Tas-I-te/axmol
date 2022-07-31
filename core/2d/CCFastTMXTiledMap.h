@@ -5,7 +5,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "2d/CCNode.h"
 #include "2d/CCTMXObjectGroup.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class TMXLayerInfo;
 class TMXTilesetInfo;
@@ -94,7 +94,7 @@ class FastTMXLayer;
  * @since v3.2
  * @js NA
  */
-class CC_DLL FastTMXTiledMap : public Node
+class AX_DLL FastTMXTiledMap : public Node
 {
 public:
     /** Creates a TMX Tiled Map with a TMX file.
@@ -203,7 +203,7 @@ public:
      */
     void setTileAnimEnabled(bool enabled);
 
-    CC_DEPRECATED_ATTRIBUTE int getLayerNum() const { return getLayerCount(); }
+    AX_DEPRECATED_ATTRIBUTE int getLayerNum() const { return getLayerCount(); }
 
     int getLayerCount() const { return _layerCount; }
 
@@ -249,7 +249,7 @@ protected:
     std::string _tmxFile;
 
 private:
-    CC_DISALLOW_COPY_AND_ASSIGN(FastTMXTiledMap);
+    AX_DISALLOW_COPY_AND_ASSIGN(FastTMXTiledMap);
 };
 
 // end of tilemap_parallax_nodes group
@@ -258,4 +258,4 @@ private:
 // @API compatible
 typedef FastTMXTiledMap TMXTiledMap;
 
-NS_CC_END
+NS_AX_END

@@ -6,7 +6,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "base/CCVector.h"
 #include "base/CCRef.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Action;
 
@@ -56,7 +56,7 @@ struct _hashElement;
 
  @since v0.8
  */
-class CC_DLL ActionManager : public Ref
+class AX_DLL ActionManager : public Ref
 {
 public:
     /**
@@ -209,6 +209,6 @@ protected:
 // end of actions group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif  // __ACTION_CCACTION_MANAGER_H__

@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,8 @@
 #include "renderer/CCRenderer.h"
 #include "renderer/backend/ProgramStateRegistry.h"
 
-using namespace cocos2d;
-using namespace cocos2d::ui;
+USING_NS_AX;
+using namespace axis::ui;
 
 Scale9Sprite* Scale9Sprite::create()
 {
@@ -49,7 +49,7 @@ Scale9Sprite* Scale9Sprite::create()
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -61,7 +61,7 @@ Scale9Sprite* Scale9Sprite::create(std::string_view filename, const Rect& rect, 
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -78,7 +78,7 @@ Scale9Sprite* Scale9Sprite::create(const Rect& capInsets, std::string_view file)
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -95,7 +95,7 @@ Scale9Sprite* Scale9Sprite::createWithSpriteFrame(SpriteFrame* spriteFrame, cons
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -112,7 +112,7 @@ Scale9Sprite* Scale9Sprite::createWithSpriteFrameName(std::string_view spriteFra
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -124,7 +124,7 @@ Scale9Sprite* Scale9Sprite::createWithSpriteFrameName(std::string_view spriteFra
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
 
     log("Could not allocate Scale9Sprite()");
     return nullptr;
@@ -272,8 +272,8 @@ bool Scale9Sprite::updateWithSprite(Sprite* sprite,
                                     const Rect& capInsets)
 {
     SpriteFrame* spriteframe =
-        SpriteFrame::createWithTexture(sprite->getTexture(), CC_RECT_POINTS_TO_PIXELS(textureRect), rotated,
-                                       CC_POINT_POINTS_TO_PIXELS(offset), CC_SIZE_POINTS_TO_PIXELS(originalSize));
+        SpriteFrame::createWithTexture(sprite->getTexture(), AX_RECT_POINTS_TO_PIXELS(textureRect), rotated,
+                                       AX_POINT_POINTS_TO_PIXELS(offset), AX_SIZE_POINTS_TO_PIXELS(originalSize));
     setSpriteFrame(spriteframe);
     setCapInsets(capInsets);
     return true;
@@ -288,7 +288,7 @@ Scale9Sprite* Scale9Sprite::resizableSpriteWithCapInsets(const Rect& capInsets) 
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -396,7 +396,7 @@ void Scale9Sprite::setScale9Enabled(bool enabled)
 {
     if (_renderMode == RenderMode::POLYGON)
     {
-        CCLOGWARN("Scale9Sprite::setScale9Enabled() can't be called when using POLYGON render modes");
+        AXLOGWARN("Scale9Sprite::setScale9Enabled() can't be called when using POLYGON render modes");
         return;
     }
 
@@ -427,7 +427,7 @@ void Scale9Sprite::copyTo(Scale9Sprite* copy) const
 
     copy->setRenderingType(_renderingType);
     copy->setScale9Enabled(isScale9Enabled());
-    // setStretchEnabled after setScale9Enabled, fix issue: https://github.com/adxeproject/adxe/issues/491
+    // setStretchEnabled after setScale9Enabled, fix issue: https://github.com/axis-project/axis/issues/491
     copy->setStretchEnabled(isStretchEnabled());
     copy->_isPatch9    = _isPatch9;
     copy->_brightState = _brightState;
@@ -475,7 +475,7 @@ void Scale9Sprite::setRenderingType(Scale9Sprite::RenderingType type)
 {
     if (_renderMode == RenderMode::POLYGON)
     {
-        CCLOGWARN("Scale9Sprite::setRenderingType() can't be called when using POLYGON render modes");
+        AXLOGWARN("Scale9Sprite::setRenderingType() can't be called when using POLYGON render modes");
         return;
     }
     if (_renderingType != type)
@@ -531,7 +531,7 @@ void Scale9Sprite::setupSlice9(Texture2D* texture, const Rect& capInsets)
     }
 }
 
-void Scale9Sprite::setCapInsets(const cocos2d::Rect& insetsCopy)
+void Scale9Sprite::setCapInsets(const axis::Rect& insetsCopy)
 {
     Rect insets = insetsCopy;
 

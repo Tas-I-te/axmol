@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +24,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __CC_COMMON_H__
-#define __CC_COMMON_H__
+#ifndef __AX_COMMON_H__
+#define __AX_COMMON_H__
 /// @cond DO_NOT_SHOW
 
 #include "platform/CCPlatformMacros.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup platform
@@ -40,12 +40,12 @@ NS_CC_BEGIN
 /**
  * lua can not deal with ...
  */
-void CC_DLL LuaLog(const char* format);
+void AX_DLL LuaLog(const char* format);
 
 /**
 @brief Pop out a message box
 */
-void CC_DLL ccMessageBox(const char* msg, const char* title);
+void AX_DLL ccMessageBox(const char* msg, const char* title);
 
 /**
 @brief Enum the language type supported now
@@ -77,7 +77,7 @@ enum class LanguageType
 // END of platform group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 /// @endcond
-#endif  // __CC_COMMON_H__
+#endif  // __AX_COMMON_H__

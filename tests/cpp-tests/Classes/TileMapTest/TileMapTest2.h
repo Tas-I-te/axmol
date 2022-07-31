@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ public:
     virtual std::string subtitle() const override;
     virtual void onExit() override;
 
-    void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+    void onTouchesMoved(const std::vector<axis::Touch*>& touches, axis::Event* event);
 };
 
 class TileMapTestNew : public TileDemoNew
@@ -192,7 +192,7 @@ public:
 
 class TMXIsoZorderNew : public TileDemoNew
 {
-    cocos2d::Sprite* _tamara;
+    axis::Sprite* _tamara;
 
 public:
     CREATE_FUNC(TMXIsoZorderNew);
@@ -207,7 +207,7 @@ public:
 
 class TMXOrthoZorderNew : public TileDemoNew
 {
-    cocos2d::Sprite* _tamara;
+    axis::Sprite* _tamara;
 
 public:
     CREATE_FUNC(TMXOrthoZorderNew);
@@ -221,7 +221,7 @@ public:
 
 class TMXIsoVertexZNew : public TileDemoNew
 {
-    cocos2d::Sprite* _tamara;
+    axis::Sprite* _tamara;
 
 public:
     CREATE_FUNC(TMXIsoVertexZNew);
@@ -237,7 +237,7 @@ public:
 
 class TMXOrthoVertexZNew : public TileDemoNew
 {
-    cocos2d::Sprite* _tamara;
+    axis::Sprite* _tamara;
 
 public:
     CREATE_FUNC(TMXOrthoVertexZNew);
@@ -346,9 +346,9 @@ public:
     TileAnimTestNew();
     virtual std::string title() const override;
 
-    cocos2d::FastTMXTiledMap* map;
+    axis::FastTMXTiledMap* map;
     bool _animStarted = true;
-    void onTouchBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+    void onTouchBegan(const std::vector<axis::Touch*>& touches, axis::Event* event);
 };
 
 #endif

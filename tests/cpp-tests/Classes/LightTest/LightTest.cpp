@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 #include "LightTest.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 LightTests::LightTests()
 {
@@ -48,19 +48,19 @@ LightTest::LightTest() : _directionalLight(nullptr), _pointLight(nullptr), _spot
     _ambientLightLabel = Label::createWithTTF(ttfConfig, "Ambient Light ON");
     _ambientLightLabel->retain();
     auto menuItem0 =
-        MenuItemLabel::create(_ambientLightLabel, CC_CALLBACK_1(LightTest::SwitchLight, this, LightType::AMBIENT));
+        MenuItemLabel::create(_ambientLightLabel, AX_CALLBACK_1(LightTest::SwitchLight, this, LightType::AMBIENT));
     _directionalLightLabel = Label::createWithTTF(ttfConfig, "Directional Light OFF");
     _directionalLightLabel->retain();
     auto menuItem1   = MenuItemLabel::create(_directionalLightLabel,
-                                             CC_CALLBACK_1(LightTest::SwitchLight, this, LightType::DIRECTIONAL));
+                                             AX_CALLBACK_1(LightTest::SwitchLight, this, LightType::DIRECTIONAL));
     _pointLightLabel = Label::createWithTTF(ttfConfig, "Point Light OFF");
     _pointLightLabel->retain();
     auto menuItem2 =
-        MenuItemLabel::create(_pointLightLabel, CC_CALLBACK_1(LightTest::SwitchLight, this, LightType::POINT));
+        MenuItemLabel::create(_pointLightLabel, AX_CALLBACK_1(LightTest::SwitchLight, this, LightType::POINT));
     _spotLightLabel = Label::createWithTTF(ttfConfig, "Spot Light OFF");
     _spotLightLabel->retain();
     auto menuItem3 =
-        MenuItemLabel::create(_spotLightLabel, CC_CALLBACK_1(LightTest::SwitchLight, this, LightType::SPOT));
+        MenuItemLabel::create(_spotLightLabel, AX_CALLBACK_1(LightTest::SwitchLight, this, LightType::SPOT));
     auto menu = Menu::create(menuItem0, menuItem1, menuItem2, menuItem3, nullptr);
     menu->setPosition(Vec2::ZERO);
     menuItem0->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
@@ -234,7 +234,7 @@ void LightTest::update(float delta)
 
     if (_directionalLight)
     {
-        _directionalLight->setRotation3D(Vec3(-45.0, -CC_RADIANS_TO_DEGREES(angleDelta), 0.0f));
+        _directionalLight->setRotation3D(Vec3(-45.0, -AX_RADIANS_TO_DEGREES(angleDelta), 0.0f));
     }
 
     if (_pointLight)

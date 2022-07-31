@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@
 #include "Bug-15594.h"
 #include "Bug-15776.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_WIN32)
 #    include "Bug-14327.h"
 #endif
 
@@ -62,7 +62,7 @@ BugsTests::BugsTests()
     // NOTE: comment this out because it currently crashes during autotest
     // ADD_TEST_CASE(Bug15776Layer);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_WIN32)
     ADD_TEST_CASE(Bug14327Layer);
 #endif
 }

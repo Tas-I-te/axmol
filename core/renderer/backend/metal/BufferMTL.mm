@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 #include "../Macros.h"
 #include "BufferManager.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 BufferMTL::BufferMTL(id<MTLDevice> mtlDevice, std::size_t size, BufferType type, BufferUsage usage)
     : Buffer(size, type, usage)
@@ -102,4 +102,4 @@ void BufferMTL::updateIndex()
     }
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
 
 #include "Bug-624.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 ////////////////////////////////////////////////////////
 //
@@ -52,10 +52,10 @@ bool Bug624Layer::init()
         addChild(label);
 
         Device::setAccelerometerEnabled(true);
-        auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer::onAcceleration, this));
+        auto listener = EventListenerAcceleration::create(AX_CALLBACK_2(Bug624Layer::onAcceleration, this));
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-        schedule(CC_SCHEDULE_SELECTOR(Bug624Layer::switchLayer), 5.0f);
+        schedule(AX_SCHEDULE_SELECTOR(Bug624Layer::switchLayer), 5.0f);
 
         return true;
     }
@@ -65,7 +65,7 @@ bool Bug624Layer::init()
 
 void Bug624Layer::switchLayer(float dt)
 {
-    unschedule(CC_SCHEDULE_SELECTOR(Bug624Layer::switchLayer));
+    unschedule(AX_SCHEDULE_SELECTOR(Bug624Layer::switchLayer));
 
     auto scene = Scene::create();
     scene->addChild(Bug624Layer2::create(), 0);
@@ -98,10 +98,10 @@ bool Bug624Layer2::init()
         addChild(label);
 
         Device::setAccelerometerEnabled(true);
-        auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer2::onAcceleration, this));
+        auto listener = EventListenerAcceleration::create(AX_CALLBACK_2(Bug624Layer2::onAcceleration, this));
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-        schedule(CC_SCHEDULE_SELECTOR(Bug624Layer2::switchLayer), 5.0f);
+        schedule(AX_SCHEDULE_SELECTOR(Bug624Layer2::switchLayer), 5.0f);
 
         return true;
     }
@@ -111,7 +111,7 @@ bool Bug624Layer2::init()
 
 void Bug624Layer2::switchLayer(float dt)
 {
-    unschedule(CC_SCHEDULE_SELECTOR(Bug624Layer::switchLayer));
+    unschedule(AX_SCHEDULE_SELECTOR(Bug624Layer::switchLayer));
 
     auto scene = Scene::create();
     scene->addChild(Bug624Layer::create(), 0);

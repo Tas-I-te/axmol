@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@
  * @addtogroup ui
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 class DrawNode;
 class Texture2D;
 
@@ -57,7 +57,7 @@ namespace ui
  * Then you could call any methods of Sprite class with the return pointers.
  *
  */
-class CC_GUI_DLL Scale9Sprite : public Sprite
+class AX_GUI_DLL Scale9Sprite : public Sprite
 {
 public:
     /**

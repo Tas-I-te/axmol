@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 
 #include "flatbuffers/flatbuffers.h"
 
-USING_NS_CC;
+USING_NS_AX;
 using namespace flatbuffers;
 
 namespace cocostudio
@@ -57,12 +57,12 @@ Node3DReader* Node3DReader::getInstance()
 
 void Node3DReader::purge()
 {
-    CC_SAFE_DELETE(_instanceNode3DReader);
+    AX_SAFE_DELETE(_instanceNode3DReader);
 }
 
 void Node3DReader::destroyInstance()
 {
-    CC_SAFE_DELETE(_instanceNode3DReader);
+    AX_SAFE_DELETE(_instanceNode3DReader);
 }
 
 Vec3 Node3DReader::getVec3Attribute(pugi::xml_attribute attribute) const
@@ -334,7 +334,7 @@ Offset<Table> Node3DReader::createOptionsWithFlatBuffers(pugi::xml_node objectDa
     return *(Offset<Table>*)(&options);
 }
 
-void Node3DReader::setPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* node3DOptions)
+void Node3DReader::setPropsWithFlatBuffers(axis::Node* node, const flatbuffers::Table* node3DOptions)
 {
     auto options = (Node3DOption*)node3DOptions;
 

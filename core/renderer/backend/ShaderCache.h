@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@
 #include <string>
 #include <unordered_map>
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 /**
  * @addtogroup _backend
  * @{
@@ -40,7 +40,7 @@ CC_BACKEND_BEGIN
 /**
  * Create and reuse shader module.
  */
-class CC_DLL ShaderCache : public Ref
+class AX_DLL ShaderCache : public Ref
 {
 public:
     /** returns the shared instance */
@@ -93,4 +93,4 @@ protected:
 
 // end of _backend group
 /// @}
-CC_BACKEND_END
+NS_AX_BACKEND_END

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 #include "base/ccMacros.h"
 #include <cassert>
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 void VertexLayout::setAttribute(std::string_view name,
                                 std::size_t index,
@@ -49,4 +49,4 @@ void VertexLayout::setLayout(std::size_t stride)
     _stride = stride;
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

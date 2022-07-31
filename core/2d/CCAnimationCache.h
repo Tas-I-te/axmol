@@ -5,7 +5,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
-#ifndef __CC_ANIMATION_CACHE_H__
-#define __CC_ANIMATION_CACHE_H__
+#ifndef __AX_ANIMATION_CACHE_H__
+#define __AX_ANIMATION_CACHE_H__
 
 #include "base/CCRef.h"
 #include "base/CCMap.h"
@@ -35,7 +35,7 @@ THE SOFTWARE.
 
 #include <string>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Animation;
 
@@ -52,7 +52,7 @@ Before v0.99.5, the recommend way was to save them on the Sprite. Since v0.99.5,
 @since v0.99.5
 @js cc.animationCache
 */
-class CC_DLL AnimationCache : public Ref
+class AX_DLL AnimationCache : public Ref
 {
 public:
     /**
@@ -127,6 +127,6 @@ private:
 // end of sprite_nodes group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
-#endif  // __CC_ANIMATION_CACHE_H__
+#endif  // __AX_ANIMATION_CACHE_H__

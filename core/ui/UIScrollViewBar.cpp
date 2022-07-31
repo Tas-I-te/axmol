@@ -2,7 +2,7 @@
 Copyright (c) 2015 Neo Kim (neo.kim@neofect.com)
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "2d/CCSprite.h"
 #include "base/ccUtils.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 namespace ui
 {
@@ -62,8 +62,8 @@ ScrollViewBar::ScrollViewBar(ScrollView* parent, ScrollView::Direction direction
     , _autoHideTime(DEFAULT_AUTO_HIDE_TIME)
     , _autoHideRemainingTime(0)
 {
-    CCASSERT(parent != nullptr, "Parent scroll view must not be null!");
-    CCASSERT(direction != ScrollView::Direction::BOTH, "Illegal scroll direction for scroll bar!");
+    AXASSERT(parent != nullptr, "Parent scroll view must not be null!");
+    AXASSERT(direction != ScrollView::Direction::BOTH, "Illegal scroll direction for scroll bar!");
     setCascadeColorEnabled(true);
     setCascadeOpacityEnabled(true);
 }
@@ -78,7 +78,7 @@ ScrollViewBar* ScrollViewBar::create(ScrollView* parent, ScrollView::Direction d
         node->autorelease();
         return node;
     }
-    CC_SAFE_DELETE(node);
+    AX_SAFE_DELETE(node);
     return nullptr;
 }
 
@@ -310,4 +310,4 @@ Vec2 ScrollViewBar::calculatePosition(float innerContainerMeasure,
 }
 }  // namespace ui
 
-NS_CC_END
+NS_AX_END

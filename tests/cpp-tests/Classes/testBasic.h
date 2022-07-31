@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
  * TestScene is retained for compatibility with older versions.
  * @warning It should soon be removed.
  */
-class TestScene : public cocos2d::Scene
+class TestScene : public axis::Scene
 {
 public:
     TestScene(bool bPortrait = false, bool physics = false) {}

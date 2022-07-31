@@ -3,7 +3,7 @@
  Copyright (c) 2020 C4games Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -49,8 +49,7 @@ __inline int IsEqualGUID(const GUID& rguid1, const GUID& rguid2)
 #include <guiddef.h>
 #endif
 
-namespace cocos2d
-{
+NS_AX_BEGIN
 
 // http://soundfile.sapp.org/doc/WaveFormat/
 enum class WAV_FORMAT : uint16_t
@@ -173,4 +172,4 @@ protected:
     mutable WAV_FILE _wavf;
 };
 
-}  // namespace cocos2d
+NS_AX_END  // namespace axis

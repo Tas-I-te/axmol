@@ -3,7 +3,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +26,10 @@
 
 #include "base/CCEventFocus.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 EventFocus::EventFocus(ui::Widget* widgetLoseFocus, ui::Widget* widgetGetFocus)
     : Event(Type::FOCUS), _widgetGetFocus(widgetGetFocus), _widgetLoseFocus(widgetLoseFocus)
 {}
 
-NS_CC_END
+NS_AX_END

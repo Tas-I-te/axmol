@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CC_EVENT_DISPATCHER_H__
-#define __CC_EVENT_DISPATCHER_H__
+#ifndef __AX_EVENT_DISPATCHER_H__
+#define __AX_EVENT_DISPATCHER_H__
 
 #include <functional>
 #include <string>
@@ -42,7 +42,7 @@
  * @{
  */
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Event;
 class EventTouch;
@@ -60,7 +60,7 @@ from within an EventListener, while events are being
 dispatched.
 @js NA
 */
-class CC_DLL EventDispatcher : public Ref
+class AX_DLL EventDispatcher : public Ref
 {
 public:
     // Adds event listener.
@@ -196,7 +196,7 @@ public:
      */
     ~EventDispatcher();
 
-#if CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS && COCOS2D_DEBUG > 0
+#if AX_NODE_DEBUG_VERIFY_EVENT_LISTENERS && AXIS_DEBUG > 0
 
     /**
      * To help track down event listener issues in debug builds.
@@ -355,9 +355,9 @@ protected:
     std::set<std::string> _internalCustomListenerIDs;
 };
 
-NS_CC_END
+NS_AX_END
 
 // end of base group
 /// @}
 
-#endif  // __CC_EVENT_DISPATCHER_H__
+#endif  // __AX_EVENT_DISPATCHER_H__

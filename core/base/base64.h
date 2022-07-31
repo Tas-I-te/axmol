@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,7 @@ THE SOFTWARE.
 
 #include "platform/CCPlatformMacros.h"
 
-namespace cocos2d
-{
+NS_AX_BEGIN
 
 /** @file
  base64 helper functions
@@ -45,7 +44,7 @@ namespace cocos2d
  *
  @since v0.8.1
  */
-int CC_DLL base64Decode(const unsigned char* in, unsigned int inLength, unsigned char** out);
+int AX_DLL base64Decode(const unsigned char* in, unsigned int inLength, unsigned char** out);
 
 /**
  * Encodes bytes into a 64base encoded memory with terminating '\0' character.
@@ -55,7 +54,7 @@ int CC_DLL base64Decode(const unsigned char* in, unsigned int inLength, unsigned
  *
  @since v2.1.4
  */
-int CC_DLL base64Encode(const unsigned char* in, unsigned int inLength, char** out);
+int AX_DLL base64Encode(const unsigned char* in, unsigned int inLength, char** out);
 
 }  // namespace   cocos2d
 

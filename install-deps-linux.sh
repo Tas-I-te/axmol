@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "This Shell Script will install dependencies for adxe" 
+echo "This Shell Script will install dependencies for axis" 
 echo -n "Are you continue? (y/n) "
 read answer
 if echo "$answer" | grep -iq "^y" ;then
@@ -19,6 +19,8 @@ sudo dpkg --add-architecture i386
  
 
 DEPENDS=' libx11-dev'
+DEPENDS=' automake'
+DEPENDS=' libtool'
 DEPENDS+=' libxmu-dev'
 DEPENDS+=' libglu1-mesa-dev'
 DEPENDS+=' libgl2ps-dev'

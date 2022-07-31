@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2013 cocos2d-x.org
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ THE SOFTWARE.
 #include "ActionTimeline/CCTimeLine.h"
 #include "ActionTimeline/CCActionTimeline.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 NS_TIMELINE_BEGIN
 
@@ -72,7 +72,7 @@ Timeline* Timeline::clone()
     Timeline* timeline   = Timeline::create();
     timeline->_actionTag = _actionTag;
 
-    for (auto frame : _frames)
+    for (auto&& frame : _frames)
     {
         Frame* newFrame = frame->clone();
         timeline->addFrame(newFrame);
@@ -101,7 +101,7 @@ void Timeline::removeFrame(Frame* frame)
 
 void Timeline::setNode(Node* node)
 {
-    for (auto frame : _frames)
+    for (auto&& frame : _frames)
     {
         frame->setNode(node);
     }

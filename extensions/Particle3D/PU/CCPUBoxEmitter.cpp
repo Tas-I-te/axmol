@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "CCPUBoxEmitter.h"
 #include "extensions/Particle3D/PU/CCPUParticleSystem3D.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // Constants
 const float CCPUBoxEmitter::DEFAULT_WIDTH  = 100.0f;
@@ -87,9 +87,9 @@ void CCPUBoxEmitter::initParticlePosition(PUParticle3D* particle)
         Mat4 rotMat;
         Mat4::createRotation(static_cast<PUParticleSystem3D*>(_particleSystem)->getDerivedOrientation(), &rotMat);
         particle->position = getDerivedPosition() + rotMat * (/*_emitterScale **/
-                                                              Vec3(CCRANDOM_MINUS1_1() * _xRange * _emitterScale.x,
-                                                                   CCRANDOM_MINUS1_1() * _yRange * _emitterScale.y,
-                                                                   CCRANDOM_MINUS1_1() * _zRange * _emitterScale.z));
+                                                              Vec3(AXRANDOM_MINUS1_1() * _xRange * _emitterScale.x,
+                                                                   AXRANDOM_MINUS1_1() * _yRange * _emitterScale.y,
+                                                                   AXRANDOM_MINUS1_1() * _zRange * _emitterScale.z));
     }
     // else
     //{
@@ -130,4 +130,4 @@ CCPUBoxEmitter* CCPUBoxEmitter::clone()
     return be;
 }
 
-NS_CC_END
+NS_AX_END

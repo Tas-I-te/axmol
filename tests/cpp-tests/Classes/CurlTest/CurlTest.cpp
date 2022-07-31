@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
 #include "stdlib.h"
 #include "curl/curl.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 CurlTests::CurlTests()
 {
@@ -42,7 +42,7 @@ CurlTest::CurlTest()
     label->setPosition(VisibleRect::center().x, VisibleRect::top().y - 50);
 
     auto listener            = EventListenerTouchAllAtOnce::create();
-    listener->onTouchesEnded = CC_CALLBACK_2(CurlTest::onTouchesEnded, this);
+    listener->onTouchesEnded = AX_CALLBACK_2(CurlTest::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     // create a label to display the tip string

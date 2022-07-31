@@ -4,7 +4,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2017-2020 C4games Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ THE SOFTWARE.
  * @addtogroup base
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * UserDefault acts as a tiny database. You can save and get base type values by it.
@@ -51,7 +51,7 @@ NS_CC_BEGIN
  * @warning: On windows, linux, use XML to store data, which means there are some limitations of
  * the key string, for example, `/` is not valid.
  */
-class CC_DLL UserDefault
+class AX_DLL UserDefault
 {
 public:
     // get value methods
@@ -290,7 +290,7 @@ protected:
     std::string _iv;
 };
 
-NS_CC_END
+NS_AX_END
 // end of base group
 /** @} */
 

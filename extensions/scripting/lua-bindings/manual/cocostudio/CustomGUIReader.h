@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 
 #include "CCSGUIReader.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 namespace cocostudio
 {
@@ -43,7 +43,7 @@ public:
 
     Ref* createInstance();
 
-    void setCustomProps(std::string_view classType, cocos2d::Ref* widget, const rapidjson::Value& customOptions);
+    void setCustomProps(std::string_view classType, axis::Ref* widget, const rapidjson::Value& customOptions);
 
 private:
     std::string _className;

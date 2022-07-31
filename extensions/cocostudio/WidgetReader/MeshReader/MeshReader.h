@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 
 namespace cocostudio
 {
-class CCS_DLL MeshReader : public cocos2d::Ref, public NodeReaderProtocol
+class CCS_DLL MeshReader : public axis::Ref, public NodeReaderProtocol
 {
     DECLARE_CLASS_NODE_READER_INFO
 
@@ -42,16 +42,16 @@ public:
 
     static MeshReader* getInstance();
     /** @deprecated Use method destroyInstance() instead */
-    CC_DEPRECATED_ATTRIBUTE static void purge();
+    AX_DEPRECATED_ATTRIBUTE static void purge();
     static void destroyInstance();
 
     flatbuffers::Offset<flatbuffers::Table> createOptionsWithFlatBuffers(pugi::xml_node objectData,
                                                                          flatbuffers::FlatBufferBuilder* builder);
-    void setPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* sprite3DOptions);
-    cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* sprite3DOptions);
+    void setPropsWithFlatBuffers(axis::Node* node, const flatbuffers::Table* sprite3DOptions);
+    axis::Node* createNodeWithFlatBuffers(const flatbuffers::Table* sprite3DOptions);
 
 protected:
-    cocos2d::Vec2 getVec2Attribute(pugi::xml_attribute attribute) const;
+    axis::Vec2 getVec2Attribute(pugi::xml_attribute attribute) const;
 };
 }  // namespace cocostudio
 

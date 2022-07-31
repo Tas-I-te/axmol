@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,12 +31,12 @@
 #    endif
 
 #    if defined(_USRLUASTATIC)
-#        define CC_LUA_DLL
+#        define AX_LUA_DLL
 #    else
 #        if defined(_USRLUADLL)
-#            define CC_LUA_DLL __declspec(dllexport)
+#            define AX_LUA_DLL __declspec(dllexport)
 #        else /* use a DLL library */
-#            define CC_LUA_DLL __declspec(dllimport)
+#            define AX_LUA_DLL __declspec(dllimport)
 #        endif
 #    endif
 
@@ -49,9 +49,9 @@
 #        endif
 #    endif
 #elif defined(_SHARED_)
-#    define CC_LUA_DLL __attribute__((visibility("default")))
+#    define AX_LUA_DLL __attribute__((visibility("default")))
 #else
-#    define CC_LUA_DLL
+#    define AX_LUA_DLL
 #endif
 
 #endif /* __CCEXTENSIONEXPORT_H__*/

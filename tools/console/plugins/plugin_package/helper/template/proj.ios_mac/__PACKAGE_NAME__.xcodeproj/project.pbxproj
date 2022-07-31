@@ -187,7 +187,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"CC_LUA_ENGINE_ENABLED=1",
+					"AX_LUA_ENGINE_ENABLED=1",
 					"DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -201,7 +201,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../frameworks/adxe/core $(SRCROOT)/../../../frameworks/adxe/extensions $(SRCROOT)/../../../frameworks/adxe/external";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../frameworks/axis/core $(SRCROOT)/../../../frameworks/axis/extensions $(SRCROOT)/../../../frameworks/axis/external";
 				VALID_ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 			};
 			name = Debug;
@@ -230,7 +230,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = "CC_LUA_ENGINE_ENABLED=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "AX_LUA_ENGINE_ENABLED=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -240,7 +240,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../frameworks/adxe/core $(SRCROOT)/../../../frameworks/adxe/extensions $(SRCROOT)/../../../frameworks/adxe/thirdparty";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../frameworks/axis/core $(SRCROOT)/../../../frameworks/axis/extensions $(SRCROOT)/../../../frameworks/axis/thirdparty";
 				VALID_ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 			};
 			name = Release;
@@ -251,7 +251,7 @@
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "__PACKAGE_NAME__ MAC";
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/adxe/thirdparty/glfw3/include/mac";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/axis/thirdparty/glfw3/include/mac";
 			};
 			name = Debug;
 		};
@@ -261,7 +261,7 @@
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "__PACKAGE_NAME__ MAC";
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/adxe/thirdparty/glfw3/include/mac";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/axis/thirdparty/glfw3/include/mac";
 			};
 			name = Release;
 		};
@@ -273,11 +273,11 @@
 				GCC_PREFIX_HEADER = __PACKAGE_NAME__.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					CC_TARGET_OS_IPHONE,
+					AX_TARGET_OS_IPHONE,
 				);
 				PRODUCT_NAME = "__PACKAGE_NAME__ IOS";
 				SDKROOT = iphoneos8.1;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/adxe/thirdparty/curl/include/ios";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/axis/thirdparty/curl/include/ios";
 			};
 			name = Debug;
 		};
@@ -289,11 +289,11 @@
 				GCC_PREFIX_HEADER = __PACKAGE_NAME__.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					CC_TARGET_OS_IPHONE,
+					AX_TARGET_OS_IPHONE,
 				);
 				PRODUCT_NAME = "__PACKAGE_NAME__ IOS";
 				SDKROOT = iphoneos8.1;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/adxe/thirdparty/curl/include/ios";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../frameworks/axis/thirdparty/curl/include/ios";
 			};
 			name = Release;
 		};

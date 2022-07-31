@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ public:
 private:
     void doTest();
     void printValue();
-    cocos2d::Label* _label;
+    axis::Label* _label;
 };
 
 #endif  // _USERDEFAULT_TEST_H_

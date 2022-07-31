@@ -5,7 +5,7 @@ Copyright (c) 2012      Ricardo Quesada
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ THE SOFTWARE.
 
 #include "2d/CCTransition.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class ProgressTimer;
 class RenderTexture;
@@ -43,7 +43,7 @@ class RenderTexture;
 /** @class TransitionProgress
  * @brief A base class of progress transition.
  */
-class CC_DLL TransitionProgress : public TransitionScene
+class AX_DLL TransitionProgress : public TransitionScene
 {
 public:
     /** Creates a transition with duration and incoming scene.
@@ -80,7 +80,7 @@ protected:
  * @brief TransitionRadialCCW transition.
  A counter clock-wise radial transition to the next scene
  */
-class CC_DLL TransitionProgressRadialCCW : public TransitionProgress
+class AX_DLL TransitionProgressRadialCCW : public TransitionProgress
 {
 public:
     /** Creates a transition with duration and incoming scene.
@@ -108,7 +108,7 @@ protected:
  * @brief TransitionRadialCW transition.
  A counter clock-wise radial transition to the next scene.
 */
-class CC_DLL TransitionProgressRadialCW : public TransitionProgress
+class AX_DLL TransitionProgressRadialCW : public TransitionProgress
 {
 public:
     /** Creates a transition with duration and incoming scene.
@@ -136,7 +136,7 @@ protected:
   * @brief TransitionProgressHorizontal transition.
  A  clock-wise radial transition to the next scene
  */
-class CC_DLL TransitionProgressHorizontal : public TransitionProgress
+class AX_DLL TransitionProgressHorizontal : public TransitionProgress
 {
 public:
     /** Creates a transition with duration and incoming scene.
@@ -163,7 +163,7 @@ protected:
 /** @class TransitionProgressVertical
  * @brief TransitionProgressVertical transition.
  */
-class CC_DLL TransitionProgressVertical : public TransitionProgress
+class AX_DLL TransitionProgressVertical : public TransitionProgress
 {
 public:
     /** Creates a transition with duration and incoming scene.
@@ -190,7 +190,7 @@ protected:
 /** @class TransitionProgressInOut
  * @brief TransitionProgressInOut transition.
  */
-class CC_DLL TransitionProgressInOut : public TransitionProgress
+class AX_DLL TransitionProgressInOut : public TransitionProgress
 {
 public:
     /** Creates a transition with duration and incoming scene.
@@ -219,7 +219,7 @@ protected:
 /** @class TransitionProgressOutIn
  * @brief TransitionProgressOutIn transition.
  */
-class CC_DLL TransitionProgressOutIn : public TransitionProgress
+class AX_DLL TransitionProgressOutIn : public TransitionProgress
 {
 public:
     /** Creates a transition with duration and incoming scene.
@@ -246,6 +246,6 @@ protected:
 // end of _2d group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif /* __CCTRANSITIONPROGRESS_H__ */

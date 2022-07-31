@@ -3,7 +3,7 @@
  Copyright (c) 2012 James Chen
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,11 +29,11 @@
 
 #include "platform/CCPlatformConfig.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID)
 
 #    include "ui/UIEditBox/UIEditBoxImpl-common.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Label;
 
@@ -64,7 +64,7 @@ public:
     virtual void setNativeInputMode(EditBox::InputMode inputMode) override;
     virtual void setNativeInputFlag(EditBox::InputFlag inputFlag) override;
     virtual void setNativeReturnType(EditBox::KeyboardReturnType returnType) override;
-    virtual void setNativeTextHorizontalAlignment(cocos2d::TextHAlignment alignment) override;
+    virtual void setNativeTextHorizontalAlignment(axis::TextHAlignment alignment) override;
     virtual void setNativeText(const char* pText) override;
     virtual void setNativePlaceHolder(const char* pText) override;
     virtual void setNativeVisible(bool visible) override;
@@ -80,8 +80,8 @@ private:
 
 }  // namespace ui
 
-NS_CC_END
+NS_AX_END
 
-#endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) */
+#endif /* #if (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID) */
 
 #endif /* __UIEDITBOXIMPLANDROID_H__ */

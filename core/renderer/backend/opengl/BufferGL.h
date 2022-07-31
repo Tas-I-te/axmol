@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 
 #include <vector>
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 /**
  * @addtogroup _opengl
  * @{
@@ -85,7 +85,7 @@ public:
     inline GLuint getHandler() const { return _buffer; }
 
 private:
-#if CC_ENABLE_CACHE_TEXTURE_DATA
+#if AX_ENABLE_CACHE_TEXTURE_DATA
     void reloadBuffer();
     void fillBuffer(void* data, std::size_t offset, std::size_t size);
 
@@ -100,4 +100,4 @@ private:
 };
 // end of _opengl group
 ///> @}
-CC_BACKEND_END
+NS_AX_BACKEND_END

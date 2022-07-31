@@ -4,7 +4,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,8 +35,7 @@ THE SOFTWARE.
  * @{
  */
 
-namespace cocos2d
-{
+NS_AX_BEGIN
 
 struct AffineTransform;
 /**@{
@@ -44,8 +43,8 @@ struct AffineTransform;
  @param m The Mat4*4 pointer.
  @param t Affine transform.
  */
-CC_DLL void CGAffineToGL(const AffineTransform& t, float* m);
-CC_DLL void GLToCGAffine(const float* m, AffineTransform* t);
+AX_DLL void CGAffineToGL(const AffineTransform& t, float* m);
+AX_DLL void GLToCGAffine(const float* m, AffineTransform* t);
 /**@}*/
 }  // namespace   cocos2d
 /**

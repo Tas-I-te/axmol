@@ -3,7 +3,7 @@
  Copyright (c) 2010 Sangwoo Im
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,11 +37,11 @@
  * @addtogroup ui
  * @{
  */
-NS_CC_EXT_BEGIN
+NS_AX_EXT_BEGIN
 
 class ScrollView;
 
-class CC_EX_DLL ScrollViewDelegate
+class AX_EX_DLL ScrollViewDelegate
 {
 public:
     /**
@@ -65,7 +65,7 @@ public:
  * ScrollView support for cocos2d-x.
  * It provides scroll view functionalities to cocos2d projects natively.
  */
-class CC_EX_DLL ScrollView : public Layer, public ActionTweenDelegate
+class AX_EX_DLL ScrollView : public Layer, public ActionTweenDelegate
 {
 public:
     enum class Direction
@@ -386,7 +386,7 @@ protected:
     Action* _animatedScrollAction;
 };
 
-NS_CC_EXT_END
+NS_AX_EXT_END
 // end of ui group
 /// @}
 

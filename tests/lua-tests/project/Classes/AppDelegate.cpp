@@ -2,7 +2,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021-2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 #include "scripting/lua-bindings/manual/lua_module_register.h"
 #include "lua_test_bindings.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 AppDelegate::AppDelegate() {}
 
@@ -57,8 +57,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     lua_getglobal(L, "_G");
     if (lua_istable(L, -1))  // stack:...,_G,
     {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || \
-     CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_WIN32 || AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID || \
+     AX_TARGET_PLATFORM == AX_PLATFORM_IOS || AX_TARGET_PLATFORM == AX_PLATFORM_MAC)
         register_assetsmanager_test_sample(L);
 #endif
         register_test_binding(L);

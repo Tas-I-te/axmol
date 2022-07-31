@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
 #include "extensions/Particle3D/PU/CCPUUtil.h"
 #include "base/ccRandom.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // Constants
 const float PUCircleEmitter::DEFAULT_RADIUS = 100.0f;
@@ -122,7 +122,7 @@ void PUCircleEmitter::initParticlePosition(PUParticle3D* particle)
     if (_random)
     {
         // Choose a random position on the circle.
-        angle = cocos2d::random(0.0, M_PI * 2.0);
+        angle = axis::random(0.0, M_PI * 2.0);
     }
     else
     {
@@ -193,7 +193,7 @@ PUCircleEmitter* PUCircleEmitter::create()
     return pe;
 }
 
-cocos2d::Quaternion PUCircleEmitter::getRotationTo(const Vec3& src,
+axis::Quaternion PUCircleEmitter::getRotationTo(const Vec3& src,
                                                    const Vec3& dest,
                                                    const Vec3& fallbackAxis /*= Vec3::ZERO*/) const
 {
@@ -272,4 +272,4 @@ PUCircleEmitter* PUCircleEmitter::clone()
     return be;
 }
 
-NS_CC_END
+NS_AX_END

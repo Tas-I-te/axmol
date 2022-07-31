@@ -5,7 +5,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 // But in case they are included, it won't be compiled.
 
 #include "platform/CCPlatformConfig.h"
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#if AX_TARGET_PLATFORM == AX_PLATFORM_IOS
 
 #    import "platform/ios/CCESRenderer-ios.h"
 
@@ -80,4 +80,4 @@
 - (BOOL)resizeFromLayer:(CAEAGLLayer*)layer;
 @end
 
-#endif  // CC_PLATFORM_IOS
+#endif  // AX_PLATFORM_IOS

@@ -3,7 +3,7 @@ Copyright (c) 2010 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __CC_IME_DELEGATE_H__
-#define __CC_IME_DELEGATE_H__
+#ifndef __AX_IME_DELEGATE_H__
+#define __AX_IME_DELEGATE_H__
 
 #include <string>
 #include "math/CCMath.h"
@@ -35,12 +35,12 @@ THE SOFTWARE.
  * @addtogroup base
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * A static global empty std::string install.
  */
-extern const std::string CC_DLL STD_STRING_EMPTY;
+extern const std::string AX_DLL STD_STRING_EMPTY;
 
 /**
  * Keyboard notification event type.
@@ -55,7 +55,7 @@ typedef struct
 /**
  *@brief    Input method editor delegate.
  */
-class CC_DLL IMEDelegate
+class AX_DLL IMEDelegate
 {
 public:
     /**
@@ -171,8 +171,8 @@ protected:
     IMEDelegate();
 };
 
-NS_CC_END
+NS_AX_END
 // end of base group
 /// @}
 
-#endif  // __CC_IME_DELEGATE_H__
+#endif  // __AX_IME_DELEGATE_H__

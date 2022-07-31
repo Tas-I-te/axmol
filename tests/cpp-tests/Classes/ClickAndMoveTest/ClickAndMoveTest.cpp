@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 #include "ClickAndMoveTest.h"
 #include "../testResource.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 enum
 {
@@ -40,8 +40,8 @@ ClickAndMoveTest::ClickAndMoveTest()
 ClickAndMoveTestCase::ClickAndMoveTestCase()
 {
     auto listener          = EventListenerTouchOneByOne::create();
-    listener->onTouchBegan = CC_CALLBACK_2(ClickAndMoveTestCase::onTouchBegan, this);
-    listener->onTouchEnded = CC_CALLBACK_2(ClickAndMoveTestCase::onTouchEnded, this);
+    listener->onTouchBegan = AX_CALLBACK_2(ClickAndMoveTestCase::onTouchBegan, this);
+    listener->onTouchEnded = AX_CALLBACK_2(ClickAndMoveTestCase::onTouchEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     auto sprite = Sprite::create(s_pathGrossini);
@@ -71,7 +71,7 @@ void ClickAndMoveTestCase::onTouchEnded(Touch* touch, Event* event)
     s->runAction(MoveTo::create(1, Vec2(location.x, location.y)));
     float o  = location.x - s->getPosition().x;
     float a  = location.y - s->getPosition().y;
-    float at = (float)CC_RADIANS_TO_DEGREES(atanf(o / a));
+    float at = (float)AX_RADIANS_TO_DEGREES(atanf(o / a));
 
     if (a < 0)
     {

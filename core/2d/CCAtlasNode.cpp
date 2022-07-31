@@ -5,7 +5,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ THE SOFTWARE.
 #include "renderer/CCRenderer.h"
 #include "renderer/backend/ProgramState.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // implementation AtlasNode
 
@@ -44,7 +44,7 @@ NS_CC_BEGIN
 
 AtlasNode::~AtlasNode()
 {
-    CC_SAFE_RELEASE(_textureAtlas);
+    AX_SAFE_RELEASE(_textureAtlas);
 }
 
 AtlasNode* AtlasNode::create(std::string_view tile, int tileWidth, int tileHeight, int itemsToRender)
@@ -55,13 +55,13 @@ AtlasNode* AtlasNode::create(std::string_view tile, int tileWidth, int tileHeigh
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
 bool AtlasNode::initWithTileFile(std::string_view tile, int tileWidth, int tileHeight, int itemsToRender)
 {
-    CCASSERT(!tile.empty(), "file size should not be empty");
+    AXASSERT(!tile.empty(), "file size should not be empty");
     Texture2D* texture = _director->getTextureCache()->addImage(tile);
     return initWithTexture(texture, tileWidth, tileHeight, itemsToRender);
 }
@@ -141,7 +141,7 @@ void AtlasNode::calculateMaxItems()
 
 void AtlasNode::updateAtlasValues()
 {
-    CCASSERT(false, "CCAtlasNode:Abstract updateAtlasValue not overridden");
+    AXASSERT(false, "CCAtlasNode:Abstract updateAtlasValue not overridden");
 }
 
 // AtlasNode - draw
@@ -270,8 +270,8 @@ Texture2D* AtlasNode::getTexture() const
 
 void AtlasNode::setTextureAtlas(TextureAtlas* textureAtlas)
 {
-    CC_SAFE_RETAIN(textureAtlas);
-    CC_SAFE_RELEASE(_textureAtlas);
+    AX_SAFE_RETAIN(textureAtlas);
+    AX_SAFE_RELEASE(_textureAtlas);
     _textureAtlas = textureAtlas;
 }
 
@@ -290,4 +290,4 @@ void AtlasNode::setQuadsToDraw(ssize_t quadsToDraw)
     _quadsToDraw = quadsToDraw;
 }
 
-NS_CC_END
+NS_AX_END

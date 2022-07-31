@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
 #include "renderer/CCCustomCommand.h"
 #include "math/CCMath.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class GLProgramState;
 class EventListenerCustom;
@@ -41,7 +41,7 @@ class EventCustom;
 class Material;
 
 // it is a common mesh
-class CC_DLL MeshCommand : public CustomCommand
+class AX_DLL MeshCommand : public CustomCommand
 {
 public:
     // using PrimitiveType = backend::PrimitiveType;
@@ -73,14 +73,14 @@ public:
 
     void init(float globalZOrder, const Mat4& transform);
 
-#if CC_ENABLE_CACHE_TEXTURE_DATA
+#if AX_ENABLE_CACHE_TEXTURE_DATA
     void listenRendererRecreated(EventCustom* event);
 #endif
 
 protected:
-#if CC_ENABLE_CACHE_TEXTURE_DATA
+#if AX_ENABLE_CACHE_TEXTURE_DATA
     EventListenerCustom* _rendererRecreatedListener;
 #endif
 };
 
-NS_CC_END
+NS_AX_END

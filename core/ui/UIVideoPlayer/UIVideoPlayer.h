@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,13 @@
  ****************************************************************************/
 #pragma once
 
-#if defined(_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || \
-                        CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) &&                                           \
-                           !defined(CC_PLATFORM_OS_TVOS)
+#if defined(_WIN32) || (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID || AX_TARGET_PLATFORM == AX_PLATFORM_IOS || \
+                        AX_TARGET_PLATFORM == AX_PLATFORM_TIZEN) &&                                           \
+                           !defined(AX_PLATFORM_OS_TVOS)
 
 #    include "ui/UIWidget.h"
 
-#    if CC_VIDEOPLAYER_DEBUG_DRAW
+#    if AX_VIDEOPLAYER_DEBUG_DRAW
 #        include "2d/CCDrawNode.h"
 #    endif
 
@@ -42,7 +42,7 @@
  * @{
  */
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 namespace ui
 {
 
@@ -54,7 +54,7 @@ namespace ui
  * It's mean VideoPlayer displays a video file above all graphical elements of cocos2d-x.
  * @js NA
  */
-class VideoPlayer : public cocos2d::ui::Widget
+class VideoPlayer : public axis::ui::Widget
 {
 public:
     /**
@@ -244,10 +244,10 @@ public:
     virtual ~VideoPlayer();
 
 protected:
-    virtual cocos2d::ui::Widget* createCloneInstance() override;
+    virtual axis::ui::Widget* createCloneInstance() override;
     virtual void copySpecialProperties(Widget* model) override;
 
-#    if CC_VIDEOPLAYER_DEBUG_DRAW
+#    if AX_VIDEOPLAYER_DEBUG_DRAW
     DrawNode* _debugDrawNode;
 #    endif
 
@@ -276,7 +276,7 @@ protected:
 };
 }  // namespace ui
 
-NS_CC_END
+NS_AX_END
 // end group
 /// @}
 #endif

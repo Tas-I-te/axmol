@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2012 cocos2d-x.org
- * https://adxeproject.github.io/
+ * https://axis-project.github.io/
  *
  * Copyright 2012 Stewart Hamilton-Arrandale.
  * http://creativewax.co.uk
@@ -33,7 +33,7 @@
 
 #include "CCControlSaturationBrightnessPicker.h"
 
-NS_CC_EXT_BEGIN
+NS_AX_EXT_BEGIN
 
 ControlSaturationBrightnessPicker::ControlSaturationBrightnessPicker()
     : _saturation(0.0f)
@@ -211,4 +211,4 @@ void ControlSaturationBrightnessPicker::onTouchMoved(Touch* touch, Event* /*even
     checkSliderPosition(touchLocation);
 }
 
-NS_CC_EXT_END
+NS_AX_EXT_END

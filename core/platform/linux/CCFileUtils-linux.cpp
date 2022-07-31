@@ -4,7 +4,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2021-2022 Bytedance Inc.
 
-https://adxeproject.github.io
+https://axis-project.github.io
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ using namespace std;
 
 #define DECLARE_GUARD (void)0  // std::lock_guard<std::recursive_mutex> mutexGuard(_mutex)
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 FileUtils* FileUtils::getInstance()
 {
@@ -49,7 +49,7 @@ FileUtils* FileUtils::getInstance()
         {
             delete s_sharedFileUtils;
             s_sharedFileUtils = nullptr;
-            CCLOG("ERROR: Could not init CCFileUtilsLinux");
+            AXLOG("ERROR: Could not init CCFileUtilsLinux");
         }
     }
     return s_sharedFileUtils;
@@ -117,4 +117,4 @@ bool FileUtilsLinux::isFileExistInternal(std::string_view path) const
     return (stat(path.data(), &sts) == 0) && S_ISREG(sts.st_mode);
 }
 
-NS_CC_END
+NS_AX_END

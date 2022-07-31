@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,13 +29,10 @@
 #include <stdint.h>
 #include "network/CCIDownloaderImpl.h"
 
-namespace cocos2d
-{
-class Scheduler;
-}
+NS_AX_BEGIN
 
-namespace cocos2d
-{
+class Scheduler;
+
 namespace network
 {
 class DownloadTaskCURL;
@@ -72,4 +69,4 @@ protected:
 };
 
 }  // namespace network
-}  // namespace cocos2d
+NS_AX_END  // namespace axis

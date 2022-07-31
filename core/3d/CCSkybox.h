@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 #include "2d/CCNode.h"
 #include "renderer/backend/ProgramState.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup _3d
@@ -44,7 +44,7 @@ class TextureCube;
 /**
  * Sky box technology is usually used to simulate infinity sky, mountains and other phenomena.
  */
-class CC_DLL Skybox : public Node
+class AX_DLL Skybox : public Node
 {
 public:
     CREATE_FUNC(Skybox);
@@ -109,7 +109,7 @@ protected:
     TextureCube* _texture;
 
 private:
-    CC_DISALLOW_COPY_AND_ASSIGN(Skybox);
+    AX_DISALLOW_COPY_AND_ASSIGN(Skybox);
 
     backend::UniformLocation _uniformColorLoc;
     backend::UniformLocation _uniformCameraRotLoc;
@@ -126,6 +126,6 @@ private:
 // end of 3d group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif  // __SKYBOX_H__

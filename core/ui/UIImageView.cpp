@@ -2,7 +2,7 @@
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "ui/UIHelper.h"
 #include "2d/CCSprite.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 namespace ui
 {
@@ -58,7 +58,7 @@ ImageView* ImageView::create(std::string_view imageFileName, TextureResType texT
         widget->autorelease();
         return widget;
     }
-    CC_SAFE_DELETE(widget);
+    AX_SAFE_DELETE(widget);
     return nullptr;
 }
 
@@ -70,7 +70,7 @@ ImageView* ImageView::create()
         widget->autorelease();
         return widget;
     }
-    CC_SAFE_DELETE(widget);
+    AX_SAFE_DELETE(widget);
     return nullptr;
 }
 
@@ -170,7 +170,7 @@ void ImageView::setTextureRect(const Rect& rect)
         }
         else
         {
-            CCLOG("Warning!! you should load texture before set the texture's rect!");
+            AXLOG("Warning!! you should load texture before set the texture's rect!");
         }
     }
 }
@@ -313,4 +313,4 @@ const BlendFunc& ImageView::getBlendFunc() const
 
 }  // namespace ui
 
-NS_CC_END
+NS_AX_END

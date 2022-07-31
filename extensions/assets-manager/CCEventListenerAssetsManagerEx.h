@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@
 #include "extensions/ExtensionMacros.h"
 #include "extensions/ExtensionExport.h"
 
-NS_CC_EXT_BEGIN
+NS_AX_EXT_BEGIN
 
 class EventAssetsManagerEx;
 class AssetsManagerEx;
@@ -50,7 +50,7 @@ class AssetsManagerEx;
  *
  *        dispatcher->removeEventListener(listener);
  */
-class CC_EX_DLL EventListenerAssetsManagerEx : public cocos2d::EventListenerCustom
+class AX_EX_DLL EventListenerAssetsManagerEx : public axis::EventListenerCustom
 {
 public:
     friend class AssetsManagerEx;
@@ -82,6 +82,6 @@ protected:
     // friend class luaEventListenerAssetsManagerEx;
 };
 
-NS_CC_EXT_END
+NS_AX_EXT_END
 
 #endif /* defined(__cocos2d_libs__CCEventListenerAssetsManagerEx__) */

@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@
 #include "renderer/CCMeshCommand.h"
 #include "renderer/CCCustomCommand.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup _3d
@@ -59,7 +59,7 @@ class Buffer;
 /**
  * @brief Mesh: contains ref to index buffer, GLProgramState, texture, skin, blend function, aabb and so on
  */
-class CC_DLL Mesh : public Ref
+class AX_DLL Mesh : public Ref
 {
     friend class MeshRenderer;
 
@@ -293,7 +293,7 @@ protected:
 /// @}
 
 /// @cond
-extern std::string CC_DLL s_uniformSamplerName[];  // uniform sampler names array
+extern std::string AX_DLL s_uniformSamplerName[];  // uniform sampler names array
 /// @endcond
 
-NS_CC_END
+NS_AX_END

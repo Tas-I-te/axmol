@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,9 +33,9 @@
 
 #include "Bug-14327.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_WIN32)
 
-USING_NS_CC;
+USING_NS_AX;
 
 bool Bug14327Layer::init()
 {
@@ -92,18 +92,18 @@ void Bug14327Layer::update(float dt)
     }
 }
 
-void Bug14327Layer::editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox)
+void Bug14327Layer::editBoxEditingDidBegin(axis::ui::EditBox* editBox)
 {
     log("editBox %p DidBegin !", editBox);
 }
 
-void Bug14327Layer::editBoxEditingDidEndWithAction(cocos2d::ui::EditBox* editBox,
-                                                   cocos2d::ui::EditBoxDelegate::EditBoxEndAction EditBoxEndAction)
+void Bug14327Layer::editBoxEditingDidEndWithAction(axis::ui::EditBox* editBox,
+                                                   axis::ui::EditBoxDelegate::EditBoxEndAction EditBoxEndAction)
 {
     log("editBox %p DidEnd !", editBox);
 }
 
-void Bug14327Layer::editBoxTextChanged(cocos2d::ui::EditBox* editBox, std::string_view text)
+void Bug14327Layer::editBoxTextChanged(axis::ui::EditBox* editBox, std::string_view text)
 {
     log("editBox %p TextChanged, text: %s ", editBox, text.data());
 }

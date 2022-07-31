@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ THE SOFTWARE.
 #define __PLATFORM_IOS_CCGL_H__
 
 #include "platform/CCPlatformConfig.h"
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#if AX_TARGET_PLATFORM == AX_PLATFORM_IOS
 
 #    define glClearDepth glClearDepthf
 #    define glDeleteVertexArrays glDeleteVertexArraysOES
@@ -126,6 +126,6 @@ THE SOFTWARE.
 #        define GL_COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR 0x93DD
 #    endif
 
-#endif  // CC_PLATFORM_IOS
+#endif  // AX_PLATFORM_IOS
 
 #endif  // __PLATFORM_IOS_CCGL_H__

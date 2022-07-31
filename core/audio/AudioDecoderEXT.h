@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2018 HALX99.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,8 +31,7 @@
 #include "audio/AudioDecoder.h"
 #include "platform/CCFileStream.h"
 
-namespace cocos2d
-{
+NS_AX_BEGIN
 
 /**
  * @brief The class for decoding compressed audio file to PCM buffer.
@@ -99,11 +98,11 @@ private:
     static SInt64 getSizeCallback(void* inClientData);
 
     ExtAudioFileRef _extRef;
-    std::unique_ptr<cocos2d::FileStream> _fileStream;
+    std::unique_ptr<axis::FileStream> _fileStream;
     SInt64 _streamSize;
     AudioFileID _audioFileId;
 
     AudioStreamBasicDescription _outputFormat;
 };
 
-}  // namespace cocos2d
+NS_AX_END  // namespace axis

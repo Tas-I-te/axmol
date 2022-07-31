@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
 #include "platform/CCGL.h"
 #include "base/CCEventListenerCustom.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 /**
  * Store texture information.
@@ -80,7 +80,7 @@ struct TextureInfoGL
     GLenum format        = GL_RGBA;
     GLenum type          = GL_UNSIGNED_BYTE;
 
-    std::array<GLuint, CC_META_TEXTURES + 1> textures;
+    std::array<GLuint, AX_META_TEXTURES + 1> textures;
     int maxIdx = 0;
 };
 
@@ -262,4 +262,4 @@ private:
 
 // end of _opengl group
 /// @}
-CC_BACKEND_END
+NS_AX_BACKEND_END

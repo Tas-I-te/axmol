@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 
 #include <string>
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 /**
  * @addtogroup _backend
  * @{
@@ -62,7 +62,7 @@ enum Attribute : uint32_t
 /**
  * Create shader.
  */
-class CC_DLL ShaderModule : public cocos2d::Ref
+class AX_DLL ShaderModule : public axis::Ref
 {
 public:
     /**
@@ -85,4 +85,4 @@ protected:
 
 // end of _backend group
 /// @}
-CC_BACKEND_END
+NS_AX_BACKEND_END

@@ -8,7 +8,7 @@
  * It uses a simple algorithm to improve the speed of generating random numbers with a decent quality,
  * Use this if you're planning to generate large amounts of random numbers in a single frame.
  *
- * @since adxe-1.0.0b8
+ * @since axis-1.0.0b8
  */
 struct FastRNG
 {
@@ -45,10 +45,10 @@ struct FastRNG
     void seed_rng_64(uint64_t seed)
     {
         _seed  = seed;
-        _x     = seed | 1;
-        _y     = seed | 2;
-        _z     = seed | 4;
-        _w     = seed | 8;
+        _x     = static_cast<int32_t>(seed) | 1;
+        _y     = static_cast<int32_t>(seed) | 2;
+        _z     = static_cast<int32_t>(seed) | 4;
+        _w     = static_cast<int32_t>(seed) | 8;
         _carry = 0;
     }
 #endif

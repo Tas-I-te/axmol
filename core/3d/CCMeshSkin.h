@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 #include "math/CCMath.h"
 #include <vector>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup _3d
@@ -48,7 +48,7 @@ class Skeleton3D;
  * @js NA
  * @lua NA
  */
-class CC_DLL MeshSkin : public Ref
+class AX_DLL MeshSkin : public Ref
 {
     friend class Mesh;
 
@@ -112,6 +112,6 @@ protected:
 // end of 3d group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif  // __CCSKIN_H__

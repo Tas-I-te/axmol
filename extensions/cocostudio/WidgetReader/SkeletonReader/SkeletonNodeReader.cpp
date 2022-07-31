@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2015-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ THE SOFTWARE.
 #include "WidgetReader/SkeletonReader/SkeletonNodeReader.h"
 #include "ActionTimeline/CCSkeletonNode.h"
 
-USING_NS_CC;
+USING_NS_AX;
 USING_NS_TIMELINE;
 using namespace cocostudio;
 using namespace flatbuffers;
@@ -53,10 +53,10 @@ SkeletonNodeReader* SkeletonNodeReader::getInstance()
 
 void SkeletonNodeReader::destroyInstance()
 {
-    CC_SAFE_DELETE(_instanceSkeletonNodeReader);
+    AX_SAFE_DELETE(_instanceSkeletonNodeReader);
 }
 
-cocos2d::Node* SkeletonNodeReader::createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions)
+axis::Node* SkeletonNodeReader::createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions)
 {
     auto bone = SkeletonNode::create();
 

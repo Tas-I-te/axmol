@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 #include "../Device.h"
 #include "platform/CCGL.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 /**
  * @addtogroup _opengl
  * @{
@@ -107,4 +107,4 @@ protected:
 };
 // end of _opengl group
 /// @}
-CC_BACKEND_END
+NS_AX_BACKEND_END

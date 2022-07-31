@@ -4,7 +4,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@
  * @{
  */
 
-NS_CC_MATH_BEGIN
+NS_AX_MATH_BEGIN
 
 /** Clamp a value between from and to.
  */
@@ -55,7 +55,7 @@ class Mat4;
 /**
  * Defines a 2-element floating point vector.
  */
-class CC_DLL Vec2
+class AX_DLL Vec2
 {
 public:
     union
@@ -748,7 +748,7 @@ using Point = Vec2;
 // [DEPRECATED] compatible only
 using Size = Vec2;  // typedef Vec2 Size;
 
-NS_CC_MATH_END
+NS_AX_MATH_END
 
 /**
  end of base group

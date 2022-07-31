@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
 #include "extensions/Particle3D/PU/CCPUParticleSystem3D.h"
 #include "extensions/Particle3D/PU/CCPUUtil.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 // Constants
 const float PUSphereSurfaceEmitter::DEFAULT_RADIUS = 10.0f;
 
@@ -49,7 +49,7 @@ void PUSphereSurfaceEmitter::initParticlePosition(PUParticle3D* particle)
 {
     // Generate a random unit vector to calculate a point on the sphere. This unit vector is
     // also used as direction vector if mAutoDirection has been set.
-    _randomVector.set(CCRANDOM_MINUS1_1(), CCRANDOM_MINUS1_1(), CCRANDOM_MINUS1_1());
+    _randomVector.set(AXRANDOM_MINUS1_1(), AXRANDOM_MINUS1_1(), AXRANDOM_MINUS1_1());
     _randomVector.normalize();
     // ParticleSystem* sys = mParentTechnique->getParentSystem();
     // if (sys)
@@ -117,4 +117,4 @@ PUSphereSurfaceEmitter* PUSphereSurfaceEmitter::clone()
     return be;
 }
 
-NS_CC_END
+NS_AX_END

@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,7 @@ void initExtensions()
     glDeleteVertexArraysOESEXT = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArraysOES");
 }
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 GLViewImpl* GLViewImpl::createWithRect(std::string_view viewName, Rect rect, float frameZoomFactor)
 {
@@ -58,7 +58,7 @@ GLViewImpl* GLViewImpl::createWithRect(std::string_view viewName, Rect rect, flo
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -70,7 +70,7 @@ GLViewImpl* GLViewImpl::create(std::string_view viewName)
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -82,7 +82,7 @@ GLViewImpl* GLViewImpl::createWithFullScreen(std::string_view viewName)
         ret->autorelease();
         return ret;
     }
-    CC_SAFE_DELETE(ret);
+    AX_SAFE_DELETE(ret);
     return nullptr;
 }
 
@@ -237,4 +237,4 @@ Rect GLViewImpl::getSafeAreaRect() const
     return safeAreaRect;
 }
 
-NS_CC_END
+NS_AX_END

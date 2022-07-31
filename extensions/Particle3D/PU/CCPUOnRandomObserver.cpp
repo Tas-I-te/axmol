@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "extensions/Particle3D/PU/CCPUOnRandomObserver.h"
 #include "extensions/Particle3D/PU/CCPUParticleSystem3D.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // Constants
 const float PUOnRandomObserver::DEFAULT_THRESHOLD = 0.5f;
@@ -51,7 +51,7 @@ void PUOnRandomObserver::updateObserver(PUParticle3D* /*particle*/, float /*delt
 //-----------------------------------------------------------------------
 bool PUOnRandomObserver::observe(PUParticle3D* /*particle*/, float /*timeElapsed*/)
 {
-    return (CCRANDOM_0_1() > _threshold);
+    return (AXRANDOM_0_1() > _threshold);
 }
 
 PUOnRandomObserver* PUOnRandomObserver::create()
@@ -68,4 +68,4 @@ void PUOnRandomObserver::copyAttributesTo(PUObserver* observer)
     onRandomObserver->_threshold         = _threshold;
 }
 
-NS_CC_END
+NS_AX_END

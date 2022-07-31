@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +33,13 @@ DEFINE_TEST_SUITE(EffectAdvanceTests);
 class EffectAdvanceBaseTest : public TestCase
 {
 protected:
-    cocos2d::TextureAtlas* _atlas;
+    axis::TextureAtlas* _atlas;
 
     std::string _title;
 
-    cocos2d::Node* _bgNode;
-    cocos2d::Node* _target1;
-    cocos2d::Node* _target2;
+    axis::Node* _bgNode;
+    axis::Node* _target1;
+    axis::Node* _target2;
 
 public:
     virtual void onEnter() override;

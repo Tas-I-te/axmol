@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,18 +29,17 @@
 #include "audio/AudioDecoder.h"
 #include <memory>
 
-#if !defined(CC_USE_MPG123)
-#    define CC_USE_MPG123 0
+#if !defined(AX_USE_MPG123)
+#    define AX_USE_MPG123 0
 #endif
 
-#if !CC_USE_MPG123
+#if !AX_USE_MPG123
 typedef struct mp3dec_impl* mp3dec_handle_t;
 #else
 typedef struct mpg123_handle_struct* mp3dec_handle_t;
 #endif
 
-namespace cocos2d
-{
+NS_AX_BEGIN
 
 /**
  * @brief The class for decoding compressed audio file to PCM buffer.
@@ -90,4 +89,4 @@ protected:
     friend class AudioDecoderManager;
 };
 
-}  // namespace cocos2d
+NS_AX_END  // namespace axis

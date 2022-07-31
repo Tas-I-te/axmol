@@ -2,7 +2,7 @@
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -41,9 +41,9 @@ public:
     virtual void onEnter() override;
 
 protected:
-    cocos2d::Layer* _uiLayer;
-    cocos2d::ui::Layout* _widget;
-    cocos2d::ui::Text* _sceneTitle;
+    axis::Layer* _uiLayer;
+    axis::ui::Layout* _widget;
+    axis::ui::Text* _sceneTitle;
 };
 
 #endif /* defined(__TestCpp__UIScene__) */

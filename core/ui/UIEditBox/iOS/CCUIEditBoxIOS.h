@@ -5,7 +5,7 @@
  Copyright (c) 2015 Mazyad Alabduljaleel
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -36,8 +36,8 @@
 @property(nonatomic, assign) void* editBox;
 @property(nonatomic, assign) NSString* text;
 @property(nonatomic, assign) CGRect frameRect;
-@property(nonatomic, assign) cocos2d::ui::EditBox::InputFlag dataInputMode;
-@property(nonatomic, assign) cocos2d::ui::EditBox::KeyboardReturnType keyboardReturnType;
+@property(nonatomic, assign) axis::ui::EditBox::InputFlag dataInputMode;
+@property(nonatomic, assign) axis::ui::EditBox::KeyboardReturnType keyboardReturnType;
 @property(nonatomic, readonly, getter=isEditState) BOOL editState;
 @property(nonatomic, readwrite) BOOL returnPressed;
 
@@ -45,12 +45,12 @@
 - (void)doAnimationWhenKeyboardMoveWithDuration:(float)duration distance:(float)distance;
 
 - (NSString*)getDefaultFontName;
-- (cocos2d::ui::EditBoxDelegate::EditBoxEndAction)getEndAction;
+- (axis::ui::EditBoxDelegate::EditBoxEndAction)getEndAction;
 
-- (void)setInputMode:(cocos2d::ui::EditBox::InputMode)inputMode;
-- (void)setInputFlag:(cocos2d::ui::EditBox::InputFlag)flag;
-- (void)setReturnType:(cocos2d::ui::EditBox::KeyboardReturnType)returnType;
-- (void)setTextHorizontalAlignment:(cocos2d::TextHAlignment)alignment;
+- (void)setInputMode:(axis::ui::EditBox::InputMode)inputMode;
+- (void)setInputFlag:(axis::ui::EditBox::InputFlag)flag;
+- (void)setReturnType:(axis::ui::EditBox::KeyboardReturnType)returnType;
+- (void)setTextHorizontalAlignment:(axis::TextHAlignment)alignment;
 
 - (void)setPlaceHolder:(NSString*)text;
 - (void)setPlaceholderFont:(UIFont*)font;

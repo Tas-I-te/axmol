@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,19 +35,19 @@ THE SOFTWARE.
 #include "base/ccUtils.h"
 #include "renderer/backend/metal/DeviceMTL.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 Application* Application::sm_pSharedApplication = nullptr;
 
 Application::Application() : _animationInterval(16666667)
 {
-    CCASSERT(!sm_pSharedApplication, "sm_pSharedApplication already exist");
+    AXASSERT(!sm_pSharedApplication, "sm_pSharedApplication already exist");
     sm_pSharedApplication = this;
 }
 
 Application::~Application()
 {
-    CCASSERT(this == sm_pSharedApplication, "sm_pSharedApplication != this");
+    AXASSERT(this == sm_pSharedApplication, "sm_pSharedApplication != this");
     sm_pSharedApplication = 0;
 }
 
@@ -127,7 +127,7 @@ std::string Application::getVersion()
 
 Application* Application::getInstance()
 {
-    CCASSERT(sm_pSharedApplication, "sm_pSharedApplication not set");
+    AXASSERT(sm_pSharedApplication, "sm_pSharedApplication not set");
     return sm_pSharedApplication;
 }
 
@@ -178,4 +178,4 @@ std::string_view Application::getStartupScriptFilename()
     return _startupScriptFilename;
 }
 
-NS_CC_END
+NS_AX_END

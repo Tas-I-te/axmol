@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@
 
 #include "base/ccMacros.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 CAMetalLayer* DeviceMTL::_metalLayer            = nil;
 id<CAMetalDrawable> DeviceMTL::_currentDrawable = nil;
@@ -104,7 +104,7 @@ TextureBackend* DeviceMTL::newTexture(const TextureDescriptor& descriptor)
     case TextureType::TEXTURE_CUBE:
         return new TextureCubeMTL(_mtlDevice, descriptor);
     default:
-        CCASSERT(false, "invalidate texture type");
+        AXASSERT(false, "invalidate texture type");
         return nullptr;
     }
 }
@@ -155,4 +155,4 @@ void DeviceMTL::setFrameBufferOnly(bool frameBufferOnly)
     [DeviceMTL::_metalLayer setFramebufferOnly:frameBufferOnly];
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

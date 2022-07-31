@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2015-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ THE SOFTWARE.
 #include "WidgetReader/NodeReaderProtocol.h"
 #include "WidgetReader/NodeReaderDefine.h"
 
-class BoneNodeReader : public cocos2d::Ref, public cocostudio::NodeReaderProtocol
+class BoneNodeReader : public axis::Ref, public cocostudio::NodeReaderProtocol
 {
     DECLARE_CLASS_NODE_READER_INFO
 
@@ -38,15 +38,15 @@ public:
 
     static BoneNodeReader* getInstance();
     /** @deprecated Use method destroyInstance() instead */
-    CC_DEPRECATED_ATTRIBUTE static void purge();
+    AX_DEPRECATED_ATTRIBUTE static void purge();
     static void destroyInstance();
 
     flatbuffers::Offset<flatbuffers::Table> createOptionsWithFlatBuffers(
         pugi::xml_node objectData,
         flatbuffers::FlatBufferBuilder* builder) override;
-    void setPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* boneOptions) override;
+    void setPropsWithFlatBuffers(axis::Node* node, const flatbuffers::Table* boneOptions) override;
 
-    cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* boneOptions) override;
+    axis::Node* createNodeWithFlatBuffers(const flatbuffers::Table* boneOptions) override;
 };
 
 #endif /* defined(__BONENODEREADER_H_) */

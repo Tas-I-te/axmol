@@ -2,7 +2,7 @@
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,10 +37,10 @@ public:
 
     virtual bool init() override;
 
-    void printWidgetResources(cocos2d::Ref* sender);
+    void printWidgetResources(axis::Ref* sender);
 
 protected:
-    cocos2d::ui::ImageView* _image;
+    axis::ui::ImageView* _image;
 };
 
 class UIImageViewTest_Scale9 : public UIScene

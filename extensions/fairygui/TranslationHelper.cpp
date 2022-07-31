@@ -1,7 +1,7 @@
 #include "TranslationHelper.h"
 #include "PackageItem.h"
 #include "UIPackage.h"
-#if defined(ADXE_VERSION)
+#if defined(AXIS_VERSION)
 #include "pugixml/pugixml.hpp"
 #else
 #include "tinyxml2/tinyxml2.h"
@@ -10,7 +10,7 @@
 
 #include "base/format.h"
 
-USING_NS_CC;
+USING_NS_AX;
 NS_FGUI_BEGIN
 
 using namespace std;
@@ -21,7 +21,7 @@ void TranslationHelper::loadFromXML(const char* xmlString, size_t nBytes)
 {
     TranslationHelper::strings.clear();
 
-#if defined(ADXE_VERSION)
+#if defined(AXIS_VERSION)
     pugi::xml_document doc;
     if (doc.load_buffer(xmlString, nBytes)) {
         auto root = doc.document_element();

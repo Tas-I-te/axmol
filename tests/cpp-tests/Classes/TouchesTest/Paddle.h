@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ typedef enum tagPaddleState
     kPaddleStateUngrabbed
 } PaddleState;
 
-class Paddle : public cocos2d::Sprite, public cocos2d::Clonable
+class Paddle : public axis::Sprite, public axis::Clonable
 {
     PaddleState _state;
 
@@ -41,17 +41,17 @@ public:
     Paddle();
     virtual ~Paddle();
 
-    cocos2d::Rect getRect();
-    bool initWithTexture(cocos2d::Texture2D* aTexture) override;
+    axis::Rect getRect();
+    bool initWithTexture(axis::Texture2D* aTexture) override;
     virtual void onEnter() override;
     virtual void onExit() override;
-    bool containsTouchLocation(cocos2d::Touch* touch);
-    bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-    void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
-    void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+    bool containsTouchLocation(axis::Touch* touch);
+    bool onTouchBegan(axis::Touch* touch, axis::Event* event);
+    void onTouchMoved(axis::Touch* touch, axis::Event* event);
+    void onTouchEnded(axis::Touch* touch, axis::Event* event);
     virtual Paddle* clone() const override;
 
-    static Paddle* createWithTexture(cocos2d::Texture2D* aTexture);
+    static Paddle* createWithTexture(axis::Texture2D* aTexture);
 };
 
 #endif

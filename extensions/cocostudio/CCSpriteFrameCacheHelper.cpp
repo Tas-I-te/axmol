@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2013-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ THE SOFTWARE.
 #include "2d/CCSpriteFrame.h"
 #include "2d/CCSpriteFrameCache.h"
 
-using namespace cocos2d;
+USING_NS_AX;
 
 namespace cocostudio
 {
@@ -67,7 +67,7 @@ void SpriteFrameCacheHelper::retainSpriteFrames(std::string_view plistPath)
         auto& spriteFrameName    = iter->first;
         SpriteFrame* spriteFrame = spriteFramesCache->getSpriteFrameByName(spriteFrameName);
         vec.push_back(spriteFrame);
-        CC_SAFE_RETAIN(spriteFrame);
+        AX_SAFE_RETAIN(spriteFrame);
     }
     _usingSpriteFrames[plistPath] = vec;
 }
@@ -82,7 +82,7 @@ void SpriteFrameCacheHelper::releaseSpriteFrames(std::string_view plistPath)
     auto itFrame = vec.begin();
     while (itFrame != vec.end())
     {
-        CC_SAFE_RELEASE(*itFrame);
+        AX_SAFE_RELEASE(*itFrame);
         ++itFrame;
     }
     vec.clear();

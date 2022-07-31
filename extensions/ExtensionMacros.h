@@ -2,7 +2,7 @@
  Copyright (c) 2012 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,14 +26,14 @@
 #ifndef __EXTENSIONMARCROS_H__
 #define __EXTENSIONMARCROS_H__
 
-#define NS_CC_EXT_BEGIN \
-    namespace cocos2d   \
+#define NS_AX_EXT_BEGIN \
+    namespace axis   \
     {                   \
     namespace extension \
     {
-#define NS_CC_EXT_END \
+#define NS_AX_EXT_END \
     }                 \
     }
-#define USING_NS_CC_EXT using namespace cocos2d::extension
+#define USING_NS_AX_EXT using namespace axis::extension
 
 #endif /* __EXTENSIONMARCROS_H__ */

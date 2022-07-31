@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 
 #include "Bug-15776.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 //
 // IMPORTANT:
@@ -44,7 +44,7 @@ bool Bug15776Layer::init()
 {
     if (BugsTestBase::init())
     {
-        cocos2d::Image* cocos2dxImage = new cocos2d::Image();
+        axis::Image* cocos2dxImage = new axis::Image();
         cocos2dxImage->initWithImageData(nullptr, 0, false);
         // should not crash. invalid cocos2dImage
         auto texture2d = Director::getInstance()->getTextureCache()->addImage(cocos2dxImage, "unused");

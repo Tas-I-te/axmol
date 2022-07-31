@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 
 #include <algorithm>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 const std::string EventListenerTouchOneByOne::LISTENER_ID = "__cc_touch_one_by_one";
 
@@ -44,7 +44,7 @@ EventListenerTouchOneByOne::EventListenerTouchOneByOne()
 
 EventListenerTouchOneByOne::~EventListenerTouchOneByOne()
 {
-    CCLOGINFO("In the destructor of EventListenerTouchOneByOne, %p", this);
+    AXLOGINFO("In the destructor of EventListenerTouchOneByOne, %p", this);
 }
 
 bool EventListenerTouchOneByOne::init()
@@ -76,7 +76,7 @@ EventListenerTouchOneByOne* EventListenerTouchOneByOne::create()
     }
     else
     {
-        CC_SAFE_DELETE(ret);
+        AX_SAFE_DELETE(ret);
     }
     return ret;
 }
@@ -87,7 +87,7 @@ bool EventListenerTouchOneByOne::checkAvailable()
     // message to 'EventListenerTouchOneByOne' or not. So 'onTouchBegan' needs to be set.
     if (onTouchBegan == nullptr)
     {
-        CCASSERT(false, "Invalid EventListenerTouchOneByOne!");
+        AXASSERT(false, "Invalid EventListenerTouchOneByOne!");
         return false;
     }
 
@@ -111,7 +111,7 @@ EventListenerTouchOneByOne* EventListenerTouchOneByOne::clone()
     }
     else
     {
-        CC_SAFE_DELETE(ret);
+        AX_SAFE_DELETE(ret);
     }
     return ret;
 }
@@ -126,7 +126,7 @@ EventListenerTouchAllAtOnce::EventListenerTouchAllAtOnce()
 
 EventListenerTouchAllAtOnce::~EventListenerTouchAllAtOnce()
 {
-    CCLOGINFO("In the destructor of EventListenerTouchAllAtOnce, %p", this);
+    AXLOGINFO("In the destructor of EventListenerTouchAllAtOnce, %p", this);
 }
 
 bool EventListenerTouchAllAtOnce::init()
@@ -148,7 +148,7 @@ EventListenerTouchAllAtOnce* EventListenerTouchAllAtOnce::create()
     }
     else
     {
-        CC_SAFE_DELETE(ret);
+        AX_SAFE_DELETE(ret);
     }
     return ret;
 }
@@ -158,7 +158,7 @@ bool EventListenerTouchAllAtOnce::checkAvailable()
     if (onTouchesBegan == nullptr && onTouchesMoved == nullptr && onTouchesEnded == nullptr &&
         onTouchesCancelled == nullptr)
     {
-        CCASSERT(false, "Invalid EventListenerTouchAllAtOnce!");
+        AXASSERT(false, "Invalid EventListenerTouchAllAtOnce!");
         return false;
     }
 
@@ -179,9 +179,9 @@ EventListenerTouchAllAtOnce* EventListenerTouchAllAtOnce::clone()
     }
     else
     {
-        CC_SAFE_DELETE(ret);
+        AX_SAFE_DELETE(ret);
     }
     return ret;
 }
 
-NS_CC_END
+NS_AX_END

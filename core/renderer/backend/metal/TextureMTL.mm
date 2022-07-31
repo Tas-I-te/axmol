@@ -3,7 +3,7 @@
  Copyright (c) 2020 C4games Ltd.
  Copyright (c) 2021-2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
 #include "base/ccMacros.h"
 #include "../PixelFormatUtils.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 namespace
 {
@@ -48,7 +48,7 @@ MTLSamplerAddressMode toMTLSamplerAddressMode(SamplerAddressMode mode)
         ret = MTLSamplerAddressModeClampToEdge;
         break;
     default:
-        CCASSERT(false, "Not supported sampler address mode!");
+        AXASSERT(false, "Not supported sampler address mode!");
         break;
     }
     return ret;
@@ -89,7 +89,7 @@ bool isColorRenderable(PixelFormat textureFormat)
 /// CLASS TextureInfoMTL
 id<MTLTexture> TextureInfoMTL::ensure(int index, int target)
 {
-    if (index < CC_META_TEXTURES)
+    if (index < AX_META_TEXTURES)
     {
         id<MTLTexture>& mtlTexture = _mtlTextures[index];
         if (mtlTexture)
@@ -200,7 +200,7 @@ void TextureMTL::updateSamplerDescriptor(const SamplerDescriptor& sampler)
     _textureInfo.recreateSampler(sampler);
 }
 
-void TextureMTL::updateTextureDescriptor(const cocos2d::backend::TextureDescriptor& descriptor, int index)
+void TextureMTL::updateTextureDescriptor(const axis::backend::TextureDescriptor& descriptor, int index)
 {
     TextureBackend::updateTextureDescriptor(descriptor, index);
 
@@ -283,7 +283,7 @@ TextureCubeMTL::TextureCubeMTL(id<MTLDevice> mtlDevice, const TextureDescriptor&
 
 TextureCubeMTL::~TextureCubeMTL() {}
 
-void TextureCubeMTL::updateTextureDescriptor(const cocos2d::backend::TextureDescriptor& descriptor, int index)
+void TextureCubeMTL::updateTextureDescriptor(const axis::backend::TextureDescriptor& descriptor, int index)
 {
     TextureBackend::updateTextureDescriptor(descriptor, index);
 
@@ -328,4 +328,4 @@ void TextureCubeMTL::generateMipmaps()
     }
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

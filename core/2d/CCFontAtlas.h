@@ -4,7 +4,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021-2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@
 #include "platform/CCStdC.h"  // ssize_t on windows
 #include "renderer/CCTexture2D.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Font;
 class EventCustom;
@@ -59,7 +59,7 @@ struct FontLetterDefinition
     bool rotated;
 };
 
-class CC_DLL FontAtlas : public Ref
+class AX_DLL FontAtlas : public Ref
 {
 public:
     static const int CacheTextureWidth;
@@ -147,7 +147,7 @@ protected:
     int _strideShift                  = 0;
     uint8_t* _currentPageData         = nullptr;
     int _currentPageDataSize          = 0;
-#if defined(CC_USE_METAL)
+#if defined(AX_USE_METAL)
     // Notes: 
     // Metal backend doesn't support PixelFormat::LA8
     // Currently we use RGBA for texture data upload
@@ -167,7 +167,7 @@ protected:
     friend class Label;
 };
 
-NS_CC_END
+NS_AX_END
 
 /// @endcond
 #endif /* defined(__cocos2d_libs__CCFontAtlas__) */

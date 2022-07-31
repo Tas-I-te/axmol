@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,12 +35,12 @@
  * @{
  */
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /** @class EventMouse
  * @brief The mouse event.
  */
-class CC_DLL EventMouse : public Event
+class AX_DLL EventMouse : public Event
 {
 public:
     /**
@@ -198,7 +198,7 @@ private:
     friend class EventListenerMouse;
 };
 
-NS_CC_END
+NS_AX_END
 
 // end of base group
 /// @}

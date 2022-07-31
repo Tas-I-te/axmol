@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 #include "../testResource.h"
 #include "cocos2d.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 ConfigurationTests::ConfigurationTests()
 {
@@ -70,7 +70,7 @@ void ConfigurationQuery::onEnter()
 {
     ConfigurationBase::onEnter();
 
-    log("cocos2d version: %s", Configuration::getInstance()->getValue("adxe.version").asString().c_str());
+    log("cocos2d version: %s", Configuration::getInstance()->getValue("axis.version").asString().c_str());
     log("OpenGL version: %s", Configuration::getInstance()->getValue("gl.version").asString().c_str());
 }
 

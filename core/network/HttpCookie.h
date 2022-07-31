@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@
 #include <string>
 #include <vector>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 namespace network
 {
@@ -106,7 +106,7 @@ private:
 };
 }  // namespace network
 
-NS_CC_END
+NS_AX_END
 
 /// @endcond
 #endif /* HTTP_COOKIE_H */

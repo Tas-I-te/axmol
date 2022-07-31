@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,19 +31,19 @@
 #import "platform/ios/CCDirectorCaller-ios.h"
 #import "base/ccUtils.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 Application* Application::sm_pSharedApplication = nullptr;
 
 Application::Application()
 {
-    CC_ASSERT(!sm_pSharedApplication);
+    AX_ASSERT(!sm_pSharedApplication);
     sm_pSharedApplication = this;
 }
 
 Application::~Application()
 {
-    CC_ASSERT(this == sm_pSharedApplication);
+    AX_ASSERT(this == sm_pSharedApplication);
     sm_pSharedApplication = 0;
 }
 
@@ -67,7 +67,7 @@ void Application::setAnimationInterval(float interval)
 
 Application* Application::getInstance()
 {
-    CC_ASSERT(sm_pSharedApplication);
+    AX_ASSERT(sm_pSharedApplication);
     return sm_pSharedApplication;
 }
 
@@ -133,4 +133,4 @@ bool Application::openURL(std::string_view url)
 
 void Application::applicationScreenSizeChanged(int newWidth, int newHeight) {}
 
-NS_CC_END
+NS_AX_END

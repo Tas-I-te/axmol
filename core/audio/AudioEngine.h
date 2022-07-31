@@ -4,7 +4,7 @@
  Copyright (c) 2018 HALX99.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,7 @@
  * @{
  */
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @class AudioProfile
@@ -52,7 +52,7 @@ NS_CC_BEGIN
  * @brief
  * @js NA
  */
-class CC_DLL AudioProfile
+class AX_DLL AudioProfile
 {
 public:
     // Profile name can't be empty.
@@ -82,7 +82,7 @@ class AudioEngineImpl;
  * @js NA
  */
 
-class CC_DLL AudioEngine
+class AX_DLL AudioEngine
 {
 public:
     /** AudioState enum,all possible states of an audio instance.*/
@@ -365,7 +365,7 @@ protected:
     friend class AudioEngineImpl;
 };
 
-NS_CC_END
+NS_AX_END
 
 // end group
 /// @}

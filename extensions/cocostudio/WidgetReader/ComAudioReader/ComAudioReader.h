@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
 
 namespace cocostudio
 {
-class CCS_DLL ComAudioReader : public cocos2d::Ref, public NodeReaderProtocol
+class CCS_DLL ComAudioReader : public axis::Ref, public NodeReaderProtocol
 {
 
 public:
@@ -42,14 +42,14 @@ public:
 
     static ComAudioReader* getInstance();
     /** @deprecated Use method destroyInstance() instead */
-    CC_DEPRECATED_ATTRIBUTE static void purge();
+    AX_DEPRECATED_ATTRIBUTE static void purge();
     static void destroyInstance();
 
     flatbuffers::Offset<flatbuffers::Table> createOptionsWithFlatBuffers(pugi::xml_node objectData,
                                                                          flatbuffers::FlatBufferBuilder* builder);
-    void setPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* comAudioOptions);
-    cocos2d::Component* createComAudioWithFlatBuffers(const flatbuffers::Table* comAudioOptions);
-    cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions);
+    void setPropsWithFlatBuffers(axis::Node* node, const flatbuffers::Table* comAudioOptions);
+    axis::Component* createComAudioWithFlatBuffers(const flatbuffers::Table* comAudioOptions);
+    axis::Node* createNodeWithFlatBuffers(const flatbuffers::Table* nodeOptions);
 };
 }  // namespace cocostudio
 

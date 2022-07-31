@@ -4,7 +4,7 @@
  Copyright (c) 2018-2020 HALX99.
  Copyright (c) 2021-2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@
         } while (false)
 #endif
 
-using namespace cocos2d;
+USING_NS_AX;
 
 namespace
 {
@@ -125,7 +125,7 @@ void AudioPlayer::destroy()
                 _rotateBufferThread = nullptr;
                 ALOGVV("rotateBufferThread exited!");
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#if AX_TARGET_PLATFORM == AX_PLATFORM_IOS
                 // some specific OpenAL implement defects existed on iOS platform
                 // refer to: https://github.com/cocos2d/cocos2d-x/issues/18597
                 ALint sourceState;

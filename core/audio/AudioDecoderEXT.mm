@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2018 HALX99.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,7 @@
 
 #define LOG_TAG "AudioDecoder"
 
-namespace cocos2d
-{
+NS_AX_BEGIN
 
 AudioDecoderEXT::AudioDecoderEXT() : _extRef(nullptr), _fileStream(nullptr), _streamSize(0), _audioFileId(nullptr)
 {
@@ -53,7 +52,7 @@ bool AudioDecoderEXT::open(std::string_view fullPath)
     {
         BREAK_IF_ERR_LOG(fullPath.empty(), "Invalid path!");
 
-        _fileStream = cocos2d::FileUtils::getInstance()->openFileStream(fullPath, FileStream::Mode::READ);
+        _fileStream = FileUtils::getInstance()->openFileStream(fullPath, FileStream::Mode::READ);
         BREAK_IF_ERR_LOG(_fileStream == nullptr, "FileUtils::openFileStream FAILED for file: %s", fullPath.data());
         if (_fileStream)
         {
@@ -222,4 +221,4 @@ SInt64 AudioDecoderEXT::getSizeCallback(void* inClientData)
     auto* audioDecoder = (AudioDecoderEXT*)inClientData;
     return audioDecoder->_streamSize;
 }
-}  // namespace cocos2d {
+NS_AX_END  // namespace axis

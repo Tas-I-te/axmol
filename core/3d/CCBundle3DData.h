@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CC_BUNDLE_3D_DATA_H__
-#define __CC_BUNDLE_3D_DATA_H__
+#ifndef __AX_BUNDLE_3D_DATA_H__
+#define __AX_BUNDLE_3D_DATA_H__
 
 #include "base/CCRef.h"
 #include "base/ccTypes.h"
@@ -42,7 +42,7 @@
 
 #include "yasio/detail/byte_buffer.hpp"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 using ilist_u16_t = std::initializer_list<uint16_t>;
 using ilist_u32_t = std::initializer_list<uint32_t>;
@@ -103,38 +103,32 @@ public:
     }
 
     /** Pushes back a value. */
-    template <typename _Ty, std::enable_if_t<is_index_format_type_v<_Ty>, int> = 0>
+    template <typename _Ty = uint16_t, std::enable_if_t<is_index_format_type_v<_Ty>, int> = 0>
     void push_back(const _Ty& val)
     {
         assert(_stride == sizeof(_Ty));
-        _buffer.append_n((uint8_t*)&val, _stride);
+        _buffer.insert(_buffer.end(), &val, &val + 1);
     }
 
     /** Inserts a list containing unsigned int (uint16_t/uint32_t) data. */
     template <typename _Ty = uint16_t, std::enable_if_t<is_index_format_type_v<_Ty>, int> = 0>
     void insert(_Ty* position, std::initializer_list<_Ty> ilist)
     {
-        insert(position, ilist.begin(), ilist.end());
+        _buffer.insert((yasio::byte_buffer::iterator)position, ilist.begin(), ilist.end());
     }
 
     template <typename _Ty = uint16_t, std::enable_if_t<is_index_format_type_v<_Ty>, int> = 0>
     void insert(_Ty* position, _Ty* first, _Ty* last)
     {
         assert(_stride == sizeof(_Ty));
-        binsert(position, first, last);
+        _buffer.insert((yasio::byte_buffer::iterator)position, first, last);
     }
 
     template <typename _Ty = uint16_t, std::enable_if_t<is_index_format_type_v<_Ty>, int> = 0>
     void insert(size_t offset, std::initializer_list<_Ty> ilist)
     {
         assert(_stride == sizeof(_Ty));
-        binsert(begin<_Ty>() + offset, ilist.begin(), ilist.end());
-    }
-
-    /** Inserts range data based on an offset in bytes. */
-    void binsert(uint8_t* position, const void* first, const void* last)
-    {
-        _buffer.insert(position, (const uint8_t*)first, (const uint8_t*)last);
+        _buffer.insert((yasio::byte_buffer::iterator)(begin<_Ty>() + offset), ilist.begin(), ilist.end());
     }
 
     template <typename _Ty = uint16_t, std::enable_if_t<is_index_format_type_v<_Ty>, int> = 0>
@@ -184,6 +178,20 @@ public:
         return (const _Ty&)_buffer[idx * sizeof(_Ty)];
     }
 
+    template <typename _Ty>
+    _Ty& operator[](_Ty idx)
+    {
+        assert(sizeof(_Ty) == _stride);
+        return (_Ty&)_buffer[idx * _stride];
+    }
+
+    template <typename _Ty>
+    const _Ty& operator[](_Ty idx) const
+    {
+        assert(sizeof(_Ty) == _stride);
+        return (const _Ty&)_buffer[idx * _stride];
+    }
+
     uint8_t* data() noexcept { return _buffer.data(); }
     const uint8_t* data() const noexcept { return _buffer.data(); }
 
@@ -221,7 +229,7 @@ protected:
  * @js NA
  * @lua NA
  */
-struct CC_DLL MeshVertexAttrib
+struct AX_DLL MeshVertexAttrib
 {
     backend::VertexFormat type;
     shaderinfos::VertexKey vertexAttrib;
@@ -264,13 +272,13 @@ struct NodeData
     {
         id.clear();
         transform.setIdentity();
-        for (auto& it : children)
+        for (auto&& it : children)
         {
             delete it;
         }
         children.clear();
 
-        for (auto& modeldata : modelNodeDatas)
+        for (auto&& modeldata : modelNodeDatas)
         {
             delete modeldata;
         }
@@ -291,12 +299,12 @@ struct NodeDatas
 
     void resetData()
     {
-        for (auto& it : skeleton)
+        for (auto&& it : skeleton)
         {
             delete it;
         }
         skeleton.clear();
-        for (auto& it : nodes)
+        for (auto&& it : nodes)
         {
             delete it;
         }
@@ -310,7 +318,7 @@ struct NodeDatas
  */
 struct MeshData
 {
-    using IndexArray = ::cocos2d::IndexArray;
+    using IndexArray = ::axis::IndexArray;
     std::vector<float> vertex;
     int vertexSizeInFloat;
     std::vector<IndexArray> subMeshIndices;
@@ -361,7 +369,7 @@ struct MeshDatas
 
     void resetData()
     {
-        for (auto& it : meshDatas)
+        for (auto&& it : meshDatas)
         {
             delete it;
         }
@@ -573,6 +581,6 @@ struct Reference
     unsigned int offset;
 };
 
-NS_CC_END
+NS_AX_END
 
-#endif  //__CC_BUNDLE_3D_DATA_H__
+#endif  //__AX_BUNDLE_3D_DATA_H__

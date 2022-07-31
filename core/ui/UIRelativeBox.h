@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 #include "ui/UILayout.h"
 #include "ui/GUIExport.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 /**
  * @addtogroup ui
  * @{
@@ -43,7 +43,7 @@ namespace ui
  *@brief RelativeBox is just a convenient wrapper class for relative layout type.
  * RelativeBox lays out its children relative to a widget or a position.
  */
-class CC_GUI_DLL RelativeBox : public Layout
+class AX_GUI_DLL RelativeBox : public Layout
 {
 
 public:
@@ -84,6 +84,6 @@ public:
 
 // end of ui group
 /// @}
-NS_CC_END
+NS_AX_END
 
 #endif /* defined(__UIRelativeBox__) */

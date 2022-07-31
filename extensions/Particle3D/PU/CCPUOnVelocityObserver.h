@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CC_PU_PARTICLE_3D_ON_VELOCITY_OBSERVER_H__
-#define __CC_PU_PARTICLE_3D_ON_VELOCITY_OBSERVER_H__
+#ifndef __AX_PU_PARTICLE_3D_ON_VELOCITY_OBSERVER_H__
+#define __AX_PU_PARTICLE_3D_ON_VELOCITY_OBSERVER_H__
 
 #include "base/CCRef.h"
 #include "math/CCMath.h"
@@ -33,11 +33,11 @@
 #include <vector>
 #include <string>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 struct PUParticle3D;
 class PUParticleSystem3D;
-class CC_EX_DLL PUOnVelocityObserver : public PUObserver
+class AX_EX_DLL PUOnVelocityObserver : public PUObserver
 {
 public:
     // Constants
@@ -69,6 +69,6 @@ protected:
     PUComparisionOperator _compare;
 };
 
-NS_CC_END
+NS_AX_END
 
 #endif

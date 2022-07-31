@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "CCPUScriptCompiler.h"
 #include "extensions/Particle3D/PU/CCPUTranslateManager.h"
 #include "platform/CCFileUtils.h"
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // ObjectAbstractNode
 PUObjectAbstractNode::PUObjectAbstractNode(PUAbstractNode* ptr) : PUAbstractNode(ptr), id(0), abstract(false)
@@ -102,17 +102,17 @@ const hlookup::string_map<std::string>& PUObjectAbstractNode::getVariables() con
 
 PUObjectAbstractNode::~PUObjectAbstractNode()
 {
-    for (auto iter : children)
+    for (auto&& iter : children)
     {
         delete iter;
     }
 
-    for (auto iter : values)
+    for (auto&& iter : values)
     {
         delete iter;
     }
 
-    for (auto iter : overrides)
+    for (auto&& iter : overrides)
     {
         delete iter;
     }
@@ -148,7 +148,7 @@ std::string PUPropertyAbstractNode::getValue() const
 
 PUPropertyAbstractNode::~PUPropertyAbstractNode()
 {
-    for (auto iter : values)
+    for (auto&& iter : values)
     {
         delete iter;
     }
@@ -180,7 +180,7 @@ PUScriptCompiler::~PUScriptCompiler()
 {
     for (const auto& iter : _compiledScripts)
     {
-        for (auto miter : iter.second)
+        for (auto&& miter : iter.second)
         {
             delete miter;
         }
@@ -211,7 +211,7 @@ hlookup::string_map<PUAbstractNodeList>::iterator PUScriptCompiler::compile(cons
     //     }
     // }
 
-    // for (auto iter : aNodes){
+    // for (auto&& iter : aNodes){
     //     delete iter;
     // }
     // return true;
@@ -235,12 +235,12 @@ const PUAbstractNodeList* PUScriptCompiler::compile(std::string_view file, bool&
     parser.parse(creteNodeList, tokenList);
     auto it = compile(creteNodeList, file);
 
-    for (auto iter1 : creteNodeList)
+    for (auto&& iter1 : creteNodeList)
     {
         delete iter1;
     }
 
-    for (auto iter2 : tokenList)
+    for (auto&& iter2 : tokenList)
     {
         delete iter2;
     }
@@ -407,4 +407,4 @@ PUScriptCompiler* PUScriptCompiler::Instance()
     return &psc;
 }
 
-NS_CC_END
+NS_AX_END

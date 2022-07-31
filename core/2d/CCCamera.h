@@ -2,7 +2,7 @@
 Copyright (c) 2014-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2019 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include "renderer/CCCustomCommand.h"
 #include "base/CCDirector.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Scene;
 class CameraBackgroundBrush;
@@ -63,7 +63,7 @@ enum class CameraFlag
 /**
  * Defines a camera .
  */
-class CC_DLL Camera : public Node
+class AX_DLL Camera : public Node
 {
     friend class Scene;
     friend class Director;
@@ -237,28 +237,28 @@ public:
     /**
      * Gets the aspect ratio of the camera if the projection mode is 3D.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     float getAspectRatio() const { return _fieldOfView; }
 
     /**
      * Sets the aspect ratio of the camera if the projection mode is 3D.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     void setAspectRatio(float ratio);
 
     /**
      * Gets the field of view of the camera if the projection mode is 3D.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     float getFOV() const { return _fieldOfView; }
 
     /**
      * Sets the field of view of the camera if the projection mode is 3D.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     void setFOV(float fov);
 
@@ -270,7 +270,7 @@ public:
     /**
      * Sets the frustum's far plane.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     void setFarPlane(float farPlane);
 
@@ -282,14 +282,14 @@ public:
     /**
      * Gets the frustum's near plane.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     void setNearPlane(float nearPlane);
 
     /**
      * Gets the zoom multiplier of the camera.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     float getZoom() const { return _zoomFactor; }
 
@@ -299,21 +299,21 @@ public:
      * 
      * @param factor The zoom factor of the camera.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     void setZoom(float factor);
 
     /**
      Apply the zoom factor.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     void applyZoom();
 
     /**
      Apply the fov, near far planes and aspect values non-destructively.
      * 
-     * @since adxe-1.0.0b8
+     * @since axis-1.0.0b8
      */
     void applyCustomProperties();
 
@@ -408,4 +408,4 @@ protected:
     CameraBackgroundBrush* _clearBrush = nullptr;  // brush used to clear the back ground
 };
 
-NS_CC_END
+NS_AX_END

@@ -1,9 +1,9 @@
 /****************************************************************************
 Copyright (c) 2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
-Copyright (c) 2021 Bytedance Inc.
+Copyright (c) 2021-2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,9 @@ THE SOFTWARE.
 #pragma once
 #include <string>
 
-namespace cocos2d
-{
+#include "platform/CCPlatformMacros.h"
+
+NS_AX_BEGIN
 
 class AudioDecoder;
 
@@ -41,4 +42,4 @@ public:
     static void destroyDecoder(AudioDecoder* decoder);
 };
 
-}  // namespace cocos2d
+NS_AX_END  // namespace axis

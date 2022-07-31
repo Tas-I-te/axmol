@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -36,10 +36,10 @@ public:
 
     virtual bool init() override;
 
-    void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
-    void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
-    void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
-    void onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+    void onTouchesBegan(const std::vector<axis::Touch*>& touches, axis::Event* event);
+    void onTouchesMoved(const std::vector<axis::Touch*>& touches, axis::Event* event);
+    void onTouchesEnded(const std::vector<axis::Touch*>& touches, axis::Event* event);
+    void onTouchesCancelled(const std::vector<axis::Touch*>& touches, axis::Event* event);
 };
 
 #endif /* __MULTITOUCHTEST_H__ */

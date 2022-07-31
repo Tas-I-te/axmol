@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2013-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -51,7 +51,7 @@ enum AnimationType
  *  @js NA
  *  @lua NA
  */
-class CCS_DLL ProcessBase : public cocos2d::Ref
+class CCS_DLL ProcessBase : public axis::Ref
 {
 public:
     ProcessBase(void);
@@ -155,7 +155,7 @@ protected:
     AnimationType _loopType;
 
     //! The tween easing effect
-    cocos2d::tweenfunc::TweenType _tweenEasing;
+    axis::tweenfunc::TweenType _tweenEasing;
 
     //! The animation update speed
     float _animationInternal;

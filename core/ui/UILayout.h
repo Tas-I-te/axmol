@@ -3,7 +3,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) Bytedance Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,13 +37,13 @@ THE SOFTWARE.
  * @addtogroup ui
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class DrawNode;
 class LayerColor;
 class LayerGradient;
 class StencilStateManager;
-struct CC_DLL ResourceData;
+struct AX_DLL ResourceData;
 
 namespace ui
 {
@@ -55,7 +55,7 @@ class Scale9Sprite;
  *@brief Layout interface for creating LayoutManger and do actual layout.
  * @js NA
  */
-class CC_GUI_DLL LayoutProtocol
+class AX_GUI_DLL LayoutProtocol
 {
 public:
     /**
@@ -109,7 +109,7 @@ public:
  * - Relative layout: child elements are arranged relative to certain rules.
  *
  */
-class CC_GUI_DLL Layout : public Widget, public LayoutProtocol
+class AX_GUI_DLL Layout : public Widget, public LayoutProtocol
 {
 
     DECLARE_CLASS_GUI_INFO
@@ -658,7 +658,7 @@ protected:
 };
 
 }  // namespace ui
-NS_CC_END
+NS_AX_END
 // end of ui group
 /// @}
 #endif /* defined(__Layout__) */

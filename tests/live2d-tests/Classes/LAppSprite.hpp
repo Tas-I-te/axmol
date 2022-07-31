@@ -7,11 +7,11 @@
 
 #pragma once
 
-#include "Rendering/adxe/CubismRenderer_Cocos2dx.hpp"
-#include "Rendering/adxe/CubismCommandBuffer_Cocos2dx.hpp"
+#include "Rendering/axis/CubismRenderer_Cocos2dx.hpp"
+#include "Rendering/axis/CubismCommandBuffer_Cocos2dx.hpp"
 #include "cocos2d.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 /**
 * @brief スプライトを実装するクラス。
@@ -71,6 +71,6 @@ private:
 
     float _spriteColor[4];  ///< 表示カラー
 
-    cocos2d::backend::Program* _program;
+    axis::backend::Program* _program;
 };
 

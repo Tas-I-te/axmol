@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ public:
     CREATE_FUNC(TransitionsTest);
 };
 
-class TestLayer1 : public cocos2d::Layer
+class TestLayer1 : public axis::Layer
 {
 public:
     static TestLayer1* create(std::string_view transitionName);
@@ -53,7 +53,7 @@ public:
     virtual void onExit() override;
 };
 
-class TestLayer2 : public cocos2d::Layer
+class TestLayer2 : public axis::Layer
 {
 public:
     static TestLayer2* create(std::string_view transitionName);

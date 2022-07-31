@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 #include "OpenURLTest.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 OpenURLTests::OpenURLTests()
 {
@@ -38,7 +38,7 @@ OpenURLTest::OpenURLTest()
     label->setPosition(VisibleRect::center().x, VisibleRect::top().y - 50);
 
     auto listener            = EventListenerTouchAllAtOnce::create();
-    listener->onTouchesEnded = CC_CALLBACK_2(OpenURLTest::onTouchesEnded, this);
+    listener->onTouchesEnded = AX_CALLBACK_2(OpenURLTest::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     // create a label to display the tip string
@@ -51,7 +51,7 @@ OpenURLTest::OpenURLTest()
 
 void OpenURLTest::onTouchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
-    Application::getInstance()->openURL("https://adxeproject.github.io/");
+    Application::getInstance()->openURL("https://axis-project.github.io/");
 }
 
 OpenURLTest::~OpenURLTest()

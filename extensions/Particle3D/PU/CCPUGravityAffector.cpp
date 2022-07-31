@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "CCPUGravityAffector.h"
 #include "extensions/Particle3D/PU/CCPUParticleSystem3D.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // Constants
 const float PUGravityAffector::DEFAULT_GRAVITY = 1.0f;
@@ -49,7 +49,7 @@ void PUGravityAffector::setGravity(float gravity)
 
 void PUGravityAffector::updatePUAffector(PUParticle3D* particle, float deltaTime)
 {
-    // for (auto iter : _particleSystem->getParticles())
+    // for (auto&& iter : _particleSystem->getParticles())
     {
         // PUParticle3D *particle = iter;
         //  Applied scaling in V1.3.1
@@ -90,4 +90,4 @@ void PUGravityAffector::copyAttributesTo(PUAffector* affector)
     gravityAffector->_gravity          = _gravity;
 }
 
-NS_CC_END
+NS_AX_END

@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 #pragma once
 
 #include "base/ccConfig.h"
-#if CC_USE_NAVMESH
+#if AX_USE_NAVMESH
 
 #    include "renderer/CCRenderState.h"
 #    include "renderer/backend/ProgramState.h"
@@ -40,7 +40,7 @@
 #    include <string>
 #    include <vector>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 /**
  * @addtogroup 3d
@@ -120,6 +120,6 @@ private:
 
 /** @} */
 
-NS_CC_END
+NS_AX_END
 
-#endif  // CC_USE_NAVMESH
+#endif  // AX_USE_NAVMESH

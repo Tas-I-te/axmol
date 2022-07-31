@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -34,14 +34,14 @@
 
 #define DECLARE_CLASS_NODE_READER_INFO           \
 public:                                          \
-    static cocos2d::ObjectFactory::TInfo __Type; \
-    static cocos2d::Ref* createInstance(void);
+    static axis::ObjectFactory::TInfo __Type; \
+    static axis::Ref* createInstance(void);
 
 #define IMPLEMENT_CLASS_NODE_READER_INFO(className)                                    \
-    cocos2d::Ref* className::createInstance(void) { return className::getInstance(); } \
-    cocos2d::ObjectFactory::TInfo className::__Type(#className, &className::createInstance);
+    axis::Ref* className::createInstance(void) { return className::getInstance(); } \
+    axis::ObjectFactory::TInfo className::__Type(#className, &className::createInstance);
 
-#define CREATE_CLASS_NODE_READER_INFO(className) cocos2d::ObjectFactory::TInfo(#className, &className::createInstance)
+#define CREATE_CLASS_NODE_READER_INFO(className) axis::ObjectFactory::TInfo(#className, &className::createInstance)
 
 #define FLATSTR_TO_BOOL(str) (str.compare("True") == 0) ? true : false
 

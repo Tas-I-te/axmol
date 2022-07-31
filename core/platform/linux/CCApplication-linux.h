@@ -3,7 +3,7 @@ Copyright (c) 2011      Laschweinski
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include <string>
 #include <chrono>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 class Rect;
 
 class Application : public ApplicationProtocol
@@ -64,7 +64,7 @@ public:
     static Application* getInstance();
 
     /** @deprecated Use getInstance() instead */
-    CC_DEPRECATED_ATTRIBUTE static Application* sharedApplication();
+    AX_DEPRECATED_ATTRIBUTE static Application* sharedApplication();
 
     /* override functions */
     virtual LanguageType getCurrentLanguage() override;
@@ -91,13 +91,13 @@ public:
      *  Sets the Resource root path.
      *  @deprecated Please use FileUtils::getInstance()->setSearchPaths() instead.
      */
-    CC_DEPRECATED_ATTRIBUTE void setResourceRootPath(std::string_view rootResDir);
+    AX_DEPRECATED_ATTRIBUTE void setResourceRootPath(std::string_view rootResDir);
 
     /**
      *  Gets the Resource root path.
      *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead.
      */
-    CC_DEPRECATED_ATTRIBUTE std::string_view getResourceRootPath();
+    AX_DEPRECATED_ATTRIBUTE std::string_view getResourceRootPath();
 
     /**
      @brief Get target platform
@@ -111,4 +111,4 @@ protected:
     static Application* sm_pSharedApplication;
 };
 
-NS_CC_END
+NS_AX_END

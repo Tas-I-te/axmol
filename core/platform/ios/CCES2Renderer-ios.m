@@ -4,7 +4,7 @@
  Corpyight (c) 2011      Zynga Inc.
  Copyright (c) 2013-2017 Chukong Technologies Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,13 +30,13 @@
 
 #include "platform/CCPlatformConfig.h"
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+#if AX_TARGET_PLATFORM == AX_PLATFORM_IOS
 
 #import "platform/ios/CCES2Renderer-ios.h"
 // #import "platform/CCPlatformMacros.h"
 #import "platform/ios/OpenGL_Internal-ios.h"
 
-#if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0
+#if !defined(AXIS_DEBUG) || AXIS_DEBUG == 0
 #define NSLog(...)       do {} while (0)
 #endif
 
@@ -212,7 +212,7 @@
 
 - (void)dealloc
 {
-//    CCLOGINFO("deallocing CCES2Renderer: %p", self);
+//    AXLOGINFO("deallocing CCES2Renderer: %p", self);
 
     // Tear down GL
     if (defaultFramebuffer_) {
@@ -254,4 +254,4 @@
 
 @end
 
-#endif // CC_PLATFORM_IOS
+#endif // AX_PLATFORM_IOS

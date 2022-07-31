@@ -1,16 +1,16 @@
 #include "ImGuiPresenter.h"
 #include <assert.h>
-#include "imgui_impl_adxe.h"
+#include "imgui_impl_axis.h"
 #include "imgui_internal.h"
 
 // TODO: mac metal
-#if (defined(CC_USE_GL) || defined(CC_USE_GLES))
-#    define CC_IMGUI_ENABLE_MULTI_VIEWPORT 1
+#if (defined(AX_USE_GL) || defined(AX_USE_GLES))
+#    define AX_IMGUI_ENABLE_MULTI_VIEWPORT 1
 #else
-#    define CC_IMGUI_ENABLE_MULTI_VIEWPORT 0
+#    define AX_IMGUI_ENABLE_MULTI_VIEWPORT 0
 #endif
 
-NS_CC_EXT_BEGIN
+NS_AX_EXT_BEGIN
 
 static uint32_t fourccValue(std::string_view str)
 {
@@ -33,7 +33,7 @@ class ImGuiSceneEventTracker : public ImGuiEventTracker
 public:
     bool initWithScene(Scene* scene)
     {
-#ifdef CC_PLATFORM_PC
+#ifdef AX_PLATFORM_PC
         _trackLayer = utils::newInstance<Node>(&Node::initLayer);
 
         // note: when at the first click to focus the window, this will not take effect
@@ -75,7 +75,7 @@ public:
 
     ~ImGuiSceneEventTracker()
     {
-#ifdef CC_PLATFORM_PC
+#ifdef AX_PLATFORM_PC
         if (_trackLayer)
         {
             if (_trackLayer->getParent())
@@ -96,7 +96,7 @@ class ImGuiGlobalEventTracker : public ImGuiEventTracker
 public:
     bool init()
     {
-#ifdef CC_PLATFORM_PC
+#ifdef AX_PLATFORM_PC
         // note: when at the first click to focus the window, this will not take effect
 
         auto eventDispatcher = Director::getInstance()->getEventDispatcher();
@@ -122,7 +122,7 @@ public:
 
     ~ImGuiGlobalEventTracker()
     {
-#ifdef CC_PLATFORM_PC
+#ifdef AX_PLATFORM_PC
         auto eventDispatcher = Director::getInstance()->getEventDispatcher();
         eventDispatcher->removeEventListener(_mouseListener);
         eventDispatcher->removeEventListener(_touchListener);
@@ -172,7 +172,7 @@ void ImGuiPresenter::init()
     // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;  // Enable Docking
 
-#if CC_IMGUI_ENABLE_MULTI_VIEWPORT
+#if AX_IMGUI_ENABLE_MULTI_VIEWPORT
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;  // Enable Multi-Viewport / Platform Windows
 #endif
     // io.ConfigViewportsNoAutoMerge = true;
@@ -198,10 +198,10 @@ void ImGuiPresenter::init()
     }
 
     auto window = static_cast<GLViewImpl*>(Director::getInstance()->getOpenGLView())->getWindow();
-    ImGui_ImplGlfw_InitForAdxe(window, true);
-    ImGui_ImplAdxe_Init();
+    ImGui_ImplGlfw_InitForAxis(window, true);
+    ImGui_ImplAxis_Init();
 
-    ImGui_ImplAdxe_SetCustomFontLoader(&ImGuiPresenter::loadCustomFonts, this);
+    ImGui_ImplAxis_SetCustomFontLoader(&ImGuiPresenter::loadCustomFonts, this);
 
     ImGui::StyleColorsClassic();
 
@@ -216,11 +216,11 @@ void ImGuiPresenter::cleanup()
     eventDispatcher->removeCustomEventListeners(Director::EVENT_AFTER_VISIT);
     eventDispatcher->removeCustomEventListeners(Director::EVENT_BEFORE_DRAW);
 
-    ImGui_ImplAdxe_SetCustomFontLoader(nullptr, nullptr);
-    ImGui_ImplAdxe_Shutdown();
+    ImGui_ImplAxis_SetCustomFontLoader(nullptr, nullptr);
+    ImGui_ImplAxis_Shutdown();
     ImGui_ImplGlfw_Shutdown();
 
-    CC_SAFE_RELEASE_NULL(_fontsTexture);
+    AX_SAFE_RELEASE_NULL(_fontsTexture);
 
     ImGui::DestroyContext();
 }
@@ -253,7 +253,7 @@ void ImGuiPresenter::loadCustomFonts(void* ud)
         }
 
         auto fontData = FileUtils::getInstance()->getDataFromFile(fontInfo.first);
-        CCASSERT(!fontData.isNull(), "Cannot load font for IMGUI");
+        AXASSERT(!fontData.isNull(), "Cannot load font for IMGUI");
 
         ssize_t bufferSize = 0;
         auto* buffer       = fontData.takeBuffer(&bufferSize);  // Buffer automatically freed by IMGUI
@@ -283,7 +283,7 @@ float ImGuiPresenter::scaleAllByDPI(float userScale)
         }
 
         // Destory font informations, let implcocos2dx recreate at newFrame
-        ImGui_ImplAdxe_SetDeviceObjectsDirty();
+        ImGui_ImplAxis_SetDeviceObjectsDirty();
 
         ImGui::GetStyle().ScaleAllSizes(zoomFactor);
 
@@ -298,7 +298,7 @@ void ImGuiPresenter::addFont(std::string_view fontFile, float fontSize, CHS_GLYP
     if (FileUtils::getInstance()->isFileExistInternal(fontFile))
     {
         if (_fontsInfoMap.emplace(fontFile, FontInfo{fontSize, glyphRange}).second)
-            ImGui_ImplAdxe_SetDeviceObjectsDirty();
+            ImGui_ImplAxis_SetDeviceObjectsDirty();
     }
 }
 
@@ -307,7 +307,7 @@ void ImGuiPresenter::removeFont(std::string_view fontFile)
     auto count = _fontsInfoMap.size();
     _fontsInfoMap.erase(fontFile);
     if (count != _fontsInfoMap.size())
-        ImGui_ImplAdxe_SetDeviceObjectsDirty();
+        ImGui_ImplAxis_SetDeviceObjectsDirty();
 }
 
 void ImGuiPresenter::clearFonts()
@@ -315,7 +315,7 @@ void ImGuiPresenter::clearFonts()
     bool haveCustomFonts = !_fontsInfoMap.empty();
     _fontsInfoMap.clear();
     if (haveCustomFonts)
-        ImGui_ImplAdxe_SetDeviceObjectsDirty();
+        ImGui_ImplAxis_SetDeviceObjectsDirty();
 
     // auto drawData = ImGui::GetDrawData();
     // if(drawData) drawData->Clear();
@@ -339,12 +339,12 @@ void ImGuiPresenter::beginFrame()
     if (!_renderPiplines.empty())
     {
         // create frame
-        ImGui_ImplAdxe_NewFrame();
+        ImGui_ImplAxis_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
         // move to endFrame?
-        _fontsTexture = (Texture2D*)ImGui_ImplAdxe_GetFontsTexture();
+        _fontsTexture = (Texture2D*)ImGui_ImplAxis_GetFontsTexture();
         assert(_fontsTexture != nullptr);
         _fontsTexture->retain();
 
@@ -367,12 +367,12 @@ void ImGuiPresenter::endFrame()
 
         auto drawData = ImGui::GetDrawData();
         if (drawData)
-            ImGui_ImplAdxe_RenderDrawData(drawData);
+            ImGui_ImplAxis_RenderDrawData(drawData);
 
-        ImGui_ImplAdxe_RenderPlatform();
+        ImGui_ImplAxis_RenderPlatform();
         --_beginFrames;
 
-        CC_SAFE_RELEASE_NULL(_fontsTexture);
+        AX_SAFE_RELEASE_NULL(_fontsTexture);
     }
 }
 
@@ -700,4 +700,4 @@ int ImGuiPresenter::getCCRefId(Ref* p)
     return (int)hash;
 }
 
-NS_CC_EXT_END
+NS_AX_EXT_END

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 #include "Bug-458.h"
 #include "QuestionContainerSprite.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 bool Bug458Layer::init()
 {
@@ -47,13 +47,13 @@ bool Bug458Layer::init()
         //        [question setContentSize:CGSizeMake(50,50)];
         //        [question2 setContentSize:CGSizeMake(50,50)];
 
-        auto sprite = MenuItemSprite::create(question2, question, CC_CALLBACK_1(Bug458Layer::selectAnswer, this));
+        auto sprite = MenuItemSprite::create(question2, question, AX_CALLBACK_1(Bug458Layer::selectAnswer, this));
         auto layer  = LayerColor::create(Color4B(0, 0, 255, 255), 100, 100);
         question->release();
         question2->release();
 
         auto layer2  = LayerColor::create(Color4B(255, 0, 0, 255), 100, 100);
-        auto sprite2 = MenuItemSprite::create(layer, layer2, CC_CALLBACK_1(Bug458Layer::selectAnswer, this));
+        auto sprite2 = MenuItemSprite::create(layer, layer2, AX_CALLBACK_1(Bug458Layer::selectAnswer, this));
         auto menu    = Menu::create(sprite, sprite2, nullptr);
         menu->alignItemsVerticallyWithPadding(100);
         menu->setPosition(size.width / 2, size.height / 2);

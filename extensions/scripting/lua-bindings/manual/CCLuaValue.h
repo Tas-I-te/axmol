@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __CC_LUA_VALUE_H_
-#define __CC_LUA_VALUE_H_
+#ifndef __AX_LUA_VALUE_H_
+#define __AX_LUA_VALUE_H_
 
 #include <string>
 #include <map>
@@ -38,7 +38,7 @@ extern "C" {
 #include "base/ccTypes.h"
 #include "base/CCRef.h"
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY
+#if AX_TARGET_PLATFORM == AX_PLATFORM_BLACKBERRY
 using std::memcpy;
 using std::memset;
 #endif
@@ -48,7 +48,7 @@ using std::memset;
  * @{
  */
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 typedef int LUA_FUNCTION;
 typedef int LUA_TABLE;
@@ -263,22 +263,22 @@ private:
     void copy(const LuaValue& rhs);
 };
 
-inline std::string adxelua_tostr(lua_State* L, int arg)
+inline std::string axislua_tostr(lua_State* L, int arg)
 {
     size_t l      = 0;
     const char* s = lua_tolstring(L, arg, &l);
     return std::string{s, l};
 }
 
-inline std::string_view adxelua_tosv(lua_State* L, int arg)
+inline std::string_view axislua_tosv(lua_State* L, int arg)
 {
     size_t l      = 0;
     const char* s = lua_tolstring(L, arg, &l);
     return std::string_view{s, l};
 }
 
-NS_CC_END
+NS_AX_END
 
 // end group
 /// @}
-#endif  // __CC_LUA_VALUE_H_
+#endif  // __AX_LUA_VALUE_H_

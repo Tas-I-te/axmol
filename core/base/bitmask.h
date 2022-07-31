@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2020 C4games Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Purpose: Make bitmask operators could be use at different namespace,
           the other implementation CCEnumClass.h can't handle.
@@ -33,7 +33,7 @@ Copyright (c) 2020 C4games Ltd.
 #endif
 
 // BITMASK OPERATIONS, modified from msvc++ <type_traits> for cross-platform compiling.
-#define CC_ENABLE_BITMASK_OPS(_BITMASK)                                                         \
+#define AX_ENABLE_BITMASK_OPS(_BITMASK)                                                         \
     constexpr _BITMASK operator&(_BITMASK _Left, _BITMASK _Right) noexcept                      \
     { /* return _Left & _Right */                                                               \
         using _IntTy = _STD underlying_type<_BITMASK>::type;                                    \
@@ -80,7 +80,7 @@ Copyright (c) 2020 C4games Ltd.
     }
 
 // BITSHIFT OPERATIONS, inspired from msvc++ <type_traits>.
-#define CC_ENABLE_BITSHIFT_OPS(_BITMASK)                                                         \
+#define AX_ENABLE_BITSHIFT_OPS(_BITMASK)                                                         \
     constexpr _BITMASK operator>>(_BITMASK _Left, _BITMASK _Right) noexcept                      \
     { /* return _Left & _Right */                                                                \
         using _IntTy = _STD underlying_type<_BITMASK>::type;                                     \

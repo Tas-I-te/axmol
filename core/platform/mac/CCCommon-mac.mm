@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include <stdio.h>
 #include <Cocoa/Cocoa.h>
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 void LuaLog(const char* format)
 {
@@ -55,4 +55,4 @@ void ccMessageBox(const char* msg, const char* title)
     [alert beginSheetModalForWindow:window completionHandler:nil];
 }
 
-NS_CC_END
+NS_AX_END

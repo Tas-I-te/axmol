@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "base/CCTouch.h"
 #include "base/CCDirector.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 // returns the current touch location in screen coordinates
 Vec2 Touch::getLocationInView() const
@@ -83,4 +83,4 @@ float Touch::getMaxForce() const
     return _maxForce;
 }
 
-NS_CC_END
+NS_AX_END

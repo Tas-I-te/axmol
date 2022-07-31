@@ -3,7 +3,7 @@
  Copyright (c) 2020 C4games Ltd
  Copyright (c) 2022 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
 #include "cocos2d.h"
 #include "../BaseTest.h"
 
-#if defined(CC_PLATFORM_PC)
+#if defined(AX_PLATFORM_PC)
 
 DEFINE_TEST_SUITE(ImGuiTests);
 

@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2015-2017 Chukong Technologies Inc.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,9 @@ public:
 
     static SkeletonNodeReader* getInstance();
     /** @deprecated Use method destroyInstance() instead */
-    CC_DEPRECATED_ATTRIBUTE static void purge();
+    AX_DEPRECATED_ATTRIBUTE static void purge();
     static void destroyInstance();
 
-    cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* boneOptions) override;
+    axis::Node* createNodeWithFlatBuffers(const flatbuffers::Table* boneOptions) override;
 };
 #endif  //_SKELETONNODEREADER_H_

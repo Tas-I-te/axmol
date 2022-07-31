@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -314,7 +314,7 @@ class UIS9GrayStateOpacityTest : public UIScene
 {
 public:
     CREATE_FUNC(UIS9GrayStateOpacityTest);
-    void sliderEvent(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
+    void sliderEvent(axis::Ref* sender, axis::ui::Slider::EventType type);
 
     virtual bool init() override;
 };

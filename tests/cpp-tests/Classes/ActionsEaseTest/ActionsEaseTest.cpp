@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include "ActionsEaseTest.h"
 #include "../testResource.h"
 
-USING_NS_CC;
+USING_NS_AX;
 
 enum
 {
@@ -105,12 +105,12 @@ void SpriteEase::onEnter()
     auto a = _kathia->runAction(RepeatForever::create(seq3));
     a->setTag(1);
 
-    schedule(CC_SCHEDULE_SELECTOR(SpriteEase::testStopAction), 6.25f);
+    schedule(AX_SCHEDULE_SELECTOR(SpriteEase::testStopAction), 6.25f);
 }
 
 void SpriteEase::testStopAction(float dt)
 {
-    unschedule(CC_SCHEDULE_SELECTOR(SpriteEase::testStopAction));
+    unschedule(AX_SCHEDULE_SELECTOR(SpriteEase::testStopAction));
     _tamara->stopActionByTag(1);
     _kathia->stopActionByTag(1);
     _grossini->stopActionByTag(1);
@@ -922,7 +922,7 @@ void SpeedTest::onEnter()
     _tamara->runAction(action3);
     _kathia->runAction(action);
 
-    this->schedule(CC_SCHEDULE_SELECTOR(SpeedTest::altertime), 1.0f);  //:@selector(altertime:) interval:1.0f];
+    this->schedule(AX_SCHEDULE_SELECTOR(SpeedTest::altertime), 1.0f);  //:@selector(altertime:) interval:1.0f];
 }
 
 void SpeedTest::altertime(float dt)
@@ -931,9 +931,9 @@ void SpeedTest::altertime(float dt)
     auto action2 = static_cast<Speed*>(_tamara->getActionByTag(kTagAction1));
     auto action3 = static_cast<Speed*>(_kathia->getActionByTag(kTagAction1));
 
-    action1->setSpeed(CCRANDOM_MINUS1_1() * 2);
-    action2->setSpeed(CCRANDOM_MINUS1_1() * 2);
-    action3->setSpeed(CCRANDOM_MINUS1_1() * 2);
+    action1->setSpeed(rand_minus1_1() * 2);
+    action2->setSpeed(rand_minus1_1() * 2);
+    action3->setSpeed(rand_minus1_1() * 2);
 }
 
 std::string SpeedTest::subtitle() const

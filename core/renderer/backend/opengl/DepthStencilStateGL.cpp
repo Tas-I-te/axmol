@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
 #include "renderer/backend/opengl/MacrosGL.h"
 #include "renderer/backend/opengl/UtilsGL.h"
 
-CC_BACKEND_BEGIN
+NS_AX_BACKEND_BEGIN
 
 void DepthStencilStateGL::reset()
 {
@@ -98,4 +98,4 @@ void DepthStencilStateGL::apply(unsigned int stencilReferenceValueFront, unsigne
     CHECK_GL_ERROR_DEBUG();
 }
 
-CC_BACKEND_END
+NS_AX_BACKEND_END

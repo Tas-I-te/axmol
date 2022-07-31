@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
 #include "extensions/Particle3D/PU/CCPUAffector.h"
 #include "extensions/Particle3D/PU/CCPUParticleSystem3D.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 // Constants
 const bool PUDoAffectorEventHandler::DEFAULT_PRE_POST = false;
 
@@ -46,7 +46,7 @@ void PUDoAffectorEventHandler::handle(PUParticleSystem3D* particleSystem, PUPart
         // Search all techniques in this ParticleSystem for an affector with the correct name
         PUParticleSystem3D* system = particleSystem->getParentParticleSystem();
         auto children              = system->getChildren();
-        for (auto iter : children)
+        for (auto&& iter : children)
         {
             technique = dynamic_cast<PUParticleSystem3D*>(iter);
             if (technique)
@@ -91,4 +91,4 @@ void PUDoAffectorEventHandler::copyAttributesTo(PUEventHandler* eventHandler)
     doAffectorEventHandler->setPrePost(_prePost);
 }
 
-NS_CC_END
+NS_AX_END

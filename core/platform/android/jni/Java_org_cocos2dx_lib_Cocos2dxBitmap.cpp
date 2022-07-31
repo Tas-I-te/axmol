@@ -3,7 +3,7 @@ Copyright (c) 2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ THE SOFTWARE.
 
 static const char* className = "org.cocos2dx.lib.Cocos2dxBitmap";
 
-using namespace cocos2d;
+USING_NS_AX;
 
 int getFontSizeAccordingHeightJni(int height)
 {

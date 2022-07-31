@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "base/ccMacros.h"
 #include "base/CCData.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 struct FontDefinition;
 
@@ -44,7 +44,7 @@ struct FontDefinition;
  * @class Device
  * @brief
  */
-class CC_DLL Device
+class AX_DLL Device
 {
 public:
     /** Defines the alignment of text. */
@@ -104,12 +104,12 @@ public:
                                       bool& hasPremultipliedAlpha);
 
 private:
-    CC_DISALLOW_IMPLICIT_CONSTRUCTORS(Device);
+    AX_DISALLOW_IMPLICIT_CONSTRUCTORS(Device);
 };
 
 // end group
 /// @}
 
-NS_CC_END
+NS_AX_END
 
 #endif /* __CCDEVICE_H__ */

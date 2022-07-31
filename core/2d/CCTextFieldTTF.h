@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://adxeproject.github.io/
+https://axis-project.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __CC_TEXT_FIELD_H__
-#define __CC_TEXT_FIELD_H__
+#ifndef __AX_TEXT_FIELD_H__
+#define __AX_TEXT_FIELD_H__
 
 #include "2d/CCLabel.h"
 #include "base/CCIMEDelegate.h"
@@ -34,14 +34,14 @@ THE SOFTWARE.
  * @addtogroup ui
  * @{
  */
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class TextFieldTTF;
 
 /**
  * A input protocol for TextField.
  */
-class CC_DLL TextFieldDelegate
+class AX_DLL TextFieldDelegate
 {
 public:
     /**
@@ -79,7 +79,7 @@ public:
 /**
  *@brief    A simple text input field with TTF font.
  */
-class CC_DLL TextFieldTTF : public Label, public IMEDelegate
+class AX_DLL TextFieldTTF : public Label, public IMEDelegate
 {
 public:
     /**
@@ -296,8 +296,8 @@ private:
     LengthStack* _lens;
 };
 
-NS_CC_END
+NS_AX_END
 // end of ui group
 /// @}
 
-#endif  // __CC_TEXT_FIELD_H__
+#endif  // __AX_TEXT_FIELD_H__

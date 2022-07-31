@@ -4,7 +4,7 @@
  Copyright (c) 2018-2020 simdsoft.com, @HALX99
  Copyright (c) 2021 Bytedance Inc.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,12 +38,12 @@
 #include "audio/AudioMacros.h"
 #include "audio/alconfig.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class AudioEngineImpl;
 class AudioPlayer;
 
-class CC_DLL AudioCache
+class AX_DLL AudioCache
 {
 public:
     enum class State
@@ -108,4 +108,4 @@ protected:
     friend class AudioPlayer;
 };
 
-NS_CC_END
+NS_AX_END

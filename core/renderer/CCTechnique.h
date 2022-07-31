@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://adxeproject.github.io/
+ https://axis-project.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@
 #include "platform/CCPlatformMacros.h"
 #include "base/CCVector.h"
 
-NS_CC_BEGIN
+NS_AX_BEGIN
 
 class Pass;
 class Material;
@@ -46,7 +46,7 @@ class ProgramState;
 }
 
 /// Technique
-class CC_DLL Technique : public Ref
+class AX_DLL Technique : public Ref
 {
     friend class Material;
     friend class Renderer;
@@ -99,4 +99,4 @@ protected:
     Material* _material = nullptr;
 };
 
-NS_CC_END
+NS_AX_END
