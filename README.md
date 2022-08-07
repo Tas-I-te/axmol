@@ -99,16 +99,35 @@ Open [APPENDIX.md](APPENDIX.md) for additional information and see [Milestones](
 See [windows workflow guide](https://github.com/axis-project/axis/issues/564)
 
 #### Android
+
+##### With Android Studio
   1. Install Android Studio 2021.1.1+
   2. When starting Android Studio for the first time, It will guide you to install the SDK and other tools, just install them
   3. Start Android and choose [Open an existing Android Studio Project] and select ```axis\tests\cpp-tests\proj.android```
   4. Start Android Studio and Open [Tools][SDKManager], then switch to ```SDK Tools```, check the ```Show Package Details```, choose the following tools and click the button ```Apply``` to install them:  
-     * Android SDK Platform 29 r5  
-     * Android SDK Build-Tools 29.0.2  
+     * Android SDK Platform 33  
+     * Android Gradle Plugin (AGP) 7.2.2  
+     * Android SDK Build-Tools 30.0.3 match with AGP
+     * Gradle 7.4.2  
      * NDK r23c+  
-     * CMake 3.10+  
+     * CMake 3.22.1+  
   5. Wait for ```Gradle sync``` finish.
   6. Note: If you use non-sdk provided CMake edition, you will need to download ```ninja``` from https://github.com/ninja-build/ninja/releases, and copy ```ninja.exe``` to cmake's bin directory
+  
+##### Without Android Studio
+  1. Download command-tools from https://developer.android.com/studio#command-tools
+  2. Install Android devtools (for example in windows)
+  ```bat
+  # unzip command-tools at D:\dev\adt\
+  # Install android devtools
+  cd D:\dev\adt\
+  mkdir sdk
+  .\cmdline-tools\bin\sdkmanager.bat --verbose --sdk_root=D:\dev\adt\sdk "platform-tools" "cmdline-tools;latest" "platforms;android-33" "build-tools;30.0.3" "cmake;3.22.1" "ndk;23.2.8568313"
+  set ANDROID_HOME=D:\dev\adt\sdk
+  
+  # Goto xxx\proj.android
+  .\gradlew.bat assembleRelease -PPROP_BUILD_TYPE=cmake -PPROP_APP_ABI=arm64-v8a --parallel --info
+  ```
 
 #### iOS
   1. Ensure xcode12+ & [cmake3.21+](https://github.com/Kitware/CMake/releases) are installed, install cmake command line support: ```sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install```
@@ -130,6 +149,13 @@ See [windows workflow guide](https://github.com/axis-project/axis/issues/564)
 ### New Project
 - Cpp: `axis new -p org.axis.hellocpp -d D:\dev\projects\ -l cpp --portrait HelloCpp`
 - Lua: `axis new -p org.axis.hellolua -d D:\dev\projects\ -l lua --portrait HelloLua`
+
+### Some interesting related projects based on axis
+
+- https://github.com/solan-solan/HeightMap/tree/smooth_lod_passing
+- https://github.com/wzhengsen/StarryX
+- https://github.com/aismann/SimpleSnake
+- https://github.com/EugenyN/TanksKombat
 
 ### Notes
   * ThreadLocalStorage (TLS) 
