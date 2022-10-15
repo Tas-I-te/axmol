@@ -5,7 +5,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -358,3 +358,25 @@ THE SOFTWARE.
 #ifndef AX_META_TEXTURES
 #    define AX_META_TEXTURES 2
 #endif
+
+/// @name namespace ax
+/// @{
+#ifdef __cplusplus
+#    define NS_AX_BEGIN   \
+        namespace ax \
+        {
+#    define NS_AX_END }
+#    define USING_NS_AX using namespace ax
+#    define NS_AX ::ax
+#else
+#    define NS_AX_BEGIN
+#    define NS_AX_END
+#    define USING_NS_AX
+#    define NS_AX
+#endif
+
+namespace ax {}
+namespace axis = ax; // DEPRECATED
+namespace axmol = ax; // DEPRECATED
+//  end of namespace group
+/// @}

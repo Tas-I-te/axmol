@@ -26,11 +26,11 @@
 #ifndef _SPINETEST_H_
 #define _SPINETEST_H_
 
-#include "cocos2d.h"
+#include "axmol.h"
 #include "../BaseTest.h"
 #include <spine/spine-cocos2dx.h>
 
-#ifdef AXIS_DEBUG
+#ifdef _AX_DEBUG
 #    include <spine/Debug.h>
 #endif
 
@@ -45,7 +45,7 @@ public:
 
 private:
     std::vector<std::string> _searchPaths;
-#ifdef AXIS_DEBUG
+#ifdef _AX_DEBUG
     spine::DebugExtension* debugExtension = nullptr;
 #endif
 };

@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -60,21 +60,21 @@ int Application::run()
     }
 
     std::chrono::steady_clock::time_point lastTime{};
-    
+
     constexpr std::chrono::nanoseconds _1ms{1000000};
 
     auto director = Director::getInstance();
-    auto glview   = director->getOpenGLView();
+    auto glView   = director->getOpenGLView();
 
-    // Retain glview to avoid glview being released in the while loop
-    glview->retain();
+    // Retain glView to avoid glView being released in the while loop
+    glView->retain();
 
-    while (!glview->windowShouldClose())
+    while (!glView->windowShouldClose())
     {
         lastTime = std::chrono::steady_clock::now();
 
         director->mainLoop();
-        glview->pollEvents();
+        glView->pollEvents();
 
         auto interval = std::chrono::steady_clock::now() - lastTime;
         auto waitDuration = _animationInterval - interval - _1ms;
@@ -89,13 +89,13 @@ int Application::run()
      *  when we want to close the window, we should call Director::end();
      *  then call Director::mainLoop to do release of internal resources
      */
-    if (glview->isOpenGLReady())
+    if (glView->isOpenGLReady())
     {
         director->end();
         director->mainLoop();
     }
 
-    glview->release();
+    glView->release();
 
     return 0;
 }

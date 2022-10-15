@@ -4,8 +4,9 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+Copyright (c) 2022      @aismann; Peter Eismann, Germany; dreifrankensoft
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -166,7 +167,7 @@ public:
      * std::vector<Vec2> points = ap.trace(rect);//default threshold is 0.0
      * @endcode
      */
-    std::vector<Vec2> trace(const axis::Rect& rect, float threshold = 0.0f);
+    std::vector<Vec2> trace(const ax::Rect& rect, float threshold = 0.0f);
 
     /**
      * reduce the amount of points so its faster for GPU to process and draw
@@ -254,27 +255,27 @@ public:
      * auto sp = Sprite::create(AutoPolygon::generatePolygon("grossini.png"));
      * @endcode
      */
-    static PolygonInfo generatePolygon(std::string_view filename,
-                                       const Rect& rect = Rect::ZERO,
-                                       float epsilon    = 2.0f,
-                                       float threshold  = 0.05f);
+    static PolygonInfo generatePolygon(std::string_view filename, 
+                                       const Rect& rect = Rect::ZERO, 
+                                       float epsilon = 2.0f,  
+                                       float threshold = 0.05f);
 
 protected:
     Vec2 findFirstNoneTransparentPixel(const Rect& rect, float threshold);
-    std::vector<axis::Vec2> marchSquare(const Rect& rect, const Vec2& first, float threshold);
+    std::vector<ax::Vec2> marchSquare(const Rect& rect, const Vec2& first, float threshold);
     unsigned int getSquareValue(unsigned int x, unsigned int y, const Rect& rect, float threshold);
 
     unsigned char getAlphaByIndex(unsigned int i);
     unsigned char getAlphaByPos(const Vec2& pos);
 
     int getIndexFromPos(unsigned int x, unsigned int y) { return y * _width + x; }
-    axis::Vec2 getPosFromIndex(unsigned int i)
+    ax::Vec2 getPosFromIndex(unsigned int i)
     {
-        return axis::Vec2(static_cast<float>(i % _width), static_cast<float>(i / _width));
+        return ax::Vec2(static_cast<float>(i % _width), static_cast<float>(i / _width));
     }
 
-    std::vector<axis::Vec2> rdp(const std::vector<axis::Vec2>& v, float optimization);
-    float perpendicularDistance(const axis::Vec2& i, const axis::Vec2& start, const axis::Vec2& end);
+    std::vector<ax::Vec2> rdp(const std::vector<ax::Vec2>& v, float optimization);
+    float perpendicularDistance(const ax::Vec2& i, const ax::Vec2& start, const ax::Vec2& end);
 
     // real rect is the size that is in scale with the texture file
     Rect getRealRect(const Rect& rect);

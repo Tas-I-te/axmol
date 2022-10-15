@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
  ****************************************************************************/
 #pragma once
 
-#include "cocos2d.h"
+#include "axmol.h"
 #include "../BaseTest.h"
 
 #include <string>
@@ -53,6 +53,18 @@ public:
     CREATE_FUNC(Issue11942Test);
 
     Issue11942Test();
+
+    virtual std::string title() const override;
+    virtual std::string subtitle() const override;
+};
+
+class Issue829Test : public DrawPrimitivesBaseTest
+{
+public:
+    CREATE_FUNC(Issue829Test);
+
+    Issue829Test();
+    void drawDirection(const ax::Vec2* vec, const int size, ax::Vec2 offset);
 
     virtual std::string title() const override;
     virtual std::string subtitle() const override;

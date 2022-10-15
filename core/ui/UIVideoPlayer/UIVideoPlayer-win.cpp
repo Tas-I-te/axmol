@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2022 Bytedance Inc.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,6 @@
 #    include "platform/CCFileUtils.h"
 #    include "ui/UIHelper.h"
 #    include "ui/UIVideoPlayer/MFMediaPlayer.h"
-#    include "renderer/backend/ProgramCache.h"
 #    include "yasio/detail/byte_buffer.hpp"
 #    include "ntcvt/ntcvt.hpp"
 #    include "ui/LayoutHelper.h"
@@ -54,7 +53,7 @@ USING_NS_AX;
             (ps)->setUniform(__loc, &__v, sizeof(__v));           \
         } while (false)
 
-using namespace axis::ui;
+using namespace ax::ui;
 
 namespace
 {
@@ -325,7 +324,7 @@ VideoPlayer::VideoPlayer()
     }
     else
     {
-        axis::log("Create VideoPlayer backend failed, hr=%d", (int)hr);
+        ax::log("Create VideoPlayer backend failed, hr=%d", (int)hr);
     }
 }
 
@@ -390,7 +389,7 @@ void VideoPlayer::setStyle(StyleType style)
 
 void VideoPlayer::draw(Renderer* renderer, const Mat4& transform, uint32_t flags)
 {
-    axis::ui::Widget::draw(renderer, transform, flags);
+    ax::ui::Widget::draw(renderer, transform, flags);
 
     auto pvd     = (PrivateVideoDescriptor*)_videoContext;  //
     auto vrender = pvd->_vrender;
@@ -414,7 +413,7 @@ void VideoPlayer::draw(Renderer* renderer, const Mat4& transform, uint32_t flags
             {
                 pvd->_vtexture = new Texture2D();
 
-                auto programCache = backend::ProgramCache::getInstance();
+                auto programManager = ProgramManager::getInstance();
 
                 auto& sampleOutFormat = pvd->_vplayer->GetVideoOutputFormat();
 
@@ -430,10 +429,11 @@ void VideoPlayer::draw(Renderer* renderer, const Mat4& transform, uint32_t flags
                 case VideoSampleFormat::YUY2:
                 case VideoSampleFormat::NV12:
                 {
-                    programCache->registerCustomProgramFactory(
+                    programManager->registerCustomProgramFactory(
                         VIDEO_PROGRAM_ID, positionTextureColor_vert,
-                        std::string{pvd->_sampleFormat == VideoSampleFormat::NV12 ? NV12_FRAG : YUY2_FRAG});
-                    auto program = programCache->getCustomProgram(VIDEO_PROGRAM_ID);
+                        std::string{pvd->_sampleFormat == VideoSampleFormat::NV12 ? NV12_FRAG : YUY2_FRAG},
+                        VertexLayoutHelper::setupSprite);
+                    auto program = programManager->getCustomProgram(VIDEO_PROGRAM_ID);
                     pvd->_vrender->setProgramState(new backend::ProgramState(program), false);
                     break;
                 }
@@ -635,7 +635,7 @@ bool VideoPlayer::isUserInputEnabled() const
 
 void VideoPlayer::setVisible(bool visible)
 {
-    axis::ui::Widget::setVisible(visible);
+    ax::ui::Widget::setVisible(visible);
 }
 
 void VideoPlayer::onEnter()
@@ -664,7 +664,7 @@ void VideoPlayer::onPlayEvent(int event)
     }
 }
 
-axis::ui::Widget* VideoPlayer::createCloneInstance()
+ax::ui::Widget* VideoPlayer::createCloneInstance()
 {
     return VideoPlayer::create();
 }

@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -41,13 +41,6 @@ NavMeshDebugDraw::NavMeshDebugDraw()
     auto* program = backend::Program::getBuiltinProgram(backend::ProgramType::POSITION_COLOR);
     _programState = new backend::ProgramState(program);
     _locMVP       = _programState->getUniformLocation("u_MVPMatrix");
-
-    auto vertexLayout = _programState->getVertexLayout();
-    vertexLayout->setAttribute("a_position", _programState->getAttributeLocation("a_position"),
-                               backend::VertexFormat::FLOAT3, offsetof(V3F_C4F, position), false);
-    vertexLayout->setAttribute("a_color", _programState->getAttributeLocation("a_color"), backend::VertexFormat::FLOAT4,
-                               offsetof(V3F_C4F, color), false);
-    vertexLayout->setLayout(sizeof(V3F_C4F));
 }
 
 void NavMeshDebugDraw::initCustomCommand(CustomCommand& command)
@@ -83,7 +76,7 @@ void NavMeshDebugDraw::vertex(const float x, const float y, const float z, unsig
     if (!_currentPrimitive)
         return;
     V3F_C4F vertex = {Vec3(x, y, z), getColor(color)};
-    _vertices.push_back(vertex);
+    _vertices.emplace_back(vertex);
     _dirtyBuffer = true;
 }
 
@@ -123,7 +116,7 @@ void NavMeshDebugDraw::end()
     if (!_currentPrimitive)
         return;
     _currentPrimitive->end = _vertices.size();
-    _primitiveList.push_back(_currentPrimitive);
+    _primitiveList.emplace_back(_currentPrimitive);
     _currentPrimitive = nullptr;
 }
 

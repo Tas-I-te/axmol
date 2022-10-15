@@ -6,7 +6,7 @@ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2020 C4games Ltd.
 Copyright (c) 2021-2022 Bytedance Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -193,7 +193,7 @@ bool Texture2D::updateWithImage(Image* image, backend::PixelFormat format, int i
 {
     if (image == nullptr)
     {
-        AXLOG("cocos2d: Texture2D. Can't create Texture. UIImage is nil");
+        AXLOG("axmol: Texture2D. Can't create Texture. UIImage is nil");
         return false;
     }
 
@@ -208,7 +208,7 @@ bool Texture2D::updateWithImage(Image* image, backend::PixelFormat format, int i
     int maxTextureSize = conf->getMaxTextureSize();
     if (imageWidth > maxTextureSize || imageHeight > maxTextureSize)
     {
-        AXLOG("cocos2d: WARNING: Image (%u x %u) is bigger than the supported %u x %u", imageWidth, imageHeight,
+        AXLOG("axmol: WARNING: Image (%u x %u) is bigger than the supported %u x %u", imageWidth, imageHeight,
               maxTextureSize, maxTextureSize);
         return false;
     }
@@ -244,7 +244,7 @@ bool Texture2D::updateWithImage(Image* image, backend::PixelFormat format, int i
     {
         if (renderFormat != image->getPixelFormat())
         {
-            AXLOG("cocos2d: WARNING: This image has more than 1 mipmaps and we will not convert the data format");
+            AXLOG("axmol: WARNING: This image has more than 1 mipmaps and we will not convert the data format");
         }
 
         // pixel format of data is not converted, renderFormat can be different from pixelFormat
@@ -300,14 +300,14 @@ bool Texture2D::updateWithMipmaps(MipmapInfo* mipmaps,
 
     if (mipmapsNum <= 0)
     {
-        AXLOG("cocos2d: WARNING: mipmap number is less than 1");
+        AXLOG("axmol: WARNING: mipmap number is less than 1");
         return false;
     }
 
     auto& pfd = backend::PixelFormatUtils::getFormatDescriptor(pixelFormat);
     if (!pfd.bpp)
     {
-        AXLOG("cocos2d: WARNING: unsupported pixelformat: %x", (uint32_t)pixelFormat);
+        AXLOG("axmol: WARNING: unsupported pixelformat: %x", (uint32_t)pixelFormat);
 #ifdef AX_USE_METAL
         AXASSERT(false, "pixeformat not found in _pixelFormatInfoTables, register required!");
 #endif
@@ -320,7 +320,7 @@ bool Texture2D::updateWithMipmaps(MipmapInfo* mipmaps,
         !Configuration::getInstance()->supportsETC2() && !Configuration::getInstance()->supportsS3TC() &&
         !Configuration::getInstance()->supportsASTC() && !Configuration::getInstance()->supportsATITC())
     {
-        AXLOG("cocos2d: WARNING: PVRTC/ETC images are not supported");
+        AXLOG("axmol: WARNING: PVRTC/ETC images are not supported");
         return false;
     }
 
@@ -446,7 +446,7 @@ bool Texture2D::initWithImage(Image* image, backend::PixelFormat format)
 {
     if (image == nullptr)
     {
-        AXLOG("cocos2d: Texture2D. Can't create Texture. UIImage is nil");
+        AXLOG("axmol: Texture2D. Can't create Texture. UIImage is nil");
         return false;
     }
 
@@ -678,7 +678,7 @@ bool Texture2D::isContain9PatchInfo() const
     return nullptr != _ninePatchInfo;
 }
 
-const Rect& Texture2D::getSpriteFrameCapInset(axis::SpriteFrame* spriteFrame) const
+const Rect& Texture2D::getSpriteFrameCapInset(ax::SpriteFrame* spriteFrame) const
 {
     AXASSERT(_ninePatchInfo != nullptr,
              "Can't get the sprite frame capInset when the texture contains no 9-patch info.");
@@ -733,25 +733,11 @@ void Texture2D::initProgram()
     auto& pipelineDescriptor = _customCommand.getPipelineDescriptor();
     // create program state
     auto* program      = backend::Program::getBuiltinProgram(backend::ProgramType::POSITION_TEXTURE);
-    _programState      = new axis::backend::ProgramState(program);
+    _programState      = new ax::backend::ProgramState(program);
     _mvpMatrixLocation = _programState->getUniformLocation("u_MVPMatrix");
     _textureLocation   = _programState->getUniformLocation("u_tex0");
 
     pipelineDescriptor.programState = _programState;
-
-    // setup vertex layout
-    auto vertexLayout = _programState->getVertexLayout();
-    auto attributes   = _programState->getProgram()->getActiveAttributes();
-    auto iter         = attributes.find("a_position");
-    if (iter != attributes.end())
-        vertexLayout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT2, 0, false);
-
-    iter = attributes.find("a_texCoord");
-    if (iter != attributes.end())
-        vertexLayout->setAttribute("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2,
-                                   2 * sizeof(float), false);
-
-    vertexLayout->setLayout(4 * sizeof(float));
 
     // create vertex buffer
     _customCommand.setDrawType(CustomCommand::DrawType::ARRAY);

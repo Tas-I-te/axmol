@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -39,15 +39,6 @@ StencilStateManager::StencilStateManager()
     auto* program                   = backend::Program::getBuiltinProgram(backend::ProgramType::POSITION_UCOLOR);
     _programState                   = new backend::ProgramState(program);
     pipelineDescriptor.programState = _programState;
-
-    auto vertexLayout         = _programState->getVertexLayout();
-    const auto& attributeInfo = _programState->getProgram()->getActiveAttributes();
-    auto iter                 = attributeInfo.find("a_position");
-    if (iter != attributeInfo.end())
-    {
-        vertexLayout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT2, 0, false);
-    }
-    vertexLayout->setLayout(2 * sizeof(float));
 
     _mvpMatrixLocaiton    = pipelineDescriptor.programState->getUniformLocation("u_MVPMatrix");
     _colorUniformLocation = pipelineDescriptor.programState->getUniformLocation("u_color");

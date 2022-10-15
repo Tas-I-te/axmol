@@ -7,7 +7,7 @@ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2020 C4games Ltd.
 Copyright (c) 2021-2022 Bytedance Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -218,9 +218,9 @@ void TextureCache::addImageAsync(std::string_view path,
     AsyncStruct* data = new AsyncStruct(fullpath, callback, callbackKey);
 
     // add async struct into queue
-    _asyncStructQueue.push_back(data);
+    _asyncStructQueue.emplace_back(data);
     std::unique_lock<std::mutex> ul(_requestMutex);
-    _requestQueue.push_back(data);
+    _requestQueue.emplace_back(data);
     _sleepCondition.notify_one();
 }
 
@@ -293,7 +293,7 @@ void TextureCache::loadImage()
         }
         // push the asyncStruct to response queue
         _responseMutex.lock();
-        _responseQueue.push_back(asyncStruct);
+        _responseQueue.emplace_back(asyncStruct);
         _responseMutex.unlock();
     }
 }
@@ -362,7 +362,7 @@ void TextureCache::addImageAsyncCallBack(float /*dt*/)
             else
             {
                 texture = nullptr;
-                AXLOG("cocos2d: failed to call TextureCache::addImageAsync(%s)", asyncStruct->filename.c_str());
+                AXLOG("axmol: failed to call TextureCache::addImageAsync(%s)", asyncStruct->filename.c_str());
             }
         }
 
@@ -445,7 +445,7 @@ Texture2D* TextureCache::addImage(std::string_view path, PixelFormat format)
             }
             else
             {
-                AXLOG("cocos2d: Couldn't create texture for file:%s in TextureCache", path.data());
+                AXLOG("axmol: Couldn't create texture for file:%s in TextureCache", path.data());
                 AX_SAFE_RELEASE(texture);
                 texture = nullptr;
             }
@@ -457,7 +457,7 @@ Texture2D* TextureCache::addImage(std::string_view path, PixelFormat format)
     return texture;
 }
 
-void TextureCache::parseNinePatchImage(axis::Image* image, axis::Texture2D* texture, std::string_view path)
+void TextureCache::parseNinePatchImage(ax::Image* image, ax::Texture2D* texture, std::string_view path)
 {
     if (NinePatchImageParser::isNinePatchImage(path))
     {
@@ -497,7 +497,7 @@ Texture2D* TextureCache::addImage(Image* image, std::string_view key, PixelForma
         {
             AX_SAFE_RELEASE(texture);
             texture = nullptr;
-            AXLOG("cocos2d: initWithImage failed!");
+            AXLOG("axmol: initWithImage failed!");
         }
 
     } while (0);
@@ -565,7 +565,7 @@ void TextureCache::removeUnusedTextures()
         Texture2D* tex = it->second;
         if (tex->getReferenceCount() == 1)
         {
-            AXLOG("cocos2d: TextureCache: removing unused texture: %s", it->first.c_str());
+            AXLOG("axmol: TextureCache: removing unused texture: %s", it->first.c_str());
 
             tex->release();
             it = _textures.erase(it);
@@ -629,7 +629,7 @@ Texture2D* TextureCache::getTextureForKey(std::string_view textureKeyName) const
     return nullptr;
 }
 
-std::string TextureCache::getTextureFilePath(axis::Texture2D* texture) const
+std::string TextureCache::getTextureFilePath(ax::Texture2D* texture) const
 {
     for (auto&& item : _textures)
     {
@@ -774,7 +774,7 @@ VolatileTexture* VolatileTextureMgr::findVolotileTexture(Texture2D* tt)
     if (!vt)
     {
         vt = new VolatileTexture(tt);
-        _textures.push_back(vt);
+        _textures.emplace_back(vt);
     }
 
     return vt;

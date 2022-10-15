@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://axis-project.github.io
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,7 @@
 #include "platform/CCSAXParser.h"
 
 USING_NS_AX;
-using namespace axis::ui;
+using namespace ax::ui;
 
 class ListenerComponent : public Component
 {
@@ -65,7 +65,7 @@ public:
     {
         setName(ListenerComponent::COMPONENT_NAME);
 
-        _touchListener                 = axis::EventListenerTouchAllAtOnce::create();
+        _touchListener                 = ax::EventListenerTouchAllAtOnce::create();
         _touchListener->onTouchesEnded = AX_CALLBACK_2(ListenerComponent::onTouchesEnded, this);
 
         Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(_touchListener, _parent);
@@ -235,7 +235,7 @@ void RichElementImage::setUrl(std::string_view url)
 RichElementCustomNode* RichElementCustomNode::create(int tag,
                                                      const Color3B& color,
                                                      uint8_t opacity,
-                                                     axis::Node* customNode)
+                                                     ax::Node* customNode)
 {
     RichElementCustomNode* element = new RichElementCustomNode();
     if (element->init(tag, color, opacity, customNode))
@@ -247,7 +247,7 @@ RichElementCustomNode* RichElementCustomNode::create(int tag,
     return nullptr;
 }
 
-bool RichElementCustomNode::init(int tag, const Color3B& color, uint8_t opacity, axis::Node* customNode)
+bool RichElementCustomNode::init(int tag, const Color3B& color, uint8_t opacity, ax::Node* customNode)
 {
     if (RichElement::init(tag, color, opacity))
     {
@@ -454,30 +454,73 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText) : _fontElements(20), _richText(ri
 
     MyXMLVisitor::setTagDescription("img", false, [](const ValueMap& tagAttrValueMap) {
         // supported attributes:
-        // src, height, width
+        // src, height, width, scaleX, scaleY, scale
         std::string src;
         int height                     = -1;
         int width                      = -1;
+        float scaleX                   = 1.f;
+        float scaleY                   = 1.f;
         Widget::TextureResType resType = Widget::TextureResType::LOCAL;
 
-        if (tagAttrValueMap.find("src") != tagAttrValueMap.end())
+        auto it = tagAttrValueMap.find("src");
+        if (it != tagAttrValueMap.end())
         {
-            src = tagAttrValueMap.at("src").asString();
+            src = it->second.asString();
         }
-        if (tagAttrValueMap.find("height") != tagAttrValueMap.end())
+
+        it = tagAttrValueMap.find("height");
+        if (it != tagAttrValueMap.end())
         {
-            height = tagAttrValueMap.at("height").asInt();
+            auto str = it->second.asStringRef();
+            if (!str.empty() && str[str.length() - 1] == '%')
+            {
+                scaleY = std::atoi(str.data()) / 100.f;
+            }
+            else
+            {
+                height = it->second.asInt();
+            }
         }
-        if (tagAttrValueMap.find("width") != tagAttrValueMap.end())
+
+        it = tagAttrValueMap.find("width");
+        if (it != tagAttrValueMap.end())
         {
-            width = tagAttrValueMap.at("width").asInt();
+            auto str = it->second.asStringRef();
+            if (!str.empty() && str[str.length() - 1] == '%')
+            {
+                scaleX = std::atoi(str.data()) / 100.f;
+            }
+            else
+            {
+                width = it->second.asInt();
+            }
         }
-        if (tagAttrValueMap.find("type") != tagAttrValueMap.end())
+
+        it = tagAttrValueMap.find("scaleX");
+        if (it != tagAttrValueMap.end())
+        {
+            scaleX = it->second.asFloat();
+        }
+
+        it = tagAttrValueMap.find("scaleY");
+        if (it != tagAttrValueMap.end())
+        {
+            scaleY = it->second.asFloat();
+        }
+
+        it = tagAttrValueMap.find("scale");
+        if (it != tagAttrValueMap.end())
+        {
+            scaleX = scaleY = it->second.asFloat();
+        }
+
+        it = tagAttrValueMap.find("type");
+        if (it != tagAttrValueMap.end())
         {
             // texture type
             // 0: normal file path
             // 1: sprite frame name
-            int type = tagAttrValueMap.at("type").asInt();
+            int type = it->second.asInt();
             resType  = type == 0 ? Widget::TextureResType::LOCAL : Widget::TextureResType::PLIST;
         }
 
@@ -485,10 +528,13 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText) : _fontElements(20), _richText(ri
         if (src.length())
         {
             elementImg = RichElementImage::create(0, Color3B::WHITE, 255, src, "", resType);
-            if (0 <= height)
+            if (height >= 0)
                 elementImg->setHeight(height);
-            if (0 <= width)
+            if (width >= 0)
                 elementImg->setWidth(width);
+
+            elementImg->setScaleX(scaleX);
+            elementImg->setScaleY(scaleY);
         }
         return make_pair(ValueMap(), elementImg);
     });
@@ -689,7 +735,7 @@ void MyXMLVisitor::startElement(void* /*ctx*/, const char* elementName, const ch
             auto result                = tagBehavior.handleVisitEnter(tagAttrValueMap);
             ValueMap& attrValueMap     = result.first;
             RichElement* richElement   = result.second;
-            if (!attrValueMap.empty())
+            if (tagBehavior.isFontElement)
             {
                 Attributes attributes;
 
@@ -895,7 +941,7 @@ void MyXMLVisitor::textHandler(void* /*ctx*/, const char* str, size_t len)
 
 void MyXMLVisitor::pushBackFontElement(const MyXMLVisitor::Attributes& attribs)
 {
-    _fontElements.push_back(attribs);
+    _fontElements.emplace_back(attribs);
 }
 
 void MyXMLVisitor::popBackFontElement()
@@ -1106,7 +1152,7 @@ RichText::HorizontalAlignment RichText::getHorizontalAlignment() const
     return static_cast<RichText::HorizontalAlignment>(_defaults.at(KEY_HORIZONTAL_ALIGNMENT).asInt());
 }
 
-void RichText::setHorizontalAlignment(axis::ui::RichText::HorizontalAlignment a)
+void RichText::setHorizontalAlignment(ax::ui::RichText::HorizontalAlignment a)
 {
     if (static_cast<RichText::HorizontalAlignment>(_defaults.at(KEY_HORIZONTAL_ALIGNMENT).asInt()) != a)
     {
@@ -1125,7 +1171,7 @@ std::string RichText::getFontColor()
     return _defaults.at(KEY_FONT_COLOR_STRING).asString();
 }
 
-axis::Color3B RichText::getFontColor3B()
+ax::Color3B RichText::getFontColor3B()
 {
     return color3BWithString(getFontColor());
 }
@@ -1160,7 +1206,7 @@ std::string RichText::getAnchorFontColor()
     return _defaults.at(KEY_ANCHOR_FONT_COLOR_STRING).asString();
 }
 
-axis::Color3B RichText::getAnchorFontColor3B()
+ax::Color3B RichText::getAnchorFontColor3B()
 {
     return color3BWithString(getAnchorFontColor());
 }
@@ -1399,7 +1445,7 @@ ValueMap RichText::getDefaults() const
     return defaults;
 }
 
-axis::Color3B RichText::color3BWithString(std::string_view color)
+ax::Color3B RichText::color3BWithString(std::string_view color)
 {
     if (color.length() == 4)
     {
@@ -1425,7 +1471,7 @@ axis::Color3B RichText::color3BWithString(std::string_view color)
     return Color3B::WHITE;
 }
 
-std::string RichText::stringWithColor3B(const axis::Color3B& color3b)
+std::string RichText::stringWithColor3B(const ax::Color3B& color3b)
 {
     int r = color3b.r;
     int g = color3b.g;
@@ -1435,7 +1481,7 @@ std::string RichText::stringWithColor3B(const axis::Color3B& color3b)
     return std::string(buf, 7);
 }
 
-std::string RichText::stringWithColor4B(const axis::Color4B& color4b)
+std::string RichText::stringWithColor4B(const ax::Color4B& color4b)
 {
     int r = color4b.r;
     int g = color4b.g;
@@ -1462,7 +1508,7 @@ void RichText::openUrl(std::string_view url)
     {
         _handleOpenUrl(url);
     }
-    else
+    else if (!url.empty())
     {
         Application::getInstance()->openURL(url);
     }
@@ -1542,9 +1588,15 @@ void RichText::formatText(bool force)
                     {
                         auto currentSize = elementRenderer->getContentSize();
                         if (elmtImage->_width != -1)
-                            elementRenderer->setScaleX(elmtImage->_width / currentSize.width);
+                            elementRenderer->setScaleX((elmtImage->_width / currentSize.width) * elmtImage->_scaleX);
+                        else
+                            elementRenderer->setScaleX(elmtImage->_scaleX);
+
                         if (elmtImage->_height != -1)
-                            elementRenderer->setScaleY(elmtImage->_height / currentSize.height);
+                            elementRenderer->setScaleY((elmtImage->_height / currentSize.height) * elmtImage->_scaleY);
+                        else
+                            elementRenderer->setScaleY(elmtImage->_scaleY);
+
                         elementRenderer->setContentSize(Vec2(currentSize.width * elementRenderer->getScaleX(),
                                                              currentSize.height * elementRenderer->getScaleY()));
                         elementRenderer->addComponent(
@@ -1598,7 +1650,8 @@ void RichText::formatText(bool force)
                 {
                     RichElementImage* elmtImage = static_cast<RichElementImage*>(element);
                     handleImageRenderer(elmtImage->_filePath, elmtImage->_textureType, elmtImage->_color,
-                                        elmtImage->_opacity, elmtImage->_width, elmtImage->_height, elmtImage->_url);
+                                        elmtImage->_opacity, elmtImage->_width, elmtImage->_height, elmtImage->_url,
+                                        elmtImage->_scaleX, elmtImage->_scaleY);
                     break;
                 }
                 case RichElement::Type::CUSTOM:
@@ -1891,7 +1944,9 @@ void RichText::handleImageRenderer(std::string_view filePath,
                                    uint8_t /*opacity*/,
                                    int width,
                                    int height,
-                                   std::string_view url)
+                                   std::string_view url,
+                                   float scaleX,
+                                   float scaleY)
 {
     Sprite* imageRenderer;
     if (textureType == Widget::TextureResType::LOCAL)
@@ -1906,6 +1961,10 @@ void RichText::handleImageRenderer(std::string_view filePath,
             imageRenderer->setScaleX(width / currentSize.width);
         if (height != -1)
             imageRenderer->setScaleY(height / currentSize.height);
+
+        imageRenderer->setScaleX(imageRenderer->getScaleX() * scaleX);
+        imageRenderer->setScaleY(imageRenderer->getScaleY() * scaleY);
+
         imageRenderer->setContentSize(
             Vec2(currentSize.width * imageRenderer->getScaleX(), currentSize.height * imageRenderer->getScaleY()));
         imageRenderer->setScale(1.f, 1.f);
@@ -1915,7 +1974,7 @@ void RichText::handleImageRenderer(std::string_view filePath,
     }
 }
 
-void RichText::handleCustomRenderer(axis::Node* renderer)
+void RichText::handleCustomRenderer(ax::Node* renderer)
 {
     Vec2 imgSize = renderer->getContentSize();
     _leftSpaceWidth -= imgSize.width;
@@ -2048,7 +2107,7 @@ float getPaddingAmount(const RichText::HorizontalAlignment alignment, const floa
 }
 }  // namespace
 
-void RichText::doHorizontalAlignment(const Vector<axis::Node*>& row, float rowWidth)
+void RichText::doHorizontalAlignment(const Vector<ax::Node*>& row, float rowWidth)
 {
     const auto alignment = static_cast<HorizontalAlignment>(_defaults.at(KEY_HORIZONTAL_ALIGNMENT).asInt());
     if (alignment != HorizontalAlignment::LEFT)
@@ -2076,7 +2135,7 @@ void rtrim(std::string& s)
 }
 }  // namespace
 
-float RichText::stripTrailingWhitespace(const Vector<axis::Node*>& row)
+float RichText::stripTrailingWhitespace(const Vector<ax::Node*>& row)
 {
     if (!row.empty())
     {
@@ -2100,7 +2159,7 @@ void RichText::adaptRenderers()
     this->formatText();
 }
 
-void RichText::pushToContainer(axis::Node* renderer)
+void RichText::pushToContainer(ax::Node* renderer)
 {
     if (_elementRenders.empty())
     {

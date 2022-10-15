@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -131,17 +131,6 @@ void Physics3DDebugDrawer::init()
     auto* program = backend::Program::getBuiltinProgram(backend::ProgramType::POSITION_COLOR);
     _programState = new backend::ProgramState(program);
     _locMVP       = _programState->getUniformLocation("u_MVPMatrix");
-
-    auto attributes  = _programState->getProgram()->getActiveAttributes();
-    auto locPosition = attributes["a_position"];
-    auto locColor    = attributes["a_color"];
-
-    auto layout = _programState->getVertexLayout();
-    layout->setAttribute(locPosition.attributeName.c_str(), locPosition.location, backend::VertexFormat::FLOAT3,
-                         offsetof(V3F_V4F, vertex), false);
-    layout->setAttribute(locColor.attributeName.c_str(), locColor.location, backend::VertexFormat::FLOAT4,
-                         offsetof(V3F_V4F, color), false);
-    layout->setLayout(sizeof(V3F_V4F));
 
     _buffer.reserve(512);
 

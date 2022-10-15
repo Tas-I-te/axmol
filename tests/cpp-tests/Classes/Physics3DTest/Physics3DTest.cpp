@@ -2,8 +2,9 @@
  Copyright (c) 2012 cocos2d-x.org
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+ Copyright (c) 2022 Bytedance Inc.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +33,9 @@
 #include "extensions/Particle3D/PU/CCPUParticleSystem3D.h"
 USING_NS_AX_EXT;
 USING_NS_AX;
+
+static const std::string_view boss[] = {"MeshRendererTest/boss.c3b", "MeshRendererTest/boss.obj"};
+static const int boss_count          = sizeof(boss) / sizeof(boss[0]);
 
 enum
 {
@@ -283,7 +287,7 @@ std::string Physics3DConstraintDemo::subtitle() const
 
 std::string Physics3DKinematicDemo::subtitle() const
 {
-    return "Physics3D Kinematic";
+    return "Physics3D Kinematic + #879";
 }
 
 bool Physics3DKinematicDemo::init()
@@ -305,6 +309,34 @@ bool Physics3DKinematicDemo::init()
     floor->syncNodeToPhysics();
     // static object sync is not needed
     floor->setSyncFlag(Physics3DComponent::PhysicsSyncFlag::NONE);
+
+    // Issue #879 STARTS BELOW
+    {
+        Physics3DRigidBodyDes rbDes;
+        std::string tree1 = "MeshRendererTest/tree-model/tree1.obj";
+
+        float scale = 12.0f;
+        std::vector<Vec3> trianglesList = Bundle3D::getTrianglesList(tree1);
+        for (auto& it : trianglesList)
+        {
+            it *= scale;
+        }
+
+        rbDes.mass = 0.0f;
+        rbDes.shape = Physics3DShape::createMesh(&trianglesList[0], (int)trianglesList.size() / 3);
+        auto rigidBody = Physics3DRigidBody::create(&rbDes);
+        auto component = Physics3DComponent::create(rigidBody);
+        auto sprite = MeshRenderer::create(tree1);
+        sprite->addComponent(component);
+        static_cast<MeshRenderer*>(sprite->getChildren().at(1))->getMaterial(0)->setTransparent(true);
+        static_cast<MeshRenderer*>(sprite->getChildren().at(1))->getMaterial(0)->getStateBlock().setCullFaceSide(CullFaceSide::NONE);
+        sprite->setCameraMask((unsigned short)CameraFlag::USER1 | (unsigned short)CameraFlag::USER2 | (unsigned short)CameraFlag::USER3);
+        sprite->setPosition3D(Vec3(20.0f, 0.0f, 0.0f));
+        sprite->setScale(scale);
+        this->addChild(sprite);
+    }
+    // Issue #879 ENDS HERE
+
 
     // create Kinematics
     for (unsigned int i = 0; i < 3; ++i)
@@ -630,51 +662,56 @@ bool Physics3DTerrainDemo::init()
     }
 
     // create mesh
-    std::vector<Vec3> trianglesList = Bundle3D::getTrianglesList("MeshRendererTest/boss.c3b");
 
-    colliderDes.shape = Physics3DShape::createMesh(&trianglesList[0], (int)trianglesList.size() / 3);
-
-    auto mesh = PhysicsMeshRenderer::createWithCollider("MeshRendererTest/boss.c3b", &colliderDes);
-    mesh->setRotation3D(Vec3(-90.0f, 0.0f, 0.0f));
-    mesh->setPosition3D(Vec3(0.0f, 15.0f, 0.0f));
-    mesh->setCameraMask(2);
-    this->addChild(mesh);
-    mesh->syncNodeToPhysics();
-    mesh->setSyncFlag(Physics3DComponent::PhysicsSyncFlag::NONE);
-
-    std::vector<std::pair<Physics3DShape*, Mat4>> shapeList;
+    for (int i = 0; i < boss_count; i++)
     {
-        Mat4 localTrans;
-        auto bodyshape = Physics3DShape::createBox(Vec3(2.0f, 4.0f, 2.0f));
-        Mat4::createTranslation(0.0f, 2.0f, 0.0f, &localTrans);
-        shapeList.push_back(std::make_pair(bodyshape, localTrans));
-        auto headshape = Physics3DShape::createSphere(1.5f);
-        Mat4::createTranslation(0.6f, 5.0f, -1.5f, &localTrans);
-        shapeList.push_back(std::make_pair(headshape, localTrans));
-        auto lhandshape = Physics3DShape::createBox(Vec3(1.0f, 3.0f, 1.0f));
-        Mat4::createRotation(Vec3(1.0f, 0.0f, 0.0f), AX_DEGREES_TO_RADIANS(15.0f), &localTrans);
-        localTrans.m[12] = -1.5f;
-        localTrans.m[13] = 2.5f;
-        localTrans.m[14] = -2.5f;
-        shapeList.push_back(std::make_pair(lhandshape, localTrans));
-        auto rhandshape = Physics3DShape::createBox(Vec3(1.0f, 3.0f, 1.0f));
-        Mat4::createRotation(Vec3(1.0f, 0.0f, 0.0f), AX_DEGREES_TO_RADIANS(-15.0f), &localTrans);
-        localTrans.m[12] = 2.0f;
-        localTrans.m[13] = 2.5f;
-        localTrans.m[14] = 1.f;
-        shapeList.push_back(std::make_pair(rhandshape, localTrans));
+        std::vector<Vec3> trianglesList = Bundle3D::getTrianglesList(boss[i]);
 
-        rbDes.mass = 10.0f;
-        rbDes.shape = Physics3DShape::createCompoundShape(shapeList);
-        auto rigidBody = Physics3DRigidBody::create(&rbDes);
-        component = Physics3DComponent::create(rigidBody);
-        auto mesh = MeshRenderer::create("MeshRendererTest/orc.c3b");
-        mesh->addComponent(component);
-        mesh->setRotation3D(Vec3(0.0f, 180.0f, 0.0f));
-        mesh->setPosition3D(Vec3(-5.0f, 20.0f, 0.0f));
-        mesh->setScale(0.4f);
+        colliderDes.shape = Physics3DShape::createMesh(&trianglesList[0], (int)trianglesList.size() / 3);
+
+        auto mesh = PhysicsMeshRenderer::createWithCollider(boss[i], &colliderDes);
+        mesh->setRotation3D(Vec3(-90.0f, 0.0f, 0.0f));
+        mesh->setPosition3D(Vec3(-5+ 15.0f *i, 15.0f, 0.0f));
         mesh->setCameraMask(2);
         this->addChild(mesh);
+        mesh->syncNodeToPhysics();
+        mesh->setSyncFlag(Physics3DComponent::PhysicsSyncFlag::NONE);
+
+        std::vector<std::pair<Physics3DShape*, Mat4>> shapeList;
+        {
+            Mat4 localTrans;
+            auto bodyshape = Physics3DShape::createBox(Vec3(2.0f, 4.0f, 2.0f));
+            Mat4::createTranslation(0.0f, 2.0f, 0.0f, &localTrans);
+            shapeList.emplace_back(std::make_pair(bodyshape, localTrans));
+            auto headshape = Physics3DShape::createSphere(1.5f);
+            Mat4::createTranslation(0.6f, 5.0f, -1.5f, &localTrans);
+            shapeList.emplace_back(std::make_pair(headshape, localTrans));
+            auto lhandshape = Physics3DShape::createBox(Vec3(1.0f, 3.0f, 1.0f));
+            Mat4::createRotation(Vec3(1.0f, 0.0f, 0.0f), AX_DEGREES_TO_RADIANS(15.0f), &localTrans);
+            localTrans.m[12] = -1.5f;
+            localTrans.m[13] = 2.5f;
+            localTrans.m[14] = -2.5f;
+            shapeList.emplace_back(std::make_pair(lhandshape, localTrans));
+            auto rhandshape = Physics3DShape::createBox(Vec3(1.0f, 3.0f, 1.0f));
+            Mat4::createRotation(Vec3(1.0f, 0.0f, 0.0f), AX_DEGREES_TO_RADIANS(-15.0f), &localTrans);
+            localTrans.m[12] = 2.0f;
+            localTrans.m[13] = 2.5f;
+            localTrans.m[14] = 1.f;
+            shapeList.emplace_back(std::make_pair(rhandshape, localTrans));
+
+            rbDes.mass = 10.0f;
+            rbDes.shape = Physics3DShape::createCompoundShape(shapeList);
+            auto rigidBody = Physics3DRigidBody::create(&rbDes);
+            component = Physics3DComponent::create(rigidBody);
+            auto mesh = MeshRenderer::create("MeshRendererTest/orc.c3b");
+            mesh->addComponent(component);
+            mesh->setRotation3D(Vec3(0.0f, 180.0f, 0.0f));
+            mesh->setPosition3D(Vec3(-5.0f, 20.0f, 0.0f));
+            mesh->setScale(0.4f);
+            mesh->setCameraMask(2);
+            this->addChild(mesh);
+        }
+
     }
 
     physicsScene->setPhysics3DDebugCamera(_camera);
@@ -683,12 +720,12 @@ bool Physics3DTerrainDemo::init()
 
 std::string Physics3DTerrainDemo::subtitle() const
 {
-    return "Physics3D Terrain";
+    return "Physics3D Terrain Issue #861" ;
 }
 
 std::string Physics3DCollisionCallbackDemo::subtitle() const
 {
-    return "Physics3D CollisionCallback";
+    return "Physics3D CollisionCallback c3b/obj Issue #861";
 }
 
 bool Physics3DCollisionCallbackDemo::init()
@@ -697,53 +734,57 @@ bool Physics3DCollisionCallbackDemo::init()
         return false;
 
     {
-        Physics3DRigidBodyDes rbDes;
-
-        float scale = 2.0f;
-        std::vector<Vec3> trianglesList = Bundle3D::getTrianglesList("MeshRendererTest/boss.c3b");
-        for (auto&& it : trianglesList)
+        for (size_t i = 0; i < boss_count; i++)
         {
-            it *= scale;
-        }
+            Physics3DRigidBodyDes rbDes;
 
-        rbDes.mass = 0.0f;
-        rbDes.shape = Physics3DShape::createMesh(&trianglesList[0], (int)trianglesList.size() / 3);
-        auto rigidBody = Physics3DRigidBody::create(&rbDes);
-        auto component = Physics3DComponent::create(rigidBody);
-        auto mesh = MeshRenderer::create("MeshRendererTest/boss.c3b");
-        mesh->addComponent(component);
-        mesh->setRotation3D(Vec3(-90.0f, 0.0f, 0.0f));
-        mesh->setScale(scale);
-        mesh->setCameraMask((unsigned short)CameraFlag::USER1);
-        this->addChild(mesh);
-        // preload
-        //
-        rigidBody->setCollisionCallback([=](const Physics3DCollisionInfo& ci) {
-            if (!ci.collisionPointList.empty())
+            float scale = 2.0f;
+            std::vector<Vec3> trianglesList = Bundle3D::getTrianglesList(boss[i]);
+            for (auto&& it : trianglesList)
             {
-                if (ci.objA->getMask() != 0)
-                {
-                    auto ps = PUParticleSystem3D::create("Particle3D/scripts/mp_hit_04.pu");
-                    ps->setPosition3D(ci.collisionPointList[0].worldPositionOnB);
-                    ps->setScale(0.05f);
-                    ps->startParticleSystem();
-                    ps->setCameraMask(2);
-                    this->addChild(ps);
-                    ps->runAction(Sequence::create(DelayTime::create(1.0f),
-                                                   CallFunc::create([=]() { ps->removeFromParent(); }), nullptr));
-                    ci.objA->setMask(0);
-                }
+                it *= scale;
             }
-            // AXLOG("------------BoxB Collision Info------------");
-            // AXLOG("Collision Point Num: %d", ci.collisionPointList.size());
-            // for (auto&& iter : ci.collisionPointList){
-            //	AXLOG("Collision Position On A: (%.2f, %.2f, %.2f)", iter.worldPositionOnA.x, iter.worldPositionOnA.y,
-            // iter.worldPositionOnA.z); 	AXLOG("Collision Position On B: (%.2f, %.2f, %.2f)",
-            // iter.worldPositionOnB.x, iter.worldPositionOnB.y, iter.worldPositionOnB.z); 	AXLOG("Collision Normal
-            // On B: (%.2f, %.2f, %.2f)", iter.worldNormalOnB.x, iter.worldNormalOnB.y, iter.worldNormalOnB.z);
-            // }
-            // AXLOG("------------BoxB Collision Info------------");
-        });
+
+            rbDes.mass = 0.0f;
+            rbDes.shape = Physics3DShape::createMesh(&trianglesList[0], (int)trianglesList.size() / 3);
+            auto rigidBody = Physics3DRigidBody::create(&rbDes);
+            auto component = Physics3DComponent::create(rigidBody);
+            auto mesh = MeshRenderer::create(boss[i]);
+            mesh->addComponent(component);
+            mesh->setRotation3D(Vec3(-90.0f, 0.0f, 0.0f));
+            mesh->setPosition3D(Vec3(-5 + 15.0f * i, -5.0f, 0.0f));
+            mesh->setScale(scale);
+            mesh->setCameraMask((unsigned short)CameraFlag::USER1);
+            this->addChild(mesh);
+            // preload
+            //
+            rigidBody->setCollisionCallback([=](const Physics3DCollisionInfo& ci) {
+                if (!ci.collisionPointList.empty())
+                {
+                    if (ci.objA->getMask() != 0)
+                    {
+                        auto ps = PUParticleSystem3D::create("Particle3D/scripts/mp_hit_04.pu");
+                        ps->setPosition3D(ci.collisionPointList[0].worldPositionOnB);
+                        ps->setScale(0.05f);
+                        ps->startParticleSystem();
+                        ps->setCameraMask(2);
+                        this->addChild(ps);
+                        ps->runAction(Sequence::create(DelayTime::create(1.0f),
+                                                       CallFunc::create([=]() { ps->removeFromParent(); }), nullptr));
+                        ci.objA->setMask(0);
+                    }
+                }
+                // AXLOG("------------BoxB Collision Info------------");
+                // AXLOG("Collision Point Num: %d", ci.collisionPointList.size());
+                // for (auto&& iter : ci.collisionPointList){
+                //	AXLOG("Collision Position On A: (%.2f, %.2f, %.2f)", iter.worldPositionOnA.x, iter.worldPositionOnA.y,
+                // iter.worldPositionOnA.z); 	AXLOG("Collision Position On B: (%.2f, %.2f, %.2f)",
+                // iter.worldPositionOnB.x, iter.worldPositionOnB.y, iter.worldPositionOnB.z); 	AXLOG("Collision Normal
+                // On B: (%.2f, %.2f, %.2f)", iter.worldNormalOnB.x, iter.worldNormalOnB.y, iter.worldNormalOnB.z);
+                // }
+                // AXLOG("------------BoxB Collision Info------------");
+            });
+        }
     }
 
     physicsScene->setPhysics3DDebugCamera(_camera);

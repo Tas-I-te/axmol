@@ -6,7 +6,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2020 C4games Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -388,6 +388,26 @@ struct AX_DLL V3F_C4F
     Vec3 vertices;
     /// vertices (4F)
     Color4F colors;
+};
+
+struct V3F_C4B
+{
+    Vec3 vertices;
+    Color4B colors;
+};
+
+struct V3F_T2F_C4F
+{
+    Vec3 position;
+    Vec2 uv;
+    Vec4 color;
+};
+
+struct V3F_T2F_N3F
+{
+    Vec3 position;
+    Tex2F texcoord;
+    Vec3 normal;
 };
 
 /** @struct V2F_C4B_T2F_Triangle

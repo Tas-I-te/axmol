@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -118,7 +118,7 @@ int ProgramMTL::getMaxFragmentLocation() const
     return _fragmentShader->getMaxLocation();
 }
 
-const hlookup::string_map<AttributeBindInfo> ProgramMTL::getActiveAttributes() const
+const hlookup::string_map<AttributeBindInfo>& ProgramMTL::getActiveAttributes() const
 {
     return _vertexShader->getAttributeInfo();
 }

@@ -9,7 +9,7 @@
  * Copyright (c) 2020-2021 C4games Ltd.
  * Copyright (c) 2021 Bytedance Inc.
  *
- * https://axis-project.github.io/
+ * https://axmolengine.github.io/
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,27 +57,6 @@ ParticleBatchNode::ParticleBatchNode()
 
     _mvpMatrixLocaiton = pipelinePS->getUniformLocation("u_MVPMatrix");
     _textureLocation   = pipelinePS->getUniformLocation("u_tex0");
-
-    auto layout               = pipelinePS->getVertexLayout();
-    const auto& attributeInfo = pipelinePS->getProgram()->getActiveAttributes();
-    auto iter                 = attributeInfo.find("a_position");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT3, 0, false);
-    }
-    iter = attributeInfo.find("a_texCoord");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2,
-                             offsetof(V3F_C4B_T2F, texCoords), false);
-    }
-    iter = attributeInfo.find("a_color");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_color", iter->second.location, backend::VertexFormat::UBYTE4,
-                             offsetof(V3F_C4B_T2F, colors), true);
-    }
-    layout->setLayout(sizeof(V3F_C4B_T2F));
 
     _customCommand.setDrawType(CustomCommand::DrawType::ELEMENT);
     _customCommand.setPrimitiveType(CustomCommand::PrimitiveType::TRIANGLE);
@@ -455,7 +434,7 @@ void ParticleBatchNode::draw(Renderer* renderer, const Mat4& transform, uint32_t
     _customCommand.init(_globalZOrder, _blendFunc);
 
     // Texture is set in TextureAtlas.
-    const axis::Mat4& projectionMat = _director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
+    const ax::Mat4& projectionMat = _director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
     Mat4 finalMat                      = projectionMat * transform;
     auto programState                  = _customCommand.getPipelineDescriptor().programState;
     programState->setUniform(_mvpMatrixLocaiton, finalMat.m, sizeof(finalMat.m));
@@ -481,13 +460,13 @@ void ParticleBatchNode::draw(Renderer* renderer, const Mat4& transform, uint32_t
 
 void ParticleBatchNode::increaseAtlasCapacityTo(ssize_t quantity)
 {
-    AXLOG("cocos2d: ParticleBatchNode: resizing TextureAtlas capacity from [%d] to [%d].",
+    AXLOG("axmol: ParticleBatchNode: resizing TextureAtlas capacity from [%d] to [%d].",
           (int)_textureAtlas->getCapacity(), (int)quantity);
 
     if (!_textureAtlas->resizeCapacity(quantity))
     {
         // serious problems
-        AXLOGWARN("cocos2d: WARNING: Not enough memory to resize the atlas");
+        AXLOGWARN("axmol: WARNING: Not enough memory to resize the atlas");
         AXASSERT(false, "XXX: ParticleBatchNode #increaseAtlasCapacity SHALL handle this assert");
     }
 }

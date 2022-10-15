@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 #include "ShaderTest.h"
 #include "../testResource.h"
-#include "cocos2d.h"
+#include "axmol.h"
 #include "renderer/ccShaders.h"
 #include "renderer/backend/Device.h"
 
@@ -102,13 +102,12 @@ bool ShaderNode::initWithVertex(std::string_view vert, std::string_view frag)
     setAnchorPoint(Vec2(0.5f, 0.5f));
 
     // init custom command
-    auto layout     = _programState->getVertexLayout();
     auto attrPosLoc = _programState->getAttributeLocation("a_position");
-    layout->setAttribute("a_position", attrPosLoc, backend::VertexFormat::FLOAT2, 0, false);
+    _programState->setVertexAttrib("a_position", attrPosLoc, backend::VertexFormat::FLOAT2, 0, false);
 
     float w = SIZE_X, h = SIZE_Y;
     Vec2 vertices[6] = {Vec2(0.0f, 0.0f), Vec2(w, 0.0f), Vec2(w, h), Vec2(0.0f, 0.0f), Vec2(0.0f, h), Vec2(w, h)};
-    layout->setLayout(sizeof(Vec2));
+    _programState->setVertexStride(sizeof(Vec2));
 
     /*
      * TODO: the Y-coordinate of subclasses are flipped in metal
@@ -143,7 +142,7 @@ void ShaderNode::loadShaderVertex(std::string_view vert, std::string_view frag)
         std::string vertexFilePath = fileUtiles->fullPathForFilename(vert);
         vertSource                 = fileUtiles->getStringFromFile(vertexFilePath);
     }
-    auto program      = backend::Device::getInstance()->newProgram(vertSource.c_str(), fragSource.c_str());
+    auto program      = ProgramManager::newProgram(vertSource, fragSource, VertexLayoutHelper::setupSprite);
     auto programState = new backend::ProgramState(program);
     setProgramState(programState);
     AX_SAFE_RELEASE(programState);
@@ -452,7 +451,7 @@ void SpriteBlur::initProgram()
     std::string fragSource = FileUtils::getInstance()->getStringFromFile(
         FileUtils::getInstance()->fullPathForFilename("Shaders/example_Blur.fsh"));
 
-    auto program      = backend::Device::getInstance()->newProgram(positionTextureColor_vert, fragSource.data());
+    auto program      = ProgramManager::newProgram(positionTextureColor_vert, fragSource, VertexLayoutHelper::setupSprite);
     auto programState = new backend::ProgramState(program);
     setProgramState(programState);
     AX_SAFE_RELEASE(programState);
@@ -585,7 +584,7 @@ bool ShaderRetroEffect::init()
             FileUtils::getInstance()->fullPathForFilename("Shaders/example_HorizontalColor.fsh"));
         char* fragSource = (char*)fragStr.c_str();
 
-        auto program  = backend::Device::getInstance()->newProgram(positionTextureColor_vert, fragSource);
+        auto program  = ProgramManager::newProgram(positionTextureColor_vert, fragSource, VertexLayoutHelper::setupSprite);
         auto p        = new backend::ProgramState(program);
         auto director = Director::getInstance();
         const auto& screenSizeLocation = p->getUniformLocation("u_screenSize");
@@ -768,7 +767,7 @@ bool ShaderMultiTexture::init()
         auto* fu            = FileUtils::getInstance();
         auto vertexShader   = fu->getStringFromFile("Shaders/example_MultiTexture.vsh");
         auto fragmentShader = fu->getStringFromFile("Shaders/example_MultiTexture.fsh");
-        auto program        = backend::Device::getInstance()->newProgram(vertexShader.c_str(), fragmentShader.c_str());
+        auto program        = ProgramManager::newProgram(vertexShader, fragmentShader, VertexLayoutHelper::setupSprite);
         auto programState   = new backend::ProgramState(program);
         _sprite->setProgramState(programState);
 

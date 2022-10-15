@@ -6,7 +6,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -221,7 +221,7 @@ void TMXMapInfo::startElement(void* /*ctx*/, const char* name, const char** atts
     if (elementName == "map")
     {
         std::string version = attributeDict["version"].asString();
-        AXLOG("cocos2d: TMXFormat: TMX version: %s", version.c_str());
+        AXLOG("axmol: TMXFormat: TMX version: %s", version.c_str());
 
         std::string orientationStr = attributeDict["orientation"].asString();
         if (orientationStr == "orthogonal")
@@ -242,7 +242,7 @@ void TMXMapInfo::startElement(void* /*ctx*/, const char* name, const char** atts
         }
         else
         {
-            AXLOG("cocos2d: TMXFomat: Unsupported orientation: %d", tmxMapInfo->getOrientation());
+            AXLOG("axmol: TMXFomat: Unsupported orientation: %d", tmxMapInfo->getOrientation());
         }
 
         std::string staggerAxisStr = attributeDict["staggeraxis"].asString();
@@ -516,7 +516,7 @@ void TMXMapInfo::startElement(void* /*ctx*/, const char* name, const char** atts
         dict["rotation"] = attributeDict["rotation"].asDouble();
 
         // Add the object to the objectGroup
-        objectGroup->getObjects().push_back(Value(dict));
+        objectGroup->getObjects().emplace_back(Value(dict));
 
         // The parent element is now "object"
         tmxMapInfo->setParentElement(TMXPropertyObject);
@@ -608,7 +608,7 @@ void TMXMapInfo::startElement(void* /*ctx*/, const char* name, const char** atts
                 }
 
                 // add to points array
-                pointsArray.push_back(Value(pointDict));
+                pointsArray.emplace_back(Value(pointDict));
             }
 
             dict["points"] = Value(pointsArray);
@@ -653,7 +653,7 @@ void TMXMapInfo::startElement(void* /*ctx*/, const char* name, const char** atts
                 }
 
                 // add to points array
-                pointsArray.push_back(Value(pointDict));
+                pointsArray.emplace_back(Value(pointDict));
             }
 
             dict["polylinePoints"] = Value(pointsArray);
@@ -694,7 +694,7 @@ void TMXMapInfo::endElement(void* /*ctx*/, const char* name)
                 base64Decode((unsigned char*)currentString.data(), (unsigned int)currentString.length(), &buffer);
             if (!buffer)
             {
-                AXLOG("cocos2d: TiledMap: decode data error");
+                AXLOG("axmol: TiledMap: decode data error");
                 return;
             }
 
@@ -713,7 +713,7 @@ void TMXMapInfo::endElement(void* /*ctx*/, const char* name)
 
                 if (!deflated)
                 {
-                    AXLOG("cocos2d: TiledMap: inflate data error");
+                    AXLOG("axmol: TiledMap: inflate data error");
                     return;
                 }
 
@@ -745,7 +745,7 @@ void TMXMapInfo::endElement(void* /*ctx*/, const char* name)
                 istringstream rowstr(sRow);
                 while (getline(rowstr, sGID, ','))
                 {
-                    gidTokens.push_back(sGID);
+                    gidTokens.emplace_back(sGID);
                 }
             }
 
@@ -753,7 +753,7 @@ void TMXMapInfo::endElement(void* /*ctx*/, const char* name)
             buffer = (unsigned char*)malloc(gidTokens.size() * 4);
             if (!buffer)
             {
-                AXLOG("cocos2d: TiledMap: CSV buffer not allocated.");
+                AXLOG("axmol: TiledMap: CSV buffer not allocated.");
                 return;
             }
 

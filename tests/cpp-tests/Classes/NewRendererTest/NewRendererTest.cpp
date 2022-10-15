@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -74,12 +74,14 @@ private:
 
 NewRendererTests::NewRendererTests()
 {
-    auto programCache = backend::ProgramCache::getInstance();
-    programCache->registerCustomProgramFactory(CustomProgramType::BLUR, positionTextureColor_vert,
-                                               FileUtils::getInstance()->getStringFromFile("Shaders/example_Blur.fsh"));
-    programCache->registerCustomProgramFactory(
+    auto programManager = ProgramManager::getInstance();
+    programManager->registerCustomProgramFactory(CustomProgramType::BLUR, positionTextureColor_vert,
+                                               FileUtils::getInstance()->getStringFromFile("Shaders/example_Blur.fsh"),
+                                               VertexLayoutHelper::setupSprite);
+    programManager->registerCustomProgramFactory(
         CustomProgramType::SEPIA, positionTextureColor_vert,
-        FileUtils::getInstance()->getStringFromFile("Shaders/example_Sepia.fsh"));
+                                               FileUtils::getInstance()->getStringFromFile("Shaders/example_Sepia.fsh"),
+                                               VertexLayoutHelper::setupSprite);
 
     ADD_TEST_CASE(NewSpriteTest);
     ADD_TEST_CASE(GroupCommandTest);
@@ -511,7 +513,7 @@ void SpriteCreation::doTest()
             delete sprite;
             break;
         }
-        spriteCache.push_back(sprite);
+        spriteCache.emplace_back(sprite);
     }
 
     auto creationDuration = perf.endTick(KEY_CREATION);
@@ -573,7 +575,7 @@ std::string SpriteCreation::title() const
 
 std::string SpriteCreation::subtitle() const
 {
-#if defined(AXIS_DEBUG) && AXIS_DEBUG == 1
+#if defined(_AX_DEBUG) && _AX_DEBUG == 1
     return "In debug mode";
 #else
     return "In release mode";
@@ -857,7 +859,7 @@ RendererUniformBatch::RendererUniformBatch()
 axis::backend::ProgramState* RendererUniformBatch::createBlurProgramState()
 {
     auto programState =
-        new backend::ProgramState(backend::ProgramCache::getInstance()->getCustomProgram(CustomProgramType::BLUR));
+        new backend::ProgramState(ProgramManager::getInstance()->getCustomProgram(CustomProgramType::BLUR));
     programState->autorelease();
 
     backend::UniformLocation loc = programState->getUniformLocation("resolution");
@@ -878,7 +880,7 @@ axis::backend::ProgramState* RendererUniformBatch::createBlurProgramState()
 axis::backend::ProgramState* RendererUniformBatch::createSepiaProgramState()
 {
     auto programState =
-        new backend::ProgramState(backend::ProgramCache::getInstance()->getCustomProgram(CustomProgramType::SEPIA));
+        new backend::ProgramState(ProgramManager::getInstance()->getCustomProgram(CustomProgramType::SEPIA));
 
     // programState->updateUniformID();
 
@@ -931,7 +933,7 @@ RendererUniformBatch2::RendererUniformBatch2()
 backend::ProgramState* RendererUniformBatch2::createBlurProgramState()
 {
     auto programState =
-        new backend::ProgramState(backend::ProgramCache::getInstance()->getCustomProgram(CustomProgramType::BLUR));
+        new backend::ProgramState(ProgramManager::getInstance()->getCustomProgram(CustomProgramType::BLUR));
 
     backend::UniformLocation loc = programState->getUniformLocation("resolution");
     auto resolution              = Vec2(85, 121);
@@ -951,7 +953,7 @@ backend::ProgramState* RendererUniformBatch2::createBlurProgramState()
 backend::ProgramState* RendererUniformBatch2::createSepiaProgramState()
 {
     auto programState =
-        new backend::ProgramState(backend::ProgramCache::getInstance()->getCustomProgram(CustomProgramType::SEPIA));
+        new backend::ProgramState(ProgramManager::getInstance()->getCustomProgram(CustomProgramType::SEPIA));
     programState->autorelease();
     return programState;
 }
@@ -1068,7 +1070,7 @@ std::string NonBatchSprites::title() const
 
 std::string NonBatchSprites::subtitle() const
 {
-#if defined(AXIS_DEBUG) && AXIS_DEBUG == 1
+#if defined(_AX_DEBUG) && _AX_DEBUG == 1
     return "DEBUG: simulate lots of sprites, drop to 30 fps";
 #else
     return "RELEASE: simulate lots of sprites, drop to 30 fps";

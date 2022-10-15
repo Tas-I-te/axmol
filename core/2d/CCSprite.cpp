@@ -7,7 +7,7 @@ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2020 C4games Ltd.
 Copyright (c) 2021-2022 Bytedance Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -130,7 +130,7 @@ Sprite* Sprite::createWithSpriteFrameName(std::string_view spriteFrameName)
 {
     SpriteFrame* frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteFrameName);
 
-#if AXIS_DEBUG > 0
+#if _AX_DEBUG > 0
     char msg[256] = {0};
     sprintf(msg, "Invalid spriteFrameName: %s", spriteFrameName.data());
     AXASSERT(frame != nullptr, msg);
@@ -245,7 +245,7 @@ bool Sprite::initWithSpriteFrame(SpriteFrame* spriteFrame)
     return ret;
 }
 
-bool Sprite::initWithPolygon(const axis::PolygonInfo& info)
+bool Sprite::initWithPolygon(const ax::PolygonInfo& info)
 {
     bool ret = false;
 
@@ -355,27 +355,6 @@ void Sprite::setTexture(std::string_view filename)
     setTextureRect(rect);
 }
 
-void Sprite::setVertexLayout()
-{
-    // set vertexLayout according to V3F_C4B_T2F structure
-    // auto& vertexLayout = _trianglesCommand.getPipelineDescriptor().vertexLayout;
-    auto vertexLayout = _programState->getVertexLayout();
-    /// a_position
-    vertexLayout->setAttribute(backend::ATTRIBUTE_NAME_POSITION,
-                               _programState->getAttributeLocation(backend::Attribute::POSITION),
-                               backend::VertexFormat::FLOAT3, 0, false);
-    /// a_texCoord
-    vertexLayout->setAttribute(backend::ATTRIBUTE_NAME_TEXCOORD,
-                               _programState->getAttributeLocation(backend::Attribute::TEXCOORD),
-                               backend::VertexFormat::FLOAT2, offsetof(V3F_C4B_T2F, texCoords), false);
-
-    /// a_color
-    vertexLayout->setAttribute(backend::ATTRIBUTE_NAME_COLOR,
-                               _programState->getAttributeLocation(backend::Attribute::COLOR),
-                               backend::VertexFormat::UBYTE4, offsetof(V3F_C4B_T2F, colors), true);
-    vertexLayout->setLayout(sizeof(V3F_C4B_T2F));
-}
-
 void Sprite::setProgramState(uint32_t type)
 {
     setProgramStateWithRegistry(type, _texture);
@@ -391,7 +370,6 @@ bool Sprite::setProgramState(backend::ProgramState* programState, bool needsReta
 
         _mvpMatrixLocation = _programState->getUniformLocation(backend::Uniform::MVP_MATRIX);
 
-        setVertexLayout();
         updateProgramStateTexture(_texture);
         setMVPMatrixUniform();
         return true;
@@ -705,7 +683,7 @@ void Sprite::updatePoly()
     }
 }
 
-void Sprite::setCenterRectNormalized(const axis::Rect& rectTopLeft)
+void Sprite::setCenterRectNormalized(const ax::Rect& rectTopLeft)
 {
     if (_renderMode != RenderMode::QUAD && _renderMode != RenderMode::SLICE9)
     {
@@ -761,7 +739,7 @@ void Sprite::setCenterRectNormalized(const axis::Rect& rectTopLeft)
     }
 }
 
-void Sprite::setCenterRect(const axis::Rect& rectInPoints)
+void Sprite::setCenterRect(const ax::Rect& rectInPoints)
 {
     if (_renderMode != RenderMode::QUAD && _renderMode != RenderMode::SLICE9)
     {

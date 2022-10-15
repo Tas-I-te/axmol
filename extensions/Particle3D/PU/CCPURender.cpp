@@ -3,7 +3,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -515,7 +515,7 @@ void PUParticle3DModelRender::render(Renderer* renderer, const Mat4& transform, 
             mesh->setBlendFunc(particleSystem->getBlendFunc());
             mesh->setCullFaceEnabled(false);
             mesh->retain();
-            _meshList.push_back(mesh);
+            _meshList.emplace_back(mesh);
         }
         if (!_meshList.empty())
         {
@@ -635,27 +635,6 @@ bool PUParticle3DEntityRender::initRender(std::string_view texFile)
 
     auto& pipelineDescriptor        = _meshCommand.getPipelineDescriptor();
     pipelineDescriptor.programState = _programState;
-    auto layout                     = _programState->getVertexLayout();
-    const auto& attributeInfo       = _programState->getProgram()->getActiveAttributes();
-    auto iter                       = attributeInfo.find("a_position");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT3,
-                             offsetof(VertexInfo, position), false);
-    }
-    iter = attributeInfo.find("a_texCoord");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2,
-                             offsetof(VertexInfo, uv), false);
-    }
-    iter = attributeInfo.find("a_color");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_color", iter->second.location, backend::VertexFormat::FLOAT4,
-                             offsetof(VertexInfo, color), false);
-    }
-    layout->setLayout(sizeof(VertexInfo));
 
     _locColor   = _programState->getUniformLocation("u_color");
     _locPMatrix = _programState->getUniformLocation("u_PMatrix");
@@ -1035,7 +1014,7 @@ void PUSphereRender::buildBuffers(unsigned short count)
                     _indices[index++] = vertexIndex;
                 }
                 ++vertexIndex;
-                _vertexTemplate.push_back(vi);
+                _vertexTemplate.emplace_back(vi);
             }
         }
     }

@@ -3,7 +3,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -50,8 +50,8 @@ void ccMessageBox(const char* msg, const char* title)
     [alert setInformativeText:tmpTitle];
     [alert setAlertStyle:NSAlertStyleWarning];
 
-    auto glview = Director::getInstance()->getOpenGLView();
-    id window   = glview->getCocoaWindow();
+    auto glView = Director::getInstance()->getOpenGLView();
+    id window   = glView->getCocoaWindow();
     [alert beginSheetModalForWindow:window completionHandler:nil];
 }
 

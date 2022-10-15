@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -155,14 +155,14 @@ void TestList::runThisTest()
      * otherwise, the layout will incorrect
      */
 
-    GLViewImpl* glview = (GLViewImpl*)Director::getInstance()->getOpenGLView();
+    GLViewImpl* glView = (GLViewImpl*)Director::getInstance()->getOpenGLView();
 #if defined(AX_PLATFORM_PC)
     Size resourceSize(960, 640);
-    glview->setWindowed(resourceSize.width, resourceSize.height);
+    glView->setWindowed(resourceSize.width, resourceSize.height);
 #endif
 
     Size designSize(480, 320);
-    glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
+    glView->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
 
     auto director = Director::getInstance();
     auto scene    = Scene::create();

@@ -2,7 +2,7 @@
 Copyright (c) 2013-2017 Chukong Technologies Inc.
 Copyright (c) 2021 Bytedance Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -92,7 +92,7 @@ Bone::~Bone(void)
 
 bool Bone::init()
 {
-    return Bone::init(nullptr);
+    return Bone::init(hlookup::empty_sv);
 }
 
 bool Bone::init(std::string_view name)

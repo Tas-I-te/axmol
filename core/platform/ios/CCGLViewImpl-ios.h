@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -63,7 +63,7 @@ public:
     virtual bool isRetinaDisplay() const override { return getContentScaleFactor() == 2.0; }
 
     /** returns the objective-c CCEAGLView instance */
-    virtual void* getEAGLView() const override { return _eaglview; }
+    virtual void* getEAGLView() const override { return _eaglView; }
 
     // overrides
     virtual bool isOpenGLReady() override;
@@ -82,7 +82,7 @@ protected:
     bool initWithFullScreen(std::string_view viewName);
 
     // the objective-c CCEAGLView instance
-    void* _eaglview;
+    void* _eaglView;
 };
 
 NS_AX_END

@@ -3,7 +3,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) Bytedance Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -79,31 +79,31 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved)
     return JNI_VERSION_1_4;
 }
 
-JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*, jclass, jint w, jint h)
+JNIEXPORT void JNICALL Java_org_axmol_lib_AxmolRenderer_nativeInit(JNIEnv*, jclass, jint w, jint h)
 {
-    auto director = axis::Director::getInstance();
-    auto glview   = director->getOpenGLView();
-    if (!glview)
+    auto director = ax::Director::getInstance();
+    auto glView   = director->getOpenGLView();
+    if (!glView)
     {
-        glview = axis::GLViewImpl::create("Android app");
-        glview->setFrameSize(w, h);
-        director->setOpenGLView(glview);
+        glView = ax::GLViewImpl::create("Android app");
+        glView->setFrameSize(w, h);
+        director->setOpenGLView(glView);
 
-        axis::Application::getInstance()->run();
+        ax::Application::getInstance()->run();
     }
     else
     {
-        axis::Director::getInstance()->resetMatrixStack();
-        axis::EventCustom recreatedEvent(EVENT_RENDERER_RECREATED);
+        ax::Director::getInstance()->resetMatrixStack();
+        ax::EventCustom recreatedEvent(EVENT_RENDERER_RECREATED);
         director->getEventDispatcher()->dispatchEvent(&recreatedEvent);
         director->setGLDefaultValues();
-        axis::VolatileTextureMgr::reloadAllTextures();
+        ax::VolatileTextureMgr::reloadAllTextures();
     }
 }
 
-JNIEXPORT jintArray JNICALL Java_org_cocos2dx_lib_Cocos2dxActivity_getGLContextAttrs(JNIEnv* env, jclass)
+JNIEXPORT jintArray JNICALL Java_org_axmol_lib_AxmolActivity_getGLContextAttrs(JNIEnv* env, jclass)
 {
-    axis::Application::getInstance()->initGLContextAttrs();
+    ax::Application::getInstance()->initGLContextAttrs();
     GLContextAttrs _glContextAttrs = GLView::getGLContextAttrs();
 
     int tmp[7] = {_glContextAttrs.redBits,           _glContextAttrs.greenBits, _glContextAttrs.blueBits,
@@ -116,8 +116,8 @@ JNIEXPORT jintArray JNICALL Java_org_cocos2dx_lib_Cocos2dxActivity_getGLContextA
     return glContextAttrsJava;
 }
 
-JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnSurfaceChanged(JNIEnv*, jclass, jint w, jint h)
+JNIEXPORT void JNICALL Java_org_axmol_lib_AxmolRenderer_nativeOnSurfaceChanged(JNIEnv*, jclass, jint w, jint h)
 {
-    axis::Application::getInstance()->applicationScreenSizeChanged(w, h);
+    ax::Application::getInstance()->applicationScreenSizeChanged(w, h);
 }
 }

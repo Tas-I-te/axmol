@@ -26,7 +26,7 @@ void PlistSpriteSheetLoader::load(std::string_view filePath, SpriteFrameCache& c
     if (fullPath.empty())
     {
         // return if plist file doesn't exist
-        AXLOG("cocos2d: SpriteFrameCache: can not find %s", filePath.data());
+        AXLOG("axmol: SpriteFrameCache: can not find %s", filePath.data());
         return;
     }
 
@@ -61,7 +61,7 @@ void PlistSpriteSheetLoader::load(std::string_view filePath, SpriteFrameCache& c
         // append .png
         texturePath = texturePath.append(".png");
 
-        AXLOG("cocos2d: SpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
+        AXLOG("axmol: SpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
     }
     addSpriteFramesWithDictionary(dict, texturePath, filePath, cache);
 }
@@ -143,7 +143,7 @@ void PlistSpriteSheetLoader::reload(std::string_view filePath, SpriteFrameCache&
     }
     else
     {
-        AXLOG("cocos2d: SpriteFrameCache: Couldn't load texture");
+        AXLOG("axmol: SpriteFrameCache: Couldn't load texture");
     }
 }
 
@@ -163,7 +163,7 @@ void PlistSpriteSheetLoader::addSpriteFramesWithDictionary(ValueMap& dictionary,
     Version 3 with TexturePacker 4.0 polygon mesh packing
     */
 
-    if (dictionary["frames"].getType() != axis::Value::Type::MAP)
+    if (dictionary["frames"].getType() != ax::Value::Type::MAP)
         return;
 
     auto spriteSheet    = std::make_shared<SpriteSheet>();
@@ -220,7 +220,7 @@ void PlistSpriteSheetLoader::addSpriteFramesWithDictionary(ValueMap& dictionary,
             if (!ow || !oh)
             {
                 AXLOGWARN(
-                    "cocos2d: WARNING: originalWidth/Height not found on the SpriteFrame. AnchorPoint won't work as "
+                    "axmol: WARNING: originalWidth/Height not found on the SpriteFrame. AnchorPoint won't work as "
                     "expected. Regenerate the .plist");
             }
             // abs ow/oh
@@ -264,11 +264,11 @@ void PlistSpriteSheetLoader::addSpriteFramesWithDictionary(ValueMap& dictionary,
                 auto oneAlias = value.asString();
                 if (std::find(frameAliases.begin(), frameAliases.end(), oneAlias) == frameAliases.end())
                 {
-                    frameAliases.push_back(std::move(oneAlias));
+                    frameAliases.emplace_back(std::move(oneAlias));
                 }
                 else
                 {
-                    AXLOGWARN("cocos2d: WARNING: an alias with name %s already exists", oneAlias.c_str());
+                    AXLOGWARN("axmol: WARNING: an alias with name %s already exists", oneAlias.c_str());
                 }
             }
 
@@ -279,7 +279,7 @@ void PlistSpriteSheetLoader::addSpriteFramesWithDictionary(ValueMap& dictionary,
 
             if (frameDict.find("vertices") != frameDict.end())
             {
-                using axis::utils::parseIntegerList;
+                using ax::utils::parseIntegerList;
                 auto vertices   = parseIntegerList(optValue(frameDict, "vertices"sv).asString());
                 auto verticesUV = parseIntegerList(optValue(frameDict, "verticesUV"sv).asString());
                 auto indices    = parseIntegerList(optValue(frameDict, "triangles"sv).asString());
@@ -367,7 +367,7 @@ void PlistSpriteSheetLoader::addSpriteFramesWithDictionary(ValueMap& dict,
     }
     else
     {
-        AXLOG("cocos2d: SpriteFrameCache: Couldn't load texture");
+        AXLOG("axmol: SpriteFrameCache: Couldn't load texture");
     }
 }
 
@@ -462,11 +462,11 @@ void PlistSpriteSheetLoader::reloadSpriteFramesWithDictionary(ValueMap& dict,
                 auto oneAlias = value.asString();
                 if (std::find(frameAliases.begin(), frameAliases.end(), oneAlias) == frameAliases.end())
                 {
-                    frameAliases.push_back(std::move(oneAlias));
+                    frameAliases.emplace_back(std::move(oneAlias));
                 }
                 else
                 {
-                    AXLOGWARN("cocos2d: WARNING: an alias with name %s already exists", oneAlias.c_str());
+                    AXLOGWARN("axmol: WARNING: an alias with name %s already exists", oneAlias.c_str());
                 }
             }
 

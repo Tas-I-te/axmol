@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ const ValueMapIntKey ValueMapIntKeyNull;
 
 const Value Value::Null;
 
-const std::string Value::NullString;
+const std::string Value::EmptyString;
 
 Value::Value() : _type(Type::NONE)
 {
@@ -773,7 +773,7 @@ std::string_view Value::asStringRef() const
 {
     if (_type == Type::STRING)
         return *_field.strVal;
-    return Value::NullString;
+    return Value::EmptyString;
 }
 
 ValueVector& Value::asValueVector()

@@ -378,7 +378,6 @@ protected:
                               CustomCommand::PrimitiveType primitiveType);
     void freeShaderInternal(CustomCommand& cmd);
 
-    void setVertexLayout(CustomCommand& cmd);
     void updateBlendState(CustomCommand& cmd);
     void updateUniforms(const Mat4& transform, CustomCommand& cmd);
 
@@ -409,7 +408,7 @@ protected:
     float _lineWidth        = 0.0f;
     float _defaultLineWidth = 0.0f;
 
-    axis::any_buffer _abuf;
+    ax::any_buffer _abuf;
 
 private:
     AX_DISALLOW_COPY_AND_ASSIGN(DrawNode);

@@ -18,19 +18,19 @@ if(NOT DEFINED BUILD_ENGINE_DONE)
         set(CMAKE_XCODE_GENERATE_TOP_LEVEL_PROJECT_ONLY TRUE)
     endif()
 
-    set(AXIS_ROOT "$ENV{AXIS_ROOT}")
-    if(NOT (AXIS_ROOT STREQUAL ""))
-        set(AXIS_ROOT_PATH "${AXIS_ROOT}")
-        file(TO_CMAKE_PATH ${AXIS_ROOT_PATH} AXIS_ROOT_PATH) # string(REPLACE "\\" "/" AXIS_ROOT_PATH ${AXIS_ROOT_PATH})
-        message(STATUS "Using system env var AXIS_ROOT=${AXIS_ROOT}")
+    set(_AX_ROOT "$ENV{AX_ROOT}")
+    if(NOT (_AX_ROOT STREQUAL ""))
+        set(_AX_ROOT_PATH "${_AX_ROOT}")
+        file(TO_CMAKE_PATH ${_AX_ROOT_PATH} _AX_ROOT_PATH) # string(REPLACE "\\" "/" _AX_ROOT_PATH ${_AX_ROOT_PATH})
+        message(STATUS "Using system env var _AX_ROOT=${_AX_ROOT}")
     else()
-        set(AXIS_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+        set(_AX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../..)
     endif()
 
-    set(CMAKE_MODULE_PATH ${AXIS_ROOT_PATH}/cmake/Modules/)
+    set(CMAKE_MODULE_PATH ${_AX_ROOT_PATH}/cmake/Modules/)
 
-    include(AxisBuildSet)
-    add_subdirectory(${AXIS_ROOT_PATH}/core ${ENGINE_BINARY_PATH}/axis/core)
+    include(AXBuildSet)
+    add_subdirectory(${_AX_ROOT_PATH}/core ${ENGINE_BINARY_PATH}/axmol/core)
 endif()
 
 # record sources, headers, resources...
@@ -41,7 +41,7 @@ set(GAME_RES_FOLDER
     "${CMAKE_CURRENT_SOURCE_DIR}/Resources"
     )
 if(APPLE OR VS)
-    cocos_mark_multi_resources(cc_common_res RES_TO "Resources" FOLDERS ${GAME_RES_FOLDER})
+    ax_mark_multi_resources(cc_common_res RES_TO "Resources" FOLDERS ${GAME_RES_FOLDER})
 endif()
 
 if(ANDROID)
@@ -70,11 +70,21 @@ elseif(APPLE)
              proj.ios/Classes/testsAppDelegate.h
              proj.ios/Classes/RootViewController.h
              )
-        set(APP_UI_RES
-            proj.ios/LaunchScreen.storyboard
-            proj.ios/LaunchScreenBackground.png
-            proj.ios/Images.xcassets
-            )
+
+        if (TVOS)
+            set(APP_UI_RES
+                proj.ios/LaunchScreenBackground.png
+                proj.ios/targets/tvos/LaunchScreen.storyboard
+                proj.ios/targets/tvos/Images.xcassets
+                )
+        else()
+            set(APP_UI_RES
+                proj.ios/LaunchScreenBackground.png
+                proj.ios/targets/ios/LaunchScreen.storyboard
+                proj.ios/targets/ios/Images.xcassets
+                )
+        endif()
+
         list(APPEND GAME_SOURCE
              proj.ios/main.m
              proj.ios/Classes/testsAppDelegate.mm
@@ -102,7 +112,6 @@ list(APPEND GAME_HEADER
      Classes/ParallaxTest/ParallaxTest.h
      Classes/testBasic.h
      Classes/ZwoptexTest/ZwoptexTest.h
-     Classes/precheader.h
      Classes/CurlTest/CurlTest.h
      Classes/UnitTest/UnitTest.h
 #    Classes/UnitTest/RefPtrTest.h
@@ -540,13 +549,13 @@ else()
     add_library(${APP_NAME} SHARED ${all_code_files})
 
     # whole archive for jni
-    add_subdirectory(${AXIS_ROOT_PATH}/core/platform/android ${ENGINE_BINARY_PATH}/core/platform)
+    add_subdirectory(${_AX_ROOT_PATH}/core/platform/android ${ENGINE_BINARY_PATH}/core/platform)
     target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
 
-    config_android_shared_libs("org.cocos2dx.lib" "${CMAKE_CURRENT_SOURCE_DIR}/proj.android/app/src")
+    config_android_shared_libs("org.axmol.lib" "${CMAKE_CURRENT_SOURCE_DIR}/proj.android/app/src")
 endif()
 
-target_link_libraries(${APP_NAME} ${AXIS_CORE_LIB})
+target_link_libraries(${APP_NAME} ${_AX_CORE_LIB})
 
 target_include_directories(${APP_NAME}
         PRIVATE Classes
@@ -557,37 +566,39 @@ if(WIN64)
 endif()
 
 # mark app resources
-setup_cocos_app_config(${APP_NAME})
+setup_ax_app_config(${APP_NAME})
 if(APPLE)
     set_target_properties(${APP_NAME} PROPERTIES RESOURCE "${APP_UI_RES}")
     set_xcode_property(${APP_NAME} INSTALL_PATH "\$(LOCAL_APPS_DIR)")
-    set_xcode_property(${APP_NAME} PRODUCT_BUNDLE_IDENTIFIER "org.axis.cpp_tests")
+    set_xcode_property(${APP_NAME} PRODUCT_BUNDLE_IDENTIFIER "org.axmol.cpp-tests")
 
     if(MACOSX)
         set_target_properties(${APP_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/proj.mac/Info.plist")
+    elseif(TVOS)
+        set_target_properties(${APP_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/proj.ios/targets/tvos/Info.plist")
+        set_xcode_property(${APP_NAME} ASSETCATALOG_COMPILER_APPICON_NAME "Brand Assets")
     elseif(IOS)
-        set_target_properties(${APP_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/proj.ios/Info.plist")
+        set_target_properties(${APP_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/proj.ios/targets/ios/Info.plist")
         set_xcode_property(${APP_NAME} ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon")
     endif()
 
     # For code-signing, set the DEVELOPMENT_TEAM:
     #set_xcode_property(${APP_NAME} DEVELOPMENT_TEAM "GRLXXXX2K9")
 elseif(WINDOWS)
-    cocos_copy_target_dll(${APP_NAME})
+    ax_copy_target_dll(${APP_NAME})
 endif()
 
 if((WINDOWS AND (CMAKE_GENERATOR STREQUAL "Ninja")) OR LINUX)
-    cocos_get_resource_path(APP_RES_DIR ${APP_NAME})
-    cocos_copy_target_res(${APP_NAME} LINK_TO ${APP_RES_DIR} FOLDERS ${GAME_RES_FOLDER})
+    ax_get_resource_path(APP_RES_DIR ${APP_NAME})
+    ax_copy_target_res(${APP_NAME} LINK_TO ${APP_RES_DIR} FOLDERS ${GAME_RES_FOLDER})
 elseif(WINDOWS)
     set_property(TARGET ${APP_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${GAME_RES_FOLDER}")
 endif()
 
-if(WINDOWS)
-    # precompiled header. Compilation time speedup ~4x, but don't know how Ninja to support PCH yet and needs help from someone.
-    if(NOT CMAKE_GENERATOR STREQUAL "Ninja") 
-        target_sources(${APP_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Classes/precheader.cpp")
-        set_target_properties(${APP_NAME} PROPERTIES COMPILE_FLAGS "/Yuprecheader.h /FIprecheader.h")
-        set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/Classes/precheader.cpp" PROPERTIES COMPILE_FLAGS "/Ycprecheader.h")
-    endif()
+if(NOT IOS)
+    message("CMake ${APP_NAME} target_precompile_headers")
+    target_precompile_headers(${APP_NAME} PRIVATE 
+      "$<$<COMPILE_LANGUAGE:CXX>:axmol.h>"
+    )
 endif()
+

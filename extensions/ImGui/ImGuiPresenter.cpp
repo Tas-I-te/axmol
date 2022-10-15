@@ -1,6 +1,10 @@
 #include "ImGuiPresenter.h"
 #include <assert.h>
-#include "imgui_impl_axis.h"
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID)
+    #include "imgui_impl_ax_android.h"
+#else
+    #include "imgui_impl_ax.h"
+#endif
 #include "imgui_internal.h"
 
 // TODO: mac metal
@@ -197,11 +201,15 @@ void ImGuiPresenter::init()
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
 
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID)
+    ImGui_ImplAndroid_InitForAx(Director::getInstance()->getOpenGLView(), true);
+#else
     auto window = static_cast<GLViewImpl*>(Director::getInstance()->getOpenGLView())->getWindow();
-    ImGui_ImplGlfw_InitForAxis(window, true);
-    ImGui_ImplAxis_Init();
+    ImGui_ImplGlfw_InitForAx(window, true);
+#endif
+    ImGui_ImplAx_Init();
 
-    ImGui_ImplAxis_SetCustomFontLoader(&ImGuiPresenter::loadCustomFonts, this);
+    ImGui_ImplAx_SetCustomFontLoader(&ImGuiPresenter::loadCustomFonts, this);
 
     ImGui::StyleColorsClassic();
 
@@ -216,9 +224,13 @@ void ImGuiPresenter::cleanup()
     eventDispatcher->removeCustomEventListeners(Director::EVENT_AFTER_VISIT);
     eventDispatcher->removeCustomEventListeners(Director::EVENT_BEFORE_DRAW);
 
-    ImGui_ImplAxis_SetCustomFontLoader(nullptr, nullptr);
-    ImGui_ImplAxis_Shutdown();
+    ImGui_ImplAx_SetCustomFontLoader(nullptr, nullptr);
+    ImGui_ImplAx_Shutdown();
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID)
+    ImGui_ImplAndroid_Shutdown();
+#else
     ImGui_ImplGlfw_Shutdown();
+#endif
 
     AX_SAFE_RELEASE_NULL(_fontsTexture);
 
@@ -265,9 +277,12 @@ void ImGuiPresenter::loadCustomFonts(void* ud)
 
 float ImGuiPresenter::scaleAllByDPI(float userScale)
 {
-    // Gets scale
     float xscale = 1.0f;
+#if (AX_TARGET_PLATFORM != AX_PLATFORM_ANDROID)
+    // Gets scale
     glfwGetMonitorContentScale(glfwGetPrimaryMonitor(), &xscale, nullptr);
+#endif
+
     auto zoomFactor = userScale * xscale;
 
     auto imFonts = ImGui::GetIO().Fonts;
@@ -283,7 +298,7 @@ float ImGuiPresenter::scaleAllByDPI(float userScale)
         }
 
         // Destory font informations, let implcocos2dx recreate at newFrame
-        ImGui_ImplAxis_SetDeviceObjectsDirty();
+        ImGui_ImplAx_SetDeviceObjectsDirty();
 
         ImGui::GetStyle().ScaleAllSizes(zoomFactor);
 
@@ -293,12 +308,17 @@ float ImGuiPresenter::scaleAllByDPI(float userScale)
     return zoomFactor;
 }
 
+void ImGuiPresenter::setViewResolution(float width, float height)
+{
+    ImGui_ImplAx_SetViewResolution(width, height);
+}
+
 void ImGuiPresenter::addFont(std::string_view fontFile, float fontSize, CHS_GLYPH_RANGE glyphRange)
 {
     if (FileUtils::getInstance()->isFileExistInternal(fontFile))
     {
         if (_fontsInfoMap.emplace(fontFile, FontInfo{fontSize, glyphRange}).second)
-            ImGui_ImplAxis_SetDeviceObjectsDirty();
+            ImGui_ImplAx_SetDeviceObjectsDirty();
     }
 }
 
@@ -307,7 +327,7 @@ void ImGuiPresenter::removeFont(std::string_view fontFile)
     auto count = _fontsInfoMap.size();
     _fontsInfoMap.erase(fontFile);
     if (count != _fontsInfoMap.size())
-        ImGui_ImplAxis_SetDeviceObjectsDirty();
+        ImGui_ImplAx_SetDeviceObjectsDirty();
 }
 
 void ImGuiPresenter::clearFonts()
@@ -315,7 +335,7 @@ void ImGuiPresenter::clearFonts()
     bool haveCustomFonts = !_fontsInfoMap.empty();
     _fontsInfoMap.clear();
     if (haveCustomFonts)
-        ImGui_ImplAxis_SetDeviceObjectsDirty();
+        ImGui_ImplAx_SetDeviceObjectsDirty();
 
     // auto drawData = ImGui::GetDrawData();
     // if(drawData) drawData->Clear();
@@ -339,12 +359,16 @@ void ImGuiPresenter::beginFrame()
     if (!_renderPiplines.empty())
     {
         // create frame
-        ImGui_ImplAxis_NewFrame();
+        ImGui_ImplAx_NewFrame();
+#if (AX_TARGET_PLATFORM == AX_PLATFORM_ANDROID)
+        ImGui_ImplAndroid_NewFrame();
+#else
         ImGui_ImplGlfw_NewFrame();
+#endif
         ImGui::NewFrame();
 
         // move to endFrame?
-        _fontsTexture = (Texture2D*)ImGui_ImplAxis_GetFontsTexture();
+        _fontsTexture = (Texture2D*)ImGui_ImplAx_GetFontsTexture();
         assert(_fontsTexture != nullptr);
         _fontsTexture->retain();
 
@@ -367,9 +391,9 @@ void ImGuiPresenter::endFrame()
 
         auto drawData = ImGui::GetDrawData();
         if (drawData)
-            ImGui_ImplAxis_RenderDrawData(drawData);
+            ImGui_ImplAx_RenderDrawData(drawData);
 
-        ImGui_ImplAxis_RenderPlatform();
+        ImGui_ImplAx_RenderPlatform();
         --_beginFrames;
 
         AX_SAFE_RELEASE_NULL(_fontsTexture);

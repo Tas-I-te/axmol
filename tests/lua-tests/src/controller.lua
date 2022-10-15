@@ -10,7 +10,7 @@ end
 ----------------
 -- run
 AX_USE_DEPRECATED_API = true
-require "cocos.init"
+require "axmol.init"
 
 local director = cc.Director:getInstance()
 local glView   = director:getOpenGLView()

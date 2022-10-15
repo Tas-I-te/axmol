@@ -3,7 +3,7 @@ Copyright (c) 2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 #include "ActionsTest.h"
 #include "../testResource.h"
-#include "cocos2d.h"
+#include "axmol.h"
 #include "ui/CocosGUI.h"
 
 #include "renderer/CCRenderer.h"
@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "renderer/CCGroupCommand.h"
 
 USING_NS_AX;
-using namespace axis::ui;
+using namespace ax::ui;
 
 ActionsTests::ActionsTests()
 {

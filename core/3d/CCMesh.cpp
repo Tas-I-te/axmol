@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -162,50 +162,56 @@ Mesh* Mesh::create(const std::vector<float>& positions,
     int perVertexSizeInFloat = 0;
     std::vector<float> vertices;
     std::vector<MeshVertexAttrib> attribs;
+    
     MeshVertexAttrib att;
     att.type = backend::VertexFormat::FLOAT3;
 
-    if (positions.size())
+    attribs.reserve(3);
+
+    size_t hasNormal   = 0;
+    size_t hasTexCoord = 0;
+    if (!positions.empty())
     {
         perVertexSizeInFloat += 3;
         att.vertexAttrib = shaderinfos::VertexKey::VERTEX_ATTRIB_POSITION;
-        attribs.push_back(att);
+        attribs.emplace_back(att);
     }
-    if (normals.size())
+    if (!normals.empty())
     {
         perVertexSizeInFloat += 3;
         att.vertexAttrib = shaderinfos::VertexKey::VERTEX_ATTRIB_NORMAL;
-        attribs.push_back(att);
+        attribs.emplace_back(att);
+        hasNormal = 1;
     }
-    if (texs.size())
+    if (!texs.empty())
     {
         perVertexSizeInFloat += 2;
         att.type         = backend::VertexFormat::FLOAT2;
         att.vertexAttrib = shaderinfos::VertexKey::VERTEX_ATTRIB_TEX_COORD;
-        attribs.push_back(att);
+        attribs.emplace_back(att);
+        hasTexCoord = 1;
     }
 
-    bool hasNormal   = (normals.size() != 0);
-    bool hasTexCoord = (texs.size() != 0);
     // position, normal, texCoordinate into _vertexs
     size_t vertexNum = positions.size() / 3;
+    vertices.reserve(positions.size() + hasNormal * 3 + hasTexCoord * 2);
     for (size_t i = 0; i < vertexNum; i++)
     {
-        vertices.push_back(positions[i * 3]);
-        vertices.push_back(positions[i * 3 + 1]);
-        vertices.push_back(positions[i * 3 + 2]);
+        vertices.emplace_back(positions[i * 3]);
+        vertices.emplace_back(positions[i * 3 + 1]);
+        vertices.emplace_back(positions[i * 3 + 2]);
 
         if (hasNormal)
         {
-            vertices.push_back(normals[i * 3]);
-            vertices.push_back(normals[i * 3 + 1]);
-            vertices.push_back(normals[i * 3 + 2]);
+            vertices.emplace_back(normals[i * 3]);
+            vertices.emplace_back(normals[i * 3 + 1]);
+            vertices.emplace_back(normals[i * 3 + 2]);
         }
 
         if (hasTexCoord)
         {
-            vertices.push_back(texs[i * 2]);
-            vertices.push_back(texs[i * 2 + 1]);
+            vertices.emplace_back(texs[i * 2]);
+            vertices.emplace_back(texs[i * 2 + 1]);
         }
     }
     return create(vertices, perVertexSizeInFloat, indices, attribs);
@@ -219,8 +225,8 @@ Mesh* Mesh::create(const std::vector<float>& vertices,
     MeshData meshdata;
     meshdata.attribs = attribs;
     meshdata.vertex  = vertices;
-    meshdata.subMeshIndices.push_back(indices);
-    meshdata.subMeshIds.push_back("");
+    meshdata.subMeshIndices.emplace_back(indices);
+    meshdata.subMeshIds.emplace_back("");
     auto meshvertexdata = MeshVertexData::create(meshdata, indices.format());
     auto indexData      = meshvertexdata->getMeshIndexDataByIndex(0);
 
@@ -341,18 +347,18 @@ void Mesh::setMaterial(Material* material)
         {
             // allocate MeshCommand vector for technique
             // allocate MeshCommand for each pass
-            _meshCommands[technique->getName()] = std::vector<MeshCommand>(technique->getPasses().size());
             auto& list                          = _meshCommands[technique->getName()];
+            list.resize(technique->getPasses().size());
 
             int i = 0;
             for (auto&& pass : technique->getPasses())
             {
-#ifdef AXIS_DEBUG
+#ifdef _AX_DEBUG
                 // make it crashed when missing attribute data
                 if (_material->getTechnique()->getName().compare(technique->getName()) == 0)
                 {
                     auto program        = pass->getProgramState()->getProgram();
-                    auto attributes     = program->getActiveAttributes();
+                    auto& attributes     = program->getActiveAttributes();
                     auto meshVertexData = _meshIndexData->getMeshVertexData();
                     auto attributeCount = meshVertexData->getMeshVertexAttribCount();
                     AXASSERT(attributes.size() <= attributeCount, "missing attribute data");
@@ -528,8 +534,11 @@ void Mesh::bindMeshCommand()
 {
     if (_material && _meshIndexData)
     {
-        _material->getStateBlock().setCullFace(true);
-        _material->getStateBlock().setDepthTest(true);
+        auto& stateBlock = _material->getStateBlock();
+        stateBlock.setCullFace(true);
+        stateBlock.setDepthTest(true);
+        if (_blend.src != backend::BlendFactor::ONE && _blend.dst != backend::BlendFactor::ONE)
+            stateBlock.setBlend(true);
     }
 }
 

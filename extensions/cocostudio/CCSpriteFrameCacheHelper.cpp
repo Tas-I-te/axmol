@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2013-2017 Chukong Technologies Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -69,10 +69,10 @@ void SpriteFrameCacheHelper::retainSpriteFrames(std::string_view plistPath)
         SpriteFrame* spriteFrame = spriteFramesCache->findFrame(spriteFrameName);
         AXASSERT(spriteFrame, "spriteframe is null!");
 
-        vec.push_back(spriteFrame);
+        vec.emplace_back(spriteFrame);
         AX_SAFE_RETAIN(spriteFrame);
     }
-    _usingSpriteFrames[plistPath] = vec;
+    _usingSpriteFrames[plistPath] = std::move(vec);
 }
 
 void SpriteFrameCacheHelper::releaseSpriteFrames(std::string_view plistPath)

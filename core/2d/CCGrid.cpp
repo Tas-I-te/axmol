@@ -5,7 +5,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2021 Bytedance Inc.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ bool GridBase::initWithSize(const Vec2& gridSize)
     return initWithSize(gridSize, Rect::ZERO);
 }
 
-bool GridBase::initWithSize(const Vec2& gridSize, const axis::Rect& rect)
+bool GridBase::initWithSize(const Vec2& gridSize, const ax::Rect& rect)
 {
     Director* director = Director::getInstance();
     Vec2 s             = director->getWinSizeInPixels();
@@ -115,20 +115,19 @@ bool GridBase::initWithSize(const Vec2& gridSize, Texture2D* texture, bool flipp
 #define VERTEX_TEXCOORD_SIZE 2
     uint32_t texcoordOffset   = (VERTEX_POSITION_SIZE) * sizeof(float);
     uint32_t totalSize        = (VERTEX_POSITION_SIZE + VERTEX_TEXCOORD_SIZE) * sizeof(float);
-    auto vertexLayout         = _programState->getVertexLayout();
     const auto& attributeInfo = _programState->getProgram()->getActiveAttributes();
     auto iter                 = attributeInfo.find("a_position");
     if (iter != attributeInfo.end())
     {
-        vertexLayout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT3, 0, false);
+        _programState->setVertexAttrib("a_position", iter->second.location, backend::VertexFormat::FLOAT3, 0, false);
     }
     iter = attributeInfo.find("a_texCoord");
     if (iter != attributeInfo.end())
     {
-        vertexLayout->setAttribute("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2, texcoordOffset,
+        _programState->setVertexAttrib("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2, texcoordOffset,
                                    false);
     }
-    vertexLayout->setLayout(totalSize);
+    _programState->setVertexStride(totalSize);
 
     calculateVertexPoints();
     updateBlendState();
@@ -194,7 +193,7 @@ void GridBase::set2DProjection()
     director->loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
-void GridBase::setGridRect(const axis::Rect& rect)
+void GridBase::setGridRect(const ax::Rect& rect)
 {
     _gridRect = rect;
 }
@@ -227,7 +226,7 @@ void GridBase::beforeDraw()
     renderer->clear(TargetBufferFlags::COLOR, _clearColor, 1, 0, 0.0);
 }
 
-void GridBase::afterDraw(axis::Node* /*target*/)
+void GridBase::afterDraw(ax::Node* /*target*/)
 {
     // restore projection
     Director* director = Director::getInstance();
@@ -380,7 +379,7 @@ void Grid3D::blit()
     updateVertexBuffer();
     _drawCommand.init(0, _blendFunc);
     Director::getInstance()->getRenderer()->addCommand(&_drawCommand);
-    axis::Mat4 projectionMat = Director::getInstance()->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
+    ax::Mat4 projectionMat = Director::getInstance()->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
     auto programState           = _drawCommand.getPipelineDescriptor().programState;
     programState->setUniform(_mvpMatrixLocation, projectionMat.m, sizeof(projectionMat.m));
     programState->setTexture(_textureLocation, 0, _texture->getBackendTexture());
@@ -630,7 +629,7 @@ void TiledGrid3D::blit()
 {
     updateVertexBuffer();
     Director::getInstance()->getRenderer()->addCommand(&_drawCommand);
-    axis::Mat4 projectionMat = Director::getInstance()->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
+    ax::Mat4 projectionMat = Director::getInstance()->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
     auto programState           = _drawCommand.getPipelineDescriptor().programState;
     programState->setUniform(_mvpMatrixLocation, projectionMat.m, sizeof(projectionMat.m));
     programState->setTexture(_textureLocation, 0, _texture->getBackendTexture());

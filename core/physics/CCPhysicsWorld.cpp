@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -51,7 +51,7 @@ const int PhysicsWorld::DEBUGDRAW_JOINT   = 0x02;
 const int PhysicsWorld::DEBUGDRAW_CONTACT = 0x04;
 const int PhysicsWorld::DEBUGDRAW_ALL     = DEBUGDRAW_SHAPE | DEBUGDRAW_JOINT | DEBUGDRAW_CONTACT;
 
-const float _debugDrawThickness = 0.5f; // thickness of the DebugDraw lines, circles, dots, polygons
+const float _debugDrawThickness = 0.5f;  // thickness of the DebugDraw lines, circles, dots, polygons
 
 namespace
 {
@@ -349,11 +349,11 @@ bool PhysicsWorld::collisionBeginCallback(PhysicsContact& contact)
 {
     bool ret = true;
 
-    PhysicsShape* shapeA               = contact.getShapeA();
-    PhysicsShape* shapeB               = contact.getShapeB();
-    PhysicsBody* bodyA                 = shapeA->getBody();
-    PhysicsBody* bodyB                 = shapeB->getBody();
-    std::vector<PhysicsJoint*> jointsA = bodyA->getJoints();
+    PhysicsShape* shapeA = contact.getShapeA();
+    PhysicsShape* shapeB = contact.getShapeB();
+    PhysicsBody* bodyA   = shapeA->getBody();
+    PhysicsBody* bodyB   = shapeB->getBody();
+    auto&& jointsA       = bodyA->getJoints();
 
     // check the joint is collision enable or not
     for (PhysicsJoint* joint : jointsA)
@@ -699,7 +699,7 @@ void PhysicsWorld::removeJoint(PhysicsJoint* joint, bool destroy)
                 return;
             if (std::find(_delayRemoveJoints.rbegin(), _delayRemoveJoints.rend(), joint) == _delayRemoveJoints.rend())
             {
-                _delayRemoveJoints.push_back(joint);
+                _delayRemoveJoints.emplace_back(joint);
             }
         }
         else
@@ -721,7 +721,7 @@ void PhysicsWorld::updateJoints()
         joint->_world = this;
         if (joint->initJoint())
         {
-            _joints.push_back(joint);
+            _joints.emplace_back(joint);
         }
         else
         {
@@ -772,7 +772,7 @@ void PhysicsWorld::addJoint(PhysicsJoint* joint)
 
         if (std::find(_delayAddJoints.begin(), _delayAddJoints.end(), joint) == _delayAddJoints.end())
         {
-            _delayAddJoints.push_back(joint);
+            _delayAddJoints.emplace_back(joint);
         }
     }
 }

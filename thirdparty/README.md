@@ -1,12 +1,12 @@
-# The axis thirdparty libraries
+# The axmol thirdparty libraries
 ## angle
 - Upstream: https://github.com/google/angle
-- Version: git 2.1-e37380e (18155) on branch `chromium/4951` @Google Chrome 101.0.4951.41
+- Version: git 2.1.19119 on branch `chromium/5195` @Google Chrome 105.0.5195.102
 - License: BSD WITH The ANGLE Project Authors
 
 ## astc
 - [![Upstream](https://img.shields.io/github/v/release/ARM-software/astc-encoder?label=Upstream)](https://github.com/ARM-software/astc-encoder)
-- Version: 3.7
+- Version: 4.1.0
 - License: Apache-2.0
 
 ## Box2D
@@ -23,7 +23,7 @@
 - [![Upstream](https://img.shields.io/github/v/release/bulletphysics/bullet3?label=Upstream)](https://github.com/bulletphysics/bullet3)
 - Version: 3.24
 - License: zlib
-- Update method: Compare `axis/thirdparty/bullet` with `bullet3/src`
+- Update method: Compare `axmol/thirdparty/bullet` with `bullet3/src`
 
 ## c-ares
 - [![Upstream](https://img.shields.io/github/v/release/c-ares/c-ares?label=Upstream)](https://github.com/c-ares/c-ares)
@@ -35,9 +35,9 @@
 - Version: git 7.0.3-0cb05e7 {until Dec 16, 2021}
 - License: MIT
 
-## Clipper
-- Upstream: https://sourceforge.net/projects/polyclipping/files/
-- Version: 6.4.2
+## Clipper2
+- [![Upstream](https://img.shields.io/github/v/tag/AngusJohnson/Clipper2?label=Upstream)](https://github.com/AngusJohnson/Clipper2)
+- Version: 1.0.5
 - License: BSL-1.0
 
 ## ConvertUTF
@@ -47,17 +47,17 @@
 
 ## curl
 - [![Upstream](https://img.shields.io/github/v/release/curl/curl?label=Upstream)](https://github.com/curl/curl)
-- Version: 7.84.0
+- Version: 7.85.0
 - License: Curl (MIT/X)
 
 ## flatbuffers
 - [![Upstream](https://img.shields.io/github/v/release/google/flatbuffers?label=Upstream)](https://github.com/google/flatbuffers)
-- Version: 2.0.0
+- Version: 2.0.8
 - License: Apache-2.0
 
 ## {fmt}
 - [![Upstream](https://img.shields.io/github/v/release/fmtlib/fmt?label=Upstream)](https://github.com/fmtlib/fmt)
-- Version: 9.0.0
+- Version: 9.1.0
 - License: MIT
 
 ## FreeType
@@ -75,7 +75,7 @@
 - Version: git df8d7bc on 31 Dec 2021 (4398)
 - License: zlib
 
-## glsl-optimizer
+## glsl-optimizer (Apple Metal Render backend only)
 - Upstream: https://github.com/aras-p/glsl-optimizer
 - Version: git d78c3d2
 - License: MIT
@@ -90,9 +90,9 @@
 - Version: v4.0.0
 - License: MIT-like
 
-## jpeg (libjpeg-turbo)
+## jpeg-turbo
 - Upstream: https://github.com/libjpeg-turbo/libjpeg-turbo
-- Version: 2.1.3
+- Version: 2.1.4
 - License: BSD-style (IJG,BSD-3-Clause,zlib)
 
 ## kcp
@@ -102,7 +102,7 @@
 
 ## llhttp
 - [![Upstream](https://img.shields.io/github/v/release/nodejs/llhttp?label=Upstream)](https://github.com/nodejs/llhttp)
-- Version: 6.0.7
+- Version: 8.0.0
 - License: MIT
 
 ## lua
@@ -133,7 +133,7 @@
 
 ## lz4
 - [![Upstream](https://img.shields.io/github/v/release/lz4/lz4?label=Upstream)](https://github.com/lz4/lz4)
-- Version: git 1.9.3-bdc9d3b (2541)
+- Version: 1.9.4
 - License: BSD 2-Clause
 
 ## minimp3
@@ -216,7 +216,7 @@
 
 ## webp
 - [![Upstream](https://img.shields.io/github/v/tag/webmproject/libwebp?label=Upstream)](https://github.com/webmproject/libwebp)
-- Version: 1.2.2
+- Version: 1.2.4
 - License: Google Inc
 
 ## xsbase
@@ -249,7 +249,7 @@
 - Version: git-8422188 (7)
 - License: Apache-2.0
 
-## Some third party libs supporting axis too:
+## Some third party libs supporting axmol too:
    - Live2D for cocos2d-x, with lua binding:  https://github.com/Xrysnow/cocos2d-x-live2d
      - Live2D is also part of the 'extensions'.
 

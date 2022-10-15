@@ -95,13 +95,13 @@ The test will create a directory named simple_test_bindings that contains 3 file
 # The `.ini` file
 
 The `.ini` file is a simple text file specifying the settings for the code generator. Here's the
-default one, used for cocos2d-x
+default one, used for axmol
 
-    [cocos2d-x]
-    prefix = cocos2dx
+    [axmol]
+    prefix = axmol
     events  = CCNode#onEnter CCNode#onExit
-    extra_arguments = -I../../cocos2dx/include -I../../cocos2dx/platform -I../../cocos2dx/platform/ios -I../../cocos2dx -I../../cocos2dx/kazmath/include -arch i386 -DTARGET_OS_IPHONE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -x c++
-    headers = ../../cocos2dx/include/cocos2d.h
+    extra_arguments = -I../../axmol/include -I../../axmol/platform -I../../axmol/platform/ios -I../../axmol -I../../axmol/kazmath/include -arch i386 -DTARGET_OS_IPHONE -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -x c++
+    headers = ../../axmol/include/axmol.h
     classes = CCSprite
     functions = my_free_function
 

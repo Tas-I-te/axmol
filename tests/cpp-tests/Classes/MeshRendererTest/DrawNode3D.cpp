@@ -2,7 +2,7 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -82,26 +82,12 @@ bool DrawNode3D::init()
     _customCommand.setBeforeCallback(AX_CALLBACK_0(DrawNode3D::onBeforeDraw, this));
     _customCommand.setAfterCallback(AX_CALLBACK_0(DrawNode3D::onAfterDraw, this));
 
-    auto layout = _programStateLine->getVertexLayout();
 #define INITIAL_VERTEX_BUFFER_LENGTH 512
 
     ensureCapacity(INITIAL_VERTEX_BUFFER_LENGTH);
 
     _customCommand.setDrawType(CustomCommand::DrawType::ARRAY);
     _customCommand.setPrimitiveType(CustomCommand::PrimitiveType::LINE);
-
-    const auto& attributeInfo = _programStateLine->getProgram()->getActiveAttributes();
-    auto iter                 = attributeInfo.find("a_position");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT3, 0, false);
-    }
-    iter = attributeInfo.find("a_color");
-    if (iter != attributeInfo.end())
-    {
-        layout->setAttribute("a_color", iter->second.location, backend::VertexFormat::UBYTE4, sizeof(Vec3), true);
-    }
-    layout->setLayout(sizeof(V3F_C4B));
 
     _customCommand.createVertexBuffer(sizeof(V3F_C4B), INITIAL_VERTEX_BUFFER_LENGTH,
                                       CustomCommand::BufferUsage::DYNAMIC);
@@ -167,8 +153,8 @@ void DrawNode3D::drawLine(const Vec3& from, const Vec3& to, const Color4F& color
         col,
     };
 
-    _bufferLines.push_back(a);
-    _bufferLines.push_back(b);
+    _bufferLines.emplace_back(a);
+    _bufferLines.emplace_back(b);
 
     _isDirty = true;
 }

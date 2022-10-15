@@ -6,7 +6,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -56,27 +56,6 @@ ParticleSystemQuad::ParticleSystemQuad()
 
     _mvpMatrixLocaiton = pipelinePS->getUniformLocation("u_MVPMatrix");
     _textureLocation   = pipelinePS->getUniformLocation("u_tex0");
-
-    auto vertexLayout         = pipelinePS->getVertexLayout();
-    const auto& attributeInfo = pipelinePS->getProgram()->getActiveAttributes();
-    auto iter                 = attributeInfo.find("a_position");
-    if (iter != attributeInfo.end())
-    {
-        vertexLayout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT3, 0, false);
-    }
-    iter = attributeInfo.find("a_texCoord");
-    if (iter != attributeInfo.end())
-    {
-        vertexLayout->setAttribute("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2,
-                                   offsetof(V3F_C4B_T2F, texCoords), false);
-    }
-    iter = attributeInfo.find("a_color");
-    if (iter != attributeInfo.end())
-    {
-        vertexLayout->setAttribute("a_color", iter->second.location, backend::VertexFormat::UBYTE4,
-                                   offsetof(V3F_C4B_T2F, colors), true);
-    }
-    vertexLayout->setLayout(sizeof(V3F_C4B_T2F));
 }
 
 ParticleSystemQuad::~ParticleSystemQuad()
@@ -710,7 +689,7 @@ void ParticleSystemQuad::draw(Renderer* renderer, const Mat4& transform, uint32_
     {
         auto programState = _quadCommand.getPipelineDescriptor().programState;
 
-        axis::Mat4 projectionMat = _director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
+        ax::Mat4 projectionMat = _director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
         programState->setUniform(_mvpMatrixLocaiton, projectionMat.m, sizeof(projectionMat.m));
 
         _quadCommand.init(_globalZOrder, _texture, _blendFunc, _quads, _particleCount, transform, flags);
@@ -775,7 +754,7 @@ void ParticleSystemQuad::setTotalParticles(int tp)
         initIndices();
         //        setupVBO();
 
-        // fixed https://axis-project.github.io//issues/3990
+        // fixed https://axmolengine.github.io//issues/3990
         // Updates texture coords.
         updateTexCoords();
     }
@@ -819,7 +798,7 @@ bool ParticleSystemQuad::allocMemory()
 
     if (!_quads || !_indices)
     {
-        AXLOG("cocos2d: Particle system: not enough memory");
+        AXLOG("axmol: Particle system: not enough memory");
         AX_SAFE_FREE(_quads);
         AX_SAFE_FREE(_indices);
 

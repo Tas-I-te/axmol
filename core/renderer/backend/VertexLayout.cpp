@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,7 @@ void VertexLayout::setAttribute(std::string_view name,
                   needToBeNormallized});  // _attributes[name] = {name, index, format, offset, needToBeNormallized};
 }
 
-void VertexLayout::setLayout(std::size_t stride)
+void VertexLayout::setStride(std::size_t stride)
 {
     _stride = stride;
 }

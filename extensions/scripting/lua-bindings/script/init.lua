@@ -43,9 +43,9 @@ ccexp = axexp
 ccui = axui
 ccb = axb
 
-require "cocos.cocos2d.Cocos2d"
-require "cocos.cocos2d.Cocos2dConstants"
-require "cocos.cocos2d.functions"
+require "axmol.core.Axmol"
+require "axmol.core.Constants"
+require "axmol.core.functions"
 
 __G__TRACKBACK__ = function(msg)
     local msg = debug.traceback(msg, 3)
@@ -55,57 +55,28 @@ end
 
 -- cocosstudio
 if nil ~= ccs then
-    require "cocos.cocostudio.CocoStudio"
+    require "axmol.cocostudio.CocoStudio"
 end
 -- ui
 if nil ~= ccui then
-    require "cocos.ui.GuiConstants"
+    require "axmol.ui.GuiConstants"
 end
 
 -- extensions
-require "cocos.extension.ExtensionConstants"
+require "axmol.extension.ExtensionConstants"
 -- network
-require "cocos.network.NetworkConstants"
+require "axmol.network.NetworkConstants"
 -- Spine
 if nil ~= sp then
-    require "cocos.spine.SpineConstants"
+    require "axmol.spine.SpineConstants"
 end
 
--- require "cocos.cocos2d.deprecated"
-
 -- Lua extensions
-require "cocos.cocos2d.bitExtend"
-
--- CCLuaEngine
--- require "cocos.cocos2d.DeprecatedCocos2dClass"
--- require "cocos.cocos2d.DeprecatedCocos2dEnum"
--- require "cocos.cocos2d.DeprecatedCocos2dFunc"
-
--- register_cocostudio_module
--- if nil ~= ccs then
---     require "cocos.cocostudio.DeprecatedCocoStudioClass"
---     require "cocos.cocostudio.DeprecatedCocoStudioFunc"
--- end
-
--- register_extension_module
--- require "cocos.extension.DeprecatedExtensionClass"
--- require "cocos.extension.DeprecatedExtensionEnum"
--- require "cocos.extension.DeprecatedExtensionFunc"
-
--- register_network_module
--- require "cocos.network.DeprecatedNetworkClass"
--- require "cocos.network.DeprecatedNetworkEnum"
--- require "cocos.network.DeprecatedNetworkFunc"
-
--- register_ui_module
--- if nil ~= ccui then
---     require "cocos.ui.DeprecatedUIEnum"
---     require "cocos.ui.DeprecatedUIFunc"
--- end
+require "axmol.core.bitExtend"
 
 -- physics3d
-require "cocos.physics3d.physics3d-constants"
+require "axmol.physics3d.physics3d-constants"
 
 if AX_USE_FRAMEWORK then
-    require "cocos.framework.init"
+    require "axmol.framework.init"
 end

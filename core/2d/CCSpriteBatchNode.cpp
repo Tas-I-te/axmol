@@ -7,7 +7,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2021 Bytedance Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -121,27 +121,6 @@ void SpriteBatchNode::setUniformLocation()
     _textureLocation   = _programState->getUniformLocation("u_tex0");
 }
 
-void SpriteBatchNode::setVertexLayout()
-{
-    AXASSERT(_programState, "programState should not be nullptr");
-    // set vertexLayout according to V3F_C4B_T2F structure
-    auto vertexLayout = _programState->getVertexLayout();
-    /// a_position
-    vertexLayout->setAttribute(backend::ATTRIBUTE_NAME_POSITION,
-                               _programState->getAttributeLocation(backend::Attribute::POSITION),
-                               backend::VertexFormat::FLOAT3, 0, false);
-    /// a_texCoord
-    vertexLayout->setAttribute(backend::ATTRIBUTE_NAME_TEXCOORD,
-                               _programState->getAttributeLocation(backend::Attribute::TEXCOORD),
-                               backend::VertexFormat::FLOAT2, offsetof(V3F_C4B_T2F, texCoords), false);
-
-    /// a_color
-    vertexLayout->setAttribute(backend::ATTRIBUTE_NAME_COLOR,
-                               _programState->getAttributeLocation(backend::Attribute::COLOR),
-                               backend::VertexFormat::UBYTE4, offsetof(V3F_C4B_T2F, colors), true);
-    vertexLayout->setLayout(sizeof(V3F_C4B_T2F));
-}
-
 bool SpriteBatchNode::setProgramState(backend::ProgramState* programState, bool needsRetain)
 {
     AXASSERT(programState, "programState should not be nullptr");
@@ -150,7 +129,6 @@ bool SpriteBatchNode::setProgramState(backend::ProgramState* programState, bool 
         auto& pipelineDescriptor        = _quadCommand.getPipelineDescriptor();
         pipelineDescriptor.programState = _programState;
 
-        setVertexLayout();
         updateProgramStateTexture(_textureAtlas->getTexture());
         setUniformLocation();
         return true;
@@ -458,13 +436,13 @@ void SpriteBatchNode::increaseAtlasCapacity()
     // this is likely computationally expensive
     ssize_t quantity = (_textureAtlas->getCapacity() + 1) * 4 / 3;
 
-    AXLOG("cocos2d: SpriteBatchNode: resizing TextureAtlas capacity from [%d] to [%d].",
+    AXLOG("axmol: SpriteBatchNode: resizing TextureAtlas capacity from [%d] to [%d].",
           static_cast<int>(_textureAtlas->getCapacity()), static_cast<int>(quantity));
 
     if (!_textureAtlas->resizeCapacity(quantity))
     {
         // serious problems
-        AXLOGWARN("cocos2d: WARNING: Not enough memory to resize the atlas");
+        AXLOGWARN("axmol: WARNING: Not enough memory to resize the atlas");
         AXASSERT(false, "Not enough memory to resize the atlas");
     }
 }
@@ -477,7 +455,7 @@ void SpriteBatchNode::reserveCapacity(ssize_t newCapacity)
     if (!_textureAtlas->resizeCapacity(newCapacity))
     {
         // serious problems
-        AXLOGWARN("cocos2d: WARNING: Not enough memory to resize the atlas");
+        AXLOGWARN("axmol: WARNING: Not enough memory to resize the atlas");
         AXASSERT(false, "Not enough memory to resize the atlas");
     }
 }
@@ -614,7 +592,7 @@ void SpriteBatchNode::appendChild(Sprite* sprite)
         increaseAtlasCapacity();
     }
 
-    _descendants.push_back(sprite);
+    _descendants.emplace_back(sprite);
     int index = static_cast<int>(_descendants.size() - 1);
 
     sprite->setAtlasIndex(index);

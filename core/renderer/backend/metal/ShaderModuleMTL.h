@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -83,7 +83,7 @@ public:
      * Get active attribute informations.
      * @return Active attribute informations. key is attribute name and Value is corresponding attribute info.
      */
-    inline const hlookup::string_map<AttributeBindInfo> getAttributeInfo() const { return _attributeInfo; }
+    inline const hlookup::string_map<AttributeBindInfo>& getAttributeInfo() const { return _attributeInfo; }
 
     /**
      * Get uniform location by engine built-in uniform enum name.

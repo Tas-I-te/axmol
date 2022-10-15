@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -512,7 +512,7 @@ void ScrollViewDemo::onTouchesEnded(const std::vector<Touch*>& touches, Event* e
 
 // RawStencilBufferTests
 
-//#if AXIS_DEBUG > 1
+//#if _AX_DEBUG > 1
 
 static const float _alphaThreshold = 0.05f;
 
@@ -591,12 +591,6 @@ void RawStencilBufferTest::initCommands()
         cmd.createIndexBuffer(backend::IndexFormat::U_SHORT, 6, backend::BufferUsage::STATIC);
         cmd.updateIndexBuffer(indices, sizeof(indices));
         cmd.getPipelineDescriptor().programState = _programState;
-        auto vertexLayout                        = _programState->getVertexLayout();
-        auto& attributes                         = _programState->getProgram()->getActiveAttributes();
-        auto iter                                = attributes.find("a_position");
-        if (iter != attributes.end())
-            vertexLayout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT2, 0, false);
-        vertexLayout->setLayout(sizeof(Vec2));
 
         auto& cmd2 = _renderCmds[cmdIndex];
         cmdIndex++;
@@ -809,7 +803,7 @@ void RawStencilBufferTest6::setupStencilForDrawingOnPlane(int plane)
     RawStencilBufferTest::setupStencilForDrawingOnPlane(plane);
 }
 
-//#endif // AXIS_DEBUG > 1
+//#endif // _AX_DEBUG > 1
 
 // ClippingToRenderTextureTest
 
@@ -828,7 +822,7 @@ void ClippingToRenderTextureTest::setup()
     auto button = MenuItemFont::create("Reproduce bug", [&](Ref* sender) {
         std::vector<Node*> nodes;
         enumerateChildren("remove me [0-9]", [&](Node* node) {
-            nodes.push_back(node);
+            nodes.emplace_back(node);
             return false;
         });
         for (auto node : nodes)

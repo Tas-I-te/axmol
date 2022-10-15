@@ -4,7 +4,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -120,10 +120,8 @@ bool MotionStreak::initWithFade(float fade, float minSeg, float stroke, const Co
     _colorPointer = (uint8_t*)malloc(sizeof(uint8_t) * 4 * _vertexCount);
     _customCommand.createVertexBuffer(VERTEX_SIZE, _vertexCount, CustomCommand::BufferUsage::DYNAMIC);
 
-    std::vector<uint8_t> zeros;
-    zeros.resize(VERTEX_SIZE * _vertexCount);
-    std::fill(zeros.begin(), zeros.end(), 0);
-    _customCommand.updateVertexBuffer(zeros.data(), zeros.size());
+    auto zeros = std::make_unique<uint8_t[]>(VERTEX_SIZE * _vertexCount);
+    _customCommand.updateVertexBuffer(zeros.get(), VERTEX_SIZE * _vertexCount);
 
     setTexture(texture);
     setColor(color);
@@ -234,26 +232,26 @@ bool MotionStreak::setProgramState(backend::ProgramState* programState, bool nee
         _mvpMatrixLocaiton = _programState->getUniformLocation("u_MVPMatrix");
         _textureLocation   = _programState->getUniformLocation("u_tex0");
 
-        auto vertexLayout         = _programState->getVertexLayout();
+        // setup custom vertex layout for V2F_T2F_C4B
         const auto& attributeInfo = _programState->getProgram()->getActiveAttributes();
         auto iter                 = attributeInfo.find("a_position");
         if (iter != attributeInfo.end())
         {
-            vertexLayout->setAttribute("a_position", iter->second.location, backend::VertexFormat::FLOAT2, 0, false);
+           _programState->setVertexAttrib("a_position", iter->second.location, backend::VertexFormat::FLOAT2, 0, false);
         }
         iter = attributeInfo.find("a_texCoord");
         if (iter != attributeInfo.end())
         {
-            vertexLayout->setAttribute("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2,
-                                       2 * sizeof(float), false);
+           _programState->setVertexAttrib("a_texCoord", iter->second.location, backend::VertexFormat::FLOAT2,
+                                      2 * sizeof(float), false);
         }
         iter = attributeInfo.find("a_color");
         if (iter != attributeInfo.end())
         {
-            vertexLayout->setAttribute("a_color", iter->second.location, backend::VertexFormat::UBYTE4,
-                                       4 * sizeof(float), true);
+           _programState->setVertexAttrib("a_color", iter->second.location, backend::VertexFormat::UBYTE4,
+                                      4 * sizeof(float), true);
         }
-        vertexLayout->setLayout(4 * sizeof(float) + 4 * sizeof(uint8_t));
+        _programState->setVertexStride(4 * sizeof(float) + 4 * sizeof(uint8_t));
 
         updateProgramStateTexture(_texture);
         return true;

@@ -2,7 +2,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@
 #include "platform/CCPlatformMacros.h"
 #include "renderer/CCRenderCommand.h"
 #include "renderer/backend/Types.h"
+#include "renderer/backend/ProgramManager.h"
 
 /**
  * @addtogroup renderer
@@ -92,7 +93,7 @@ public:
     /**Constructor.*/
     RenderQueue();
     /**Push a renderCommand into current renderqueue.*/
-    void push_back(RenderCommand* command);
+    void emplace_back(RenderCommand* command);
     /**Return the number of render commands.*/
     ssize_t size() const;
     /**Sort the render commands.*/

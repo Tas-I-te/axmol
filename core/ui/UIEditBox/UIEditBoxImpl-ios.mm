@@ -4,7 +4,7 @@
  Copyright (c) 2013-2015 zilongshanren
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@
 
 #    import "ui/UIEditBox/iOS/CCUIEditBoxIOS.h"
 
-#    define getEditBoxImplIOS() ((axis::ui::EditBoxImplIOS*)_editBox)
+#    define getEditBoxImplIOS() ((ax::ui::EditBoxImplIOS*)_editBox)
 
 NS_AX_BEGIN
 
@@ -62,11 +62,11 @@ EditBoxImplIOS::~EditBoxImplIOS()
 
 void EditBoxImplIOS::createNativeControl(const Rect& frame)
 {
-    auto glview = axis::Director::getInstance()->getOpenGLView();
+    auto glView = ax::Director::getInstance()->getOpenGLView();
 
-    Rect rect(0, 0, frame.size.width * glview->getScaleX(), frame.size.height * glview->getScaleY());
+    Rect rect(0, 0, frame.size.width * glView->getScaleX(), frame.size.height * glView->getScaleY());
 
-    float factor = axis::Director::getInstance()->getContentScaleFactor();
+    float factor = ax::Director::getInstance()->getContentScaleFactor();
 
     rect.size.width /= factor;
     rect.size.height /= factor;
@@ -153,7 +153,7 @@ void EditBoxImplIOS::setNativeReturnType(EditBox::KeyboardReturnType returnType)
     [_systemControl setReturnType:returnType];
 }
 
-void EditBoxImplIOS::setNativeTextHorizontalAlignment(axis::TextHAlignment alignment)
+void EditBoxImplIOS::setNativeTextHorizontalAlignment(ax::TextHAlignment alignment)
 {
     [_systemControl setTextHorizontalAlignment:alignment];
 }
@@ -179,10 +179,10 @@ void EditBoxImplIOS::setNativeVisible(bool visible)
 
 void EditBoxImplIOS::updateNativeFrame(const Rect& rect)
 {
-    auto glview          = axis::Director::getInstance()->getOpenGLView();
-    CCEAGLView* eaglview = (CCEAGLView*)glview->getEAGLView();
+    auto glView          = ax::Director::getInstance()->getOpenGLView();
+    CCEAGLView* eaglView = (CCEAGLView*)glView->getEAGLView();
 
-    float factor = eaglview.contentScaleFactor;
+    float factor = eaglView.contentScaleFactor;
 
     [_systemControl updateFrame:CGRectMake(rect.origin.x / factor, rect.origin.y / factor, rect.size.width / factor,
                                            rect.size.height / factor)];
@@ -208,14 +208,14 @@ void EditBoxImplIOS::nativeCloseKeyboard()
 UIFont* EditBoxImplIOS::constructFont(const char* fontName, int fontSize)
 {
     AXASSERT(fontName != nullptr, "fontName can't be nullptr");
-    CCEAGLView* eaglview = static_cast<CCEAGLView*>(axis::Director::getInstance()->getOpenGLView()->getEAGLView());
-    float retinaFactor   = eaglview.contentScaleFactor;
+    CCEAGLView* eaglView = static_cast<CCEAGLView*>(ax::Director::getInstance()->getOpenGLView()->getEAGLView());
+    float retinaFactor   = eaglView.contentScaleFactor;
     NSString* fntName    = [NSString stringWithUTF8String:fontName];
 
     fntName = [[fntName lastPathComponent] stringByDeletingPathExtension];
 
-    auto glview       = axis::Director::getInstance()->getOpenGLView();
-    float scaleFactor = glview->getScaleX();
+    auto glView       = ax::Director::getInstance()->getOpenGLView();
+    float scaleFactor = glView->getScaleX();
 
     if (fontSize == -1)
     {

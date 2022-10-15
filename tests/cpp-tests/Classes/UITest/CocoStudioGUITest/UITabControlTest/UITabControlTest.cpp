@@ -27,7 +27,7 @@
 #include "UITabControlTest.h"
 
 USING_NS_AX;
-using namespace axis::ui;
+using namespace ax::ui;
 
 UITabControlTests::UITabControlTests()
 {

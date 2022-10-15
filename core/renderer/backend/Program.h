@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +37,8 @@
 NS_AX_BACKEND_BEGIN
 
 class ShaderModule;
+class VertexLayout;
+class ProgramManager;
 
 /**
  * @addtogroup _backend
@@ -49,6 +51,7 @@ class ShaderModule;
 class AX_DLL Program : public Ref
 {
 public:
+    ~Program();
     /**
      * Get engine built-in program.
      * @param type Specifies the built-in program type.
@@ -99,7 +102,7 @@ public:
      * Get active vertex attributes.
      * @return Active vertex attributes. key is active attribute name, Value is corresponding attribute info.
      */
-    virtual const hlookup::string_map<AttributeBindInfo> getActiveAttributes() const = 0;
+    virtual const hlookup::string_map<AttributeBindInfo>& getActiveAttributes() const = 0;
 
     /**
      * Get vertex shader.
@@ -146,6 +149,8 @@ public:
      */
     void setProgramType(uint32_t type);
 
+    inline VertexLayout* getVertexLayout() const { return _vertexLayout; }
+
 protected:
     /**
      * @param vs Specifes the vertex shader source.
@@ -181,10 +186,11 @@ protected:
     virtual const std::unordered_map<std::string, int> getAllUniformsLocation() const = 0;
     friend class ProgramState;
 #endif
-    friend class ProgramCache;
+    friend class ProgramManager;
 
     std::string _vertexShader;                            ///< Vertex shader.
     std::string _fragmentShader;                          ///< Fragment shader.
+    VertexLayout* _vertexLayout = nullptr;
     uint32_t _programType = ProgramType::CUSTOM_PROGRAM;  ///< built-in program type, initial value is CUSTOM_PROGRAM.
 };
 

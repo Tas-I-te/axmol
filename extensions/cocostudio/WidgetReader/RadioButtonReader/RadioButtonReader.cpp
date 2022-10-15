@@ -130,7 +130,7 @@ Offset<Table> RadioButtonReader::createOptionsWithFlatBuffers(pugi::xml_node obj
             if (backgroundboxResourceType == 1)
             {
                 FlatBuffersSerialize* fbs = FlatBuffersSerialize::getInstance();
-                fbs->_textures.push_back(builder->CreateString(texture));
+                fbs->_textures.emplace_back(builder->CreateString(texture));
             }
         }
         else if (name == "PressedBackFileData")
@@ -165,7 +165,7 @@ Offset<Table> RadioButtonReader::createOptionsWithFlatBuffers(pugi::xml_node obj
             if (backGroundBoxSelectedResourceType == 1)
             {
                 FlatBuffersSerialize* fbs = FlatBuffersSerialize::getInstance();
-                fbs->_textures.push_back(builder->CreateString(texture));
+                fbs->_textures.emplace_back(builder->CreateString(texture));
             }
         }
         else if (name == "NodeNormalFileData")
@@ -200,7 +200,7 @@ Offset<Table> RadioButtonReader::createOptionsWithFlatBuffers(pugi::xml_node obj
             if (frontCrossResourceType == 1)
             {
                 FlatBuffersSerialize* fbs = FlatBuffersSerialize::getInstance();
-                fbs->_textures.push_back(builder->CreateString(texture));
+                fbs->_textures.emplace_back(builder->CreateString(texture));
             }
         }
         else if (name == "DisableBackFileData")
@@ -235,7 +235,7 @@ Offset<Table> RadioButtonReader::createOptionsWithFlatBuffers(pugi::xml_node obj
             if (backGroundBoxDisabledResourceType == 1)
             {
                 FlatBuffersSerialize* fbs = FlatBuffersSerialize::getInstance();
-                fbs->_textures.push_back(builder->CreateString(texture));
+                fbs->_textures.emplace_back(builder->CreateString(texture));
             }
         }
         else if (name == "NodeDisableFileData")
@@ -270,7 +270,7 @@ Offset<Table> RadioButtonReader::createOptionsWithFlatBuffers(pugi::xml_node obj
             if (frontCrossDisabledResourceType == 1)
             {
                 FlatBuffersSerialize* fbs = FlatBuffersSerialize::getInstance();
-                fbs->_textures.push_back(builder->CreateString(texture));
+                fbs->_textures.emplace_back(builder->CreateString(texture));
             }
         }
 
@@ -294,7 +294,7 @@ Offset<Table> RadioButtonReader::createOptionsWithFlatBuffers(pugi::xml_node obj
     return *(Offset<Table>*)&options;
 }
 
-void RadioButtonReader::setPropsWithFlatBuffers(axis::Node* node, const flatbuffers::Table* radioButtonOptions)
+void RadioButtonReader::setPropsWithFlatBuffers(ax::Node* node, const flatbuffers::Table* radioButtonOptions)
 {
     auto options = (RadioButtonOptions*)radioButtonOptions;
 

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,10 @@
  ****************************************************************************/
 
 #include "UIPageViewTest.h"
-#include "cocos2d.h"
+#include "axmol.h"
 
 USING_NS_AX;
-using namespace axis::ui;
+using namespace ax::ui;
 
 UIPageViewTests::UIPageViewTests()
 {

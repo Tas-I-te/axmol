@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -64,6 +64,7 @@ public:
     };
 
     VertexLayout() = default;
+    VertexLayout(const VertexLayout&) = default;
 
     /**
      * Set attribute values to name.
@@ -84,7 +85,7 @@ public:
      * Set stride of vertices.
      * @param stride Specifies the distance between the data of two vertices, in bytes.
      */
-    void setLayout(std::size_t stride);
+    void setStride(std::size_t stride);
 
     /**
      * Get the distance between the data of two vertices, in bytes.

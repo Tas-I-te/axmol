@@ -6,7 +6,7 @@ Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -263,7 +263,6 @@ protected:
     void updateAtlasIndex(Sprite* sprite, ssize_t* curIndex);
     void swap(ssize_t oldIndex, ssize_t newIndex);
     void updateBlendFunc();
-    void setVertexLayout();
     void setUniformLocation();
 
     TextureAtlas* _textureAtlas = nullptr;
@@ -275,7 +274,7 @@ protected:
 
     // all descendants: children, grand children, etc...
     // There is not need to retain/release these objects, since they are already retained by _children
-    // So, using std::vector<Sprite*> is slightly faster than using axis::Array for this particular case
+    // So, using std::vector<Sprite*> is slightly faster than using ax::Array for this particular case
     std::vector<Sprite*> _descendants;
 };
 

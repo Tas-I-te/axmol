@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -57,12 +57,13 @@ enum Attribute : uint32_t
     TEXCOORD1,
     TEXCOORD2,
     TEXCOORD3,
+    NORMAL,
     ATTRIBUTE_MAX  // Maximum attributes
 };
 /**
  * Create shader.
  */
-class AX_DLL ShaderModule : public axis::Ref
+class AX_DLL ShaderModule : public ax::Ref
 {
 public:
     /**

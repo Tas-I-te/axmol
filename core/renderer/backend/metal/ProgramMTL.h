@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2018-2019 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -94,7 +94,7 @@ public:
      * Get active vertex attributes.
      * @return Active vertex attributes. key is active attribute name, Value is corresponding attribute info.
      */
-    const hlookup::string_map<AttributeBindInfo> getActiveAttributes() const override;
+    const hlookup::string_map<AttributeBindInfo>& getActiveAttributes() const override;
 
     /**
      * Get maximum vertex location.

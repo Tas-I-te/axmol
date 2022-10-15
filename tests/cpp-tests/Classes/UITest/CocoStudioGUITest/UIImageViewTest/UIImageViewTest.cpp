@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 #include "UIImageViewTest.h"
 
 USING_NS_AX;
-using namespace axis::ui;
+using namespace ax::ui;
 
 UIImageViewTests::UIImageViewTests()
 {
@@ -299,7 +299,7 @@ bool UIImageViewIssue12249Test::init()
 
         ImageView* imageView2 = ImageView::create();
         imageView2->setScale9Enabled(true);
-        imageView2->loadTexture("blocks9r.png", Widget::TextureResType::PLIST);
+        imageView2->loadTexture("blocks9ss/blocks9r.png", Widget::TextureResType::PLIST);
         imageView2->setContentSize(Size(250, imageView2->getContentSize().height * 2));
         imageView2->setFlippedX(true);
         imageView2->setScale(0.5);

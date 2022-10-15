@@ -3,7 +3,7 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2021 Bytedance Inc.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -58,7 +58,7 @@ class AX_DLL Value
 public:
     /** A predefined Value that has not value. */
     static const Value Null;
-    static const std::string NullString;
+    static const std::string EmptyString;
 
     /** Default constructor. */
     Value();
@@ -192,7 +192,7 @@ public:
     /** to as a string value. Will convert to string if possible, or will trigger assert error. */
     std::string asString() const;
 
-    /** Gets as a string value reference without conversion, if value type is not string will return "" */
+    /** Gets as a string value reference without conversion, if value type is not string will return ""sv */
     std::string_view asStringRef() const;
 
     /** Gets as a ValueVector reference. Will convert to ValueVector if possible, or will trigger assert error. */
@@ -279,9 +279,10 @@ private:
     Type _type;
 };
 
-inline const axis::Value& optValue(const ValueMap& dictionary, std::string_view key)
+inline const ax::Value& optValue(const ValueMap& dictionary, std::string_view key)
 {
-    return dictionary.find(key) != dictionary.cend() ? dictionary.at(key) : axis::Value::Null;
+    auto iter = dictionary.find(key);
+    return iter != dictionary.cend() ? iter->second : ax::Value::Null;
 }
 
 /** @} */

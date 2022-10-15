@@ -3,7 +3,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2021 Bytedance Inc.
 
-https://axis-project.github.io/
+https://axmolengine.github.io/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -320,9 +320,9 @@ void Layout::stencilClippingVisit(Renderer* renderer, const Mat4& parentTransfor
 
 void Layout::onBeforeVisitScissor()
 {
-    auto glview = _director->getOpenGLView();
+    auto glView = _director->getOpenGLView();
     // apply scissor test
-    _scissorOldState = glview->isScissorEnabled();
+    _scissorOldState = glView->isScissorEnabled();
     if (false == _scissorOldState)
     {
         auto renderer = _director->getRenderer();
@@ -331,10 +331,10 @@ void Layout::onBeforeVisitScissor()
 
     // apply scissor box
     Rect clippingRect = getClippingRect();
-    _clippingOldRect  = glview->getScissorRect();
+    _clippingOldRect  = glView->getScissorRect();
     if (false == _clippingOldRect.equals(clippingRect))
     {
-        glview->setScissorInPoints(clippingRect.origin.x, clippingRect.origin.y, clippingRect.size.width,
+        glView->setScissorInPoints(clippingRect.origin.x, clippingRect.origin.y, clippingRect.size.width,
                                    clippingRect.size.height);
     }
 }
@@ -346,8 +346,8 @@ void Layout::onAfterVisitScissor()
         // revert scissor box
         if (false == _clippingOldRect.equals(_clippingRect))
         {
-            auto glview = _director->getOpenGLView();
-            glview->setScissorInPoints(_clippingOldRect.origin.x, _clippingOldRect.origin.y,
+            auto glView = _director->getOpenGLView();
+            glView->setScissorInPoints(_clippingOldRect.origin.x, _clippingOldRect.origin.y,
                                        _clippingOldRect.size.width, _clippingOldRect.size.height);
         }
     }
@@ -1105,7 +1105,7 @@ float Layout::calculateNearestDistance(Widget* baseWidget)
     return distance;
 }
 
-float Layout::calculateFarthestDistance(axis::ui::Widget* baseWidget)
+float Layout::calculateFarthestDistance(ax::ui::Widget* baseWidget)
 {
     float distance = -FLT_MAX;
 
@@ -1205,7 +1205,7 @@ int Layout::findNearestChildWidgetIndex(FocusDirection direction, Widget* baseWi
     return 0;
 }
 
-int Layout::findFarthestChildWidgetIndex(FocusDirection direction, axis::ui::Widget* baseWidget)
+int Layout::findFarthestChildWidgetIndex(FocusDirection direction, ax::ui::Widget* baseWidget)
 {
     if (baseWidget == nullptr || baseWidget == this)
     {
@@ -1358,7 +1358,7 @@ void Layout::findProperSearchingFunctor(FocusDirection dir, Widget* baseWidget)
     }
 }
 
-Widget* Layout::passFocusToChild(FocusDirection dir, axis::ui::Widget* current)
+Widget* Layout::passFocusToChild(FocusDirection dir, ax::ui::Widget* current)
 {
     if (checkFocusEnabledChild())
     {

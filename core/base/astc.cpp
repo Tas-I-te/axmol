@@ -19,7 +19,7 @@
 #include <vector>
 #include <deque>
 #include "astc/astcenc.h"
-#include "astc/astcenc_internal.h"
+#include "astc/astcenc_internal_entry.h"
 #include "yasio/detail/utils.hpp"
 
 #define ASTCDEC_NO_CONTEXT 1
@@ -77,7 +77,7 @@ public:
         int thread_count = std::thread::hardware_concurrency();
         for (int i = 0; i < thread_count; ++i)
         {
-            _threads.push_back(std::thread{&astc_decompress_job_manager::run, this});
+            _threads.emplace_back(std::thread{&astc_decompress_job_manager::run, this});
         }
     }
 
@@ -112,7 +112,7 @@ public:
             return ASTCENC_ERR_OUT_OF_MEM;
 
         _task_queue_mtx.lock();
-        _task_queue.push_back(task);
+        _task_queue.emplace_back(task);
         _task_queue_mtx.unlock();
         _task_queue_cv.notify_all();  // notify all thread to process the single decompress task parallel
 
@@ -243,7 +243,7 @@ private:
 
                     decompress_symbolic_block(ASTCENC_PRF_LDR, bsd, x * block_x, y * block_y, z * block_z, scb, blk);
 
-                    write_image_block(image_out, blk, bsd, x * block_x, y * block_y, z * block_z, swz_decode);
+                    store_image_block(image_out, blk, bsd, x * block_x, y * block_y, z * block_z, swz_decode);
                 }
 
                 decompress_pm.complete_task_assignment(count);
@@ -274,7 +274,7 @@ int astc_decompress_image(const uint8_t* in,
         benchmark_printer(const char* fmt, int w, int h, float den)
             : _fmt(fmt), _w(w), _h(h), _den(den), _start(yasio::highp_clock())
         {}
-        ~benchmark_printer() { axis::log(_fmt, _w, _h, (yasio::highp_clock() - _start) / _den); }
+        ~benchmark_printer() { ax::log(_fmt, _w, _h, (yasio::highp_clock() - _start) / _den); }
         const char* _fmt;
         int _w, _h;
         float _den;

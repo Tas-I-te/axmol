@@ -3,7 +3,7 @@
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
- https://axis-project.github.io/
+ https://axmolengine.github.io/
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 #include <string>
 #include "AppDelegate.h"
 
-#include "cocos2d.h"
+#include "axmol.h"
 #include "controller.h"
 // #include "extensions/cocostudio/CocoStudio.h"
 #include "extensions/cocos-ext.h"
@@ -36,9 +36,9 @@ USING_NS_AX;
 
 // Enable log on Debug version
 #ifndef NDEBUG
-#    define AXIS_DEBUG 1
+#    define _AX_DEBUG 1
 #else
-#    define AXIS_DEBUG 0
+#    define _AX_DEBUG 0
 #endif
 
 AppDelegate::AppDelegate() : _testController(nullptr) {}
@@ -73,15 +73,15 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // initialize director
     auto director = Director::getInstance();
-    auto glview   = director->getOpenGLView();
-    if (!glview)
+    auto glView   = director->getOpenGLView();
+    if (!glView)
     {
         std::string title = "Cpp Tests";
 #ifndef NDEBUG
         title += " *Debug*",
 #endif
-            glview = GLViewImpl::createWithRect(title, Rect(0, 0, resourceSize.width, resourceSize.height));
-        director->setOpenGLView(glview);
+            glView = GLViewImpl::createWithRect(title, Rect(0, 0, resourceSize.width, resourceSize.height));
+        director->setOpenGLView(glView);
     }
 
     director->setStatsDisplay(true);
@@ -92,31 +92,31 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setAnimationInterval(1.0f / 60);
 #endif
 
-    auto screenSize = glview->getFrameSize();
+    auto screenSize = glView->getFrameSize();
 
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> searchPaths;
 
     if (screenSize.height > 320)
     {
-        searchPaths.push_back("hd");
-        searchPaths.push_back("ccs-res/hd");
-        searchPaths.push_back("ccs-res");
-        searchPaths.push_back("Manifests");
+        searchPaths.emplace_back("hd");
+        searchPaths.emplace_back("ccs-res/hd");
+        searchPaths.emplace_back("ccs-res");
+        searchPaths.emplace_back("Manifests");
         director->setContentScaleFactor(resourceSize.height / designSize.height);
 
-        searchPaths.push_back("hd/ActionTimeline");
+        searchPaths.emplace_back("hd/ActionTimeline");
     }
     else
     {
-        searchPaths.push_back("ccs-res");
+        searchPaths.emplace_back("ccs-res");
 
-        searchPaths.push_back("ActionTimeline");
+        searchPaths.emplace_back("ActionTimeline");
     }
 
     fileUtils->setSearchPaths(searchPaths);
 
-    glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
+    glView->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
 
     // Enable Remote Console
     auto console = director->getConsole();
