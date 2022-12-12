@@ -3,7 +3,7 @@
  Copyright (c) 2012      cocos2d-x.org
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- Copyright (c) 2021 Bytedance Inc.
+ Copyright (c) 2021-2022 Bytedance Inc.
 
  https://axmolengine.github.io/
 
@@ -126,14 +126,14 @@ HttpClient::HttpClient()
     _service->set_option(yasio::YOPT_S_DEFERRED_EVENT, 0);
     _service->set_option(yasio::YOPT_S_DNS_QUERIES_TIMEOUT, 3);
     _service->set_option(yasio::YOPT_S_DNS_QUERIES_TRIES, 1);
-    _service->start([=](yasio::event_ptr&& e) { handleNetworkEvent(e.get()); });
+    _service->start([=, this](yasio::event_ptr&& e) { handleNetworkEvent(e.get()); });
 
     for (int i = 0; i < HttpClient::MAX_CHANNELS; ++i)
     {
         _availChannelQueue.unsafe_emplace_back(i);
     }
 
-    _scheduler->schedule([=](float) { dispatchResponseCallbacks(); }, this, 0, false, "#");
+    _scheduler->schedule([=, this](float) { dispatchResponseCallbacks(); }, this, 0, false, "#");
 
     _isInited = true;
 }
@@ -159,7 +159,7 @@ void HttpClient::setDispatchOnWorkThread(bool bVal)
     _scheduler->unscheduleAllForTarget(this);
     _dispatchOnWorkThread = bVal;
     if (!bVal)
-        _scheduler->schedule([=](float) { dispatchResponseCallbacks(); }, this, 0, false, "#");
+        _scheduler->schedule([=, this](float) { dispatchResponseCallbacks(); }, this, 0, false, "#");
 }
 
 void HttpClient::handleNetworkStatusChanged()
@@ -289,16 +289,8 @@ void HttpClient::handleNetworkEvent(yasio::io_event* event)
             obs.write_bytes(" ");
 
             auto& uri = response->getRequestUri();
-            obs.write_bytes(uri.getPath());
-            if (!usePostData)
-            {
-                auto query = uri.getQuery();
-                if (!query.empty())
-                {
-                    obs.write_byte('?');
-                    obs.write_bytes(query);
-                }
-            }
+            obs.write_bytes(uri.getPathEtc());
+
             obs.write_bytes(" HTTP/1.1\r\n");
 
             obs.write_bytes("Host: ");
@@ -358,7 +350,7 @@ void HttpClient::handleNetworkEvent(yasio::io_event* event)
                 char strContentLength[128] = {0};
                 auto requestData           = request->getRequestData();
                 auto requestDataSize       = request->getRequestDataSize();
-                sprintf(strContentLength, "Content-Length: %d\r\n\r\n", static_cast<int>(requestDataSize));
+                snprintf(strContentLength, sizeof(strContentLength), "Content-Length: %d\r\n\r\n", static_cast<int>(requestDataSize));
                 obs.write_bytes(strContentLength);
 
                 if (requestData && requestDataSize > 0)

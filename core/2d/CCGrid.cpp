@@ -203,12 +203,12 @@ void GridBase::beforeDraw()
     // save projection
     Director* director = Director::getInstance();
 
-    auto renderer = director->getRenderer();
+    auto* renderer = director->getRenderer();
+    auto* groupCommand = renderer->getNextGroupCommand();
+    renderer->addCommand(groupCommand);
+    renderer->pushGroup(groupCommand->getRenderQueueID());
 
-    renderer->addCommand(&_groupCommand);
-    renderer->pushGroup(_groupCommand.getRenderQueueID());
-
-    auto beforeDrawCommandFunc = [=]() -> void {
+    auto beforeDrawCommandFunc = [=, this]() -> void {
         _directorProjection = director->getProjection();
         set2DProjection();
         Vec2 size = director->getWinSizeInPixels();
@@ -238,7 +238,7 @@ void GridBase::afterDraw(ax::Node* /*target*/)
     //    renderer->setViewPort(vp.x, vp.y, vp.w, vp.h);
     //    renderer->setRenderTarget(_oldRenderTarget);
     //};
-    renderer->addCallbackCommand([=]() -> void {
+    renderer->addCallbackCommand([=, this]() -> void {
         director->setProjection(_directorProjection);
         const auto& vp = Camera::getDefaultViewport();
         renderer->setViewPort(vp.x, vp.y, vp.w, vp.h);
@@ -263,12 +263,12 @@ void GridBase::afterDraw(ax::Node* /*target*/)
     // TODO:         Director::getInstance()->setProjection(Director::getInstance()->getProjection());
     // TODO:         Director::getInstance()->applyOrientation();
     //_beforeBlitCommand.func = [=]() -> void { beforeBlit(); };
-    renderer->addCallbackCommand([=]() -> void { beforeBlit(); });
+    renderer->addCallbackCommand([=, this]() -> void { beforeBlit(); });
 
     blit();
 
     //_afterBlitCommand.func = [=]() -> void { afterBlit(); };
-    renderer->addCallbackCommand([=]() -> void { afterBlit(); });
+    renderer->addCallbackCommand([=, this]() -> void { afterBlit(); });
 }
 
 // implementation of Grid3D

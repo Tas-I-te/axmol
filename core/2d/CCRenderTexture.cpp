@@ -229,7 +229,7 @@ bool RenderTexture::initWithWidthAndHeight(int w,
         // retained
         setSprite(Sprite::createWithTexture(_texture2D));
 
-#if defined(AX_USE_GL) || defined(AX_USE_GLES)
+#if defined(AX_USE_GL)
         _sprite->setFlippedY(true);
 #endif
 
@@ -611,11 +611,12 @@ void RenderTexture::begin()
         _director->multiplyMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, orthoMatrix);
     }
 
-    _groupCommand.init(_globalZOrder);
 
     Renderer* renderer = _director->getRenderer();
-    renderer->addCommand(&_groupCommand);
-    renderer->pushGroup(_groupCommand.getRenderQueueID());
+    auto* groupCommand = renderer->getNextGroupCommand();
+    groupCommand->init(_globalZOrder);
+    renderer->addCommand(groupCommand);
+    renderer->pushGroup(groupCommand->getRenderQueueID());
 
     auto beginCommand = renderer->nextCallbackCommand();
     beginCommand->init(_globalZOrder);
@@ -652,7 +653,7 @@ void RenderTexture::clearColorAttachment()
     auto renderer                     = _director->getRenderer();
     auto beforeClearAttachmentCommand = renderer->nextCallbackCommand();
     beforeClearAttachmentCommand->init(0);
-    beforeClearAttachmentCommand->func = [=]() -> void {
+    beforeClearAttachmentCommand->func = [=, this]() -> void {
         _oldRenderTarget = renderer->getRenderTarget();
         renderer->setRenderTarget(_renderTarget);
     };
@@ -664,7 +665,7 @@ void RenderTexture::clearColorAttachment()
     // auto renderer                    = _director->getRenderer();
     auto afterClearAttachmentCommand = renderer->nextCallbackCommand();
     afterClearAttachmentCommand->init(0);
-    afterClearAttachmentCommand->func = [=]() -> void { renderer->setRenderTarget(_oldRenderTarget); };
+    afterClearAttachmentCommand->func = [=, this]() -> void { renderer->setRenderTarget(_oldRenderTarget); };
     renderer->addCommand(afterClearAttachmentCommand);
 }
 

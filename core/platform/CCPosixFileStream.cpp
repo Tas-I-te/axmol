@@ -9,6 +9,27 @@
 #include <sys/stat.h>
 #include <assert.h>
 
+#if defined(_WIN32)
+int _ftruncate(int fd, int64_t size)
+{
+    auto handle = (HANDLE)_get_osfhandle(fd);
+    if (handle == INVALID_HANDLE_VALUE)
+        return -1;
+    LARGE_INTEGER offset;
+    offset.QuadPart = size;
+    do
+    {
+        if (!::SetFilePointerEx(handle, offset, nullptr, FILE_BEGIN))
+            break;
+        if (!::SetEndOfFile(handle))
+            break;
+        return 0;
+    } while (false);
+    errno = GetLastError();
+    return -1;
+}
+#endif
+
 NS_AX_BEGIN
 
 struct PXIoF
@@ -208,7 +229,7 @@ int PosixFileStream::read(void* buf, unsigned int size)
 
 int PosixFileStream::write(const void* buf, unsigned int size)
 {
-    return posix_write(_handle._fd, buf, size);
+    return static_cast<int>(posix_write(_handle._fd, buf, size));
 }
 
 int64_t PosixFileStream::tell()
