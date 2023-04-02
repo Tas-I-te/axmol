@@ -121,6 +121,11 @@ static ALenum alSourceAddNotificationExt(ALuint sid,
                                                  selector:@selector(handleInterruption:)
                                                      name:AVAudioSessionInterruptionNotification
                                                    object:[AVAudioSession sharedInstance]];
+        // Fix handphone plugin/unplugin sound session pasued problem
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleInterruption:)
+                                                     name:AVAudioSessionRouteChangeNotification
+                                                   object:[AVAudioSession sharedInstance]];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleInterruption:)
                                                      name:UIApplicationDidBecomeActiveNotification
@@ -222,11 +227,17 @@ static ALenum alSourceAddNotificationExt(ALuint sid,
             ALOGD("Audio session is still interrupted!");
         }
     }
+    else if ([notification.name isEqualToString:AVAudioSessionRouteChangeNotification])
+    { // replay
+        ccALPauseDevice();
+        ccALResumeDevice();
+    }
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionRouteChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationWillResignActiveNotification
@@ -495,7 +506,7 @@ void AudioEngineImpl::_play2d(AudioCache* cache, AUDIO_ID audioID)
     {
         if (player->play2d())
         {
-            _scheduler->performFunctionInCocosThread([audioID]() {
+            _scheduler->runOnAxmolThread([audioID]() {
                 if (AudioEngine::_audioIDInfoMap.find(audioID) != AudioEngine::_audioIDInfoMap.end())
                 {
                     AudioEngine::_audioIDInfoMap[audioID].state = AudioEngine::AudioState::PLAYING;
